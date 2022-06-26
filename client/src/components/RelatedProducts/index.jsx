@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ProductOverview extends React.Component {
+class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,10 +11,11 @@ class ProductOverview extends React.Component {
   render() {
     return (
     <div>
-      This is Product Overview!
+      This is Related items and Comparison!
     </div>
     )
   }
 }
 
-export default ProductOverview;
+export default RelatedProducts;
+

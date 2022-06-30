@@ -8,6 +8,9 @@
     "start": "nodemon server/server.js",
     "build": "webpack --mode production --watch"
   },
+  "jest":{
+    "testEnvironment": "jsdom"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rpp36-fec-garamond/fec-garamond.git"
@@ -22,6 +25,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "jest": "^28.1.2",
+    "msw": "^0.42.3",
     "path": "^0.12.7",
     "puppeteer": "^15.2.0",
     "react": "^18.2.0",
@@ -31,9 +35,11 @@
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.18.0",
+    "jest-environment-jsdom": "^28.1.2",
     "supertest": "^6.2.3",
     "webpack-cli": "^4.10.0"
   }

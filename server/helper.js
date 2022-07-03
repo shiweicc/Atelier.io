@@ -1,28 +1,31 @@
 const axios = require('axios');
 const key = require('../config.js');
 
+// Create authentication headers
 let headers = {
-  'Authorization': key.TOKEN
+  'User-Agent': 'request',
+  'Authorization': `${key.TOKEN}`
 };
 
-const authedGet = (url, callback) => {
-  axios.get(url, {headers})
-  .then((returned) => {
-    callback(null, returned.data);
-  })
-  .catch((err) => {
-    callback(err);
-  })
+// Authenticate get request
+const authedGet = (url) => {
+  let options = {
+    method: 'get',
+    url: `${url}`,
+    headers: headers
+  };
+  return axios(options);
 }
 
-const authedPost = (url, data, callback) => {
-  axios.post(url, data, {headers})
-  .then((returned) => {
-    callback(null, returned.data);
-  })
-  .catch((err) => {
-    callback(err);
-  })
+// Authenticate post request
+const authedPost = (url, data) => {
+  let options = {
+    method: 'post',
+    url: `${url}`,
+    headers: headers,
+    data: JSON.stringify({data: data})
+  };
+  return axios(options);
 }
 
 module.exports = {

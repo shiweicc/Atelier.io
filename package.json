@@ -8,7 +8,7 @@
     "start": "nodemon server/server.js",
     "build": "webpack --mode production --watch"
   },
-  "jest":{
+  "jest": {
     "testEnvironment": "jsdom"
   },
   "repository": {
@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/rpp36-fec-garamond/fec-garamond#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "^4.18.1",
     "jest": "^28.1.2",
+    "jquery": "^3.6.0",
     "msw": "^0.42.3",
     "path": "^0.12.7",
     "puppeteer": "^15.2.0",

@@ -1,4 +1,7 @@
 import React from 'react';
+import ReviewList from './RnRComponents/ReviewList.jsx';
+import RatingsBreakdown from './RnRComponents/RatingsBreakdown.jsx';
+import CharacteristicsBreakdown from './RnRComponents/CharacteristicsBreakdown.jsx';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -67,6 +70,10 @@ class RnR extends React.Component {
       ratingsAvg: 3.5
     }
   }
+
+  // avgRating() {
+  //   this.state.ratings
+  // }
 
   render() {
     return (

@@ -20,7 +20,7 @@ const DisplayQuestion = (data) => (
                     <div key={ans[key].id}>
                       A: {ans[key].body}
                     </div>
-                    <div>by {ans[key].answerer_name} | Helpful? Yes({ans[key].helpfulness}) | Report</div>
+                    <div>by {ans[key].answerer_name},{ans[key].date} | Helpful? Yes({ans[key].helpfulness}) | Report</div>
                   </div>
                 );
               })}

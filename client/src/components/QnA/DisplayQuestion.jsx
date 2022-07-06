@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const DisplayQuestion = (data) => (
 
   < div className="questionList" >
@@ -15,12 +14,15 @@ const DisplayQuestion = (data) => (
               <div className="question" id='block1'>Q: {e.question_body} </div>
               <div id='block2'>Helpful? Yes({e.question_helpfulness}) | Add Answer</div>
               {Object.keys(ans).map((key) => {
+                var d = new Date(ans[key].date);
+                const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                const date = new Intl.DateTimeFormat('en-US', options).format(d);
                 return (
                   <div>
                     <div key={ans[key].id}>
                       A: {ans[key].body}
                     </div>
-                    <div>by {ans[key].answerer_name},{ans[key].date} | Helpful? Yes({ans[key].helpfulness}) | Report</div>
+                    <div>by {ans[key].answerer_name}, {date} | Helpful? Yes({ans[key].helpfulness}) | Report</div>
                   </div>
                 );
               })}

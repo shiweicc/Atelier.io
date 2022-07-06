@@ -18,7 +18,7 @@ class App extends React.Component {
     <div>
       React is working!
       <ProductOverview />
-        <RelatedProducts />
+        {/* <RelatedProducts /> */}
       <QnA />
         {/* <RnR /> */}
     </div>

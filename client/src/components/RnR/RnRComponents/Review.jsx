@@ -1,7 +1,6 @@
 import React from 'react';
-import Review from './Review.jsx';
 
-class ReviewList extends React.Component {
+class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,4 +17,4 @@ class ReviewList extends React.Component {
   }
 }
 
-export default ReviewList;
+export default Review;

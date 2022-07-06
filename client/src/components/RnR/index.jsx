@@ -2,6 +2,7 @@ import React from 'react';
 import ReviewList from './RnRComponents/ReviewList.jsx';
 import RatingsBreakdown from './RnRComponents/RatingsBreakdown.jsx';
 import CharacteristicsBreakdown from './RnRComponents/CharacteristicsBreakdown.jsx';
+import Review from './RnRComponents/Review.jsx';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -77,12 +78,26 @@ class RnR extends React.Component {
 
   render() {
     return (
-    <div>
-      This is the index file!
-      <ReviewList results={this.state.results} sortOrder={this.state.sortOrder}/>
-      <RatingsBreakdown ratings={this.state.ratings} recommended={this.state.recommended}/>
-      <CharacteristicsBreakdown characteristics={this.state.characteristics} />
-    </div>
+      <div>
+        <p>__________________________________</p>
+        <div class='RnR'>
+          <div class='RnRHead'>
+            RATINGS &#38; REVIEWS
+            <div>
+              {this.state.ratingsAvg}
+            </div>
+          </div>
+          <div class='RnRRatings'>
+            <RatingsBreakdown ratings={this.state.ratings} recommended={this.state.recommended}/>
+          </div>
+          <div class='RnRCharacteristics'>
+            <CharacteristicsBreakdown characteristics={this.state.characteristics} />
+          </div>
+          <div class='RnRReviewList'>
+            <ReviewList results={this.state.results} sortOrder={this.state.sortOrder}/>
+          </div>
+        </div>
+      </div>
     )
   }
 }

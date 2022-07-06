@@ -1,0 +1,41 @@
+.RnR {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.RnRHead {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  border-style: dotted;
+  border-color: black;
+}
+
+.RnRRatings {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  border-style: dotted;
+  border-color: black;
+}
+
+.RnRCharacteristics {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  border-style: dotted;
+  border-color: black;
+}
+
+.RnRReviewList {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  border-style: dotted;
+  border-color: black;
+}

@@ -11,7 +11,7 @@ import CharacteristicsBreakdown from './RnRComponents/CharacteristicsBreakdown.j
 describe('tests for rendering component', () => {
   test('tests rendering of RnR component', () => {
     render(<RnR />);
-    expect(screen.getByText(/This is the index file!/i)).toBeInTheDocument();
+    expect(screen.getByText(/RATINGS &#38; REVIEWS/i)).toBeInTheDocument();
   })
   test('tests rendering of RnR component', () => {
     render(<ReviewList />);

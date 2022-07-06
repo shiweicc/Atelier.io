@@ -11,6 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      curProductID: 71697,
+      outfitCollection: [],
     }
     this.getProduct = this.getProduct.bind(this);
   }
@@ -40,9 +42,9 @@ class App extends React.Component {
     <div>
       React is working!
       <ProductOverview />
-      <RelatedProducts />
+      <RelatedProducts curProductID={this.state.curProductID}/>
       <QnA />
-      <RnR />
+      {/* <RnR /> */}
     </div>
     )
   }

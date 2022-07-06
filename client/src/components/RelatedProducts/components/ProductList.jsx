@@ -2,6 +2,8 @@ import React from "react";
 import ProductItem from './ProductItem.jsx';
 
 const ProductList = (props) => {
+  console.log('props in ProductList: ', props);
+
   const listProductItem = props.products.map((item) =>
     <ProductItem
       eachProductInfo={item}
@@ -10,7 +12,7 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <h3> ~~~ This is ProductList Component! ~~~</h3>
+      <h3> 🏝️ RELATED PRODUCT 🏝️</h3>
       {listProductItem }
     </div>
   )

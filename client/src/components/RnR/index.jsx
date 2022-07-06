@@ -2,7 +2,10 @@ import React from 'react';
 import ReviewList from './RnRComponents/ReviewList.jsx';
 import RatingsBreakdown from './RnRComponents/RatingsBreakdown.jsx';
 import CharacteristicsBreakdown from './RnRComponents/CharacteristicsBreakdown.jsx';
+<<<<<<< HEAD
 import Review from './RnRComponents/Review.jsx';
+=======
+>>>>>>> fcca5bd0d4ad97c1c3569ec3f7b85aacbec81c23
 
 class RnR extends React.Component {
   constructor(props) {

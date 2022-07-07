@@ -12,7 +12,11 @@ const authedGet = (url) => {
   let options = {
     method: 'get',
     url: `${url}`,
-    headers: headers
+    headers: headers,
+    params: {
+      page: 1,
+      count: 5
+    }
   };
   return axios(options);
 }

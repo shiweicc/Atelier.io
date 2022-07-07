@@ -21,8 +21,7 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
-        console.log('Successful get request!');
-        console.log(res);
+        this.setState({products: res});
       },
       error: (err) => {
         console.log('Unsuccessful get request.');

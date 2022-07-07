@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/products', (req, res) => {
-  authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/71697')
+  authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products')
     .then((results) => {
       res.send(results.data);
     })
@@ -20,7 +20,7 @@ app.get('/products', (req, res) => {
 })
 
 app.post('/products', (req, res) => {
-  authedPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/71697', req.data)
+  authedPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', req.data)
     .then((results) => {
       res.sendStatus(201);
     })

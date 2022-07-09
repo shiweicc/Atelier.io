@@ -6,13 +6,9 @@ import App from './index.jsx';
 class Landing extends React.Component {
   render() {
     return (
-      <Router>
         <div>
-          {/* <Routes path="/"> */}
             <App />
-          {/* </Routes> */}
         </div>
-      </Router>
     )
   }
 }

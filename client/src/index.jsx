@@ -47,9 +47,8 @@ class App extends React.Component {
   render() {
     return (
     <div>
-      React is working!
       <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-      <RelatedProducts curProductID={this.state.curProductID}/>
+      {/* <RelatedProducts curProductID={this.state.curProductID}/> */}
       {/* <QnA />
       <RnR /> */}
     </div>

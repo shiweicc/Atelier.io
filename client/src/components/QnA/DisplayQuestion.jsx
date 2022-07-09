@@ -1,39 +1,44 @@
+
+
 import React from 'react';
+import DisplayAnswer from './DisplayAnswer.jsx'
 
-const DisplayQuestion = (data) => (
+class DisplayQuestion extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 5,
+      question_id: ''
+    }
+  }
+  accessDisplayAnswer = () => {
+    this.refs.DisplayAnswer.getAnswers(this.state.question_id, this.state.count);
+  };
 
-  < div className="questionList" >
+  render() {
+    return (
+      < div className="questionList" >
+        {
+          this.props.questions.map(
+            (question) => {
+              this.setState({
+                question_id: question.question_id
+              });
+              return (
+                <div>
+                  <div className="question" id='block1'>Q: {question.question_body} </div>
+                  <div id='block2'>Helpful?  <a href='' onClink=''>Yes</a>({question.question_helpfulness}) | <a href='' onClink=''>Add Answer</a></div>
+                  <DisplayAnswer key={question.question_id} answers={question.question_id} ref='DisplayAnswer' />
 
-    {
-      data.questions.map(
-        (e) => {
-          const ans = e.answers;
-          // console.log(e.answers);
-          return (
-            <div>
-              <div className="question" id='block1'>Q: {e.question_body} </div>
-              <div id='block2'>Helpful? Yes({e.question_helpfulness}) | Add Answer</div>
-              {Object.keys(ans).map((key) => {
-                var d = new Date(ans[key].date);
-                const options = { month: 'long', day: 'numeric', year: 'numeric' };
-                const date = new Intl.DateTimeFormat('en-US', options).format(d);
-                return (
-                  <div>
-                    <div key={ans[key].id}>
-                      A: {ans[key].body}
-                    </div>
-                    <div>by {ans[key].answerer_name}, {date} | Helpful? Yes({ans[key].helpfulness}) | Report</div>
-                  </div>
-                );
-              })}
-
-            </div>
+                </div>
+              )
+            }
           )
         }
-      )
-    }
-  </div >
-
-);
+        <button type='button' onClick={this.accessDisplayAnswer.bind(this)}>LOAD MORE ANSWERS</button>
+      </div >
+    );
+  }
+}
 
 export default DisplayQuestion;

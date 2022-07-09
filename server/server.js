@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000;
 const authedGet = require('./helper.js').authedGet;
 const authedPost = require('./helper.js').authedPost;
+const helpfulness = require('./qnaHelper.js').helpfulness;
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
@@ -26,6 +27,38 @@ app.post('/products', (req, res) => {
     })
     .catch((err) => {
       res.sendStatus(400);
+    })
+})
+
+
+
+app.get('/questions', (req, res) => {
+  // console.log(req.method, req.url);
+  const product_id = req.url.substring(req.url.indexOf('?') + 1);
+  authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?' + product_id)
+    .then((results) => {
+      //console.log(results.data);
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+
+app.get('/answers', (req, res) => {
+  const product_id = req.url.substring(req.url.indexOf('=') + 1);
+  const id = product_id.substring(0, 6);
+  const count = product_id.substring(product_id.indexOf('&'));
+
+  console.log(id, count);
+  authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + id + '/answers?' + count)
+    .then((results) => {
+      //console.log(res.data);
+      res.status(200).send(results.data.results);
+    })
+    .catch((err) => {
+      // res.sendStatus(400);
     })
 })
 

@@ -29,6 +29,48 @@ app.post('/products', (req, res) => {
     })
 })
 
+app.get('/info/:productID', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.productID}`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/styles/:productID', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.productID}/styles`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/reviews/', (req, res) => {
+  console.log('hit reviews');
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {params: {product_id: req.query.productID}})
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/reviews/meta/', (req, res) => {
+  console.log('hit meta');
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/`, {params: {product_id: req.query.productID}})
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
 app.listen(port, () => {
   console.log(`listening at port ${port}`);
 })

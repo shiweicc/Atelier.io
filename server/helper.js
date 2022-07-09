@@ -8,15 +8,12 @@ let headers = {
 };
 
 // Authenticate get request
-const authedGet = (url) => {
+const authedGet = (url, params) => {
   let options = {
     method: 'get',
     url: `${url}`,
     headers: headers,
-    params: {
-      page: 1,
-      count: 5
-    }
+    params: params
   };
   return axios(options);
 }

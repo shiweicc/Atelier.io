@@ -11,25 +11,50 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // curProductID: 71701
-      curProductID: window.location.href.split('/').slice(-2, -1)[0]
+      productDesc: {},
+      productStyle: {},
+      productId: window.location.href.split('/').slice(-2, -1)[0],
+      curProductID: 71697,
+      outfitCollection: [],
+
     }
   }
 
+  getProduct () {
+    $.ajax({
+      url: `/products/${this.state.productId}`,
+      method: 'GET',
+      contentType: 'application/json',
+      success: (res) => {
+        console.log('Successful get request!');
+        console.log('result', res)
+        this.setState({
+          productDesc: res.product,
+          productStyle: res.styles
+        });
+      },
+      error: (err) => {
+        console.log('Unsuccessful get request.');
+        console.log(err);
+      }
+    })
+  }
 
 
   render() {
     return (
     <div>
-      React is working!
-      <ProductOverview />
-        {/* <RelatedProducts /> */}
-        <QnA curProductID={this.state.curProductID} />
-        {/* <RnR /> */}
+
+      <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+      {/* <RelatedProducts curProductID={this.state.curProductID}/> */}
+      {/* <QnA curProductID={this.state.curProductID />
+      <RnR /> */}
+
     </div>
     )
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('App'));
-root.render(<App />);
+export default App;
+// const root = ReactDOM.createRoot(document.getElementById('App'));
+// root.render(<App />);

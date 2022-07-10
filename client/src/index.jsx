@@ -5,26 +5,29 @@ import RelatedProducts from './components/RelatedProducts/index.jsx';
 import QnA from './components/QnA/index.jsx';
 import RnR from './components/RnR/index.jsx';
 import $ from 'jquery';
+import axios from 'axios';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curProductID: 71697,
-      outfitCollection: [],
+      curProductID: 71702,
     }
-    this.getProduct = this.getProduct.bind(this);
   }
 
   getProduct () {
     $.ajax({
-      url: '/products',
+      url: `/products/${this.state.productId}`,
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
         console.log('Successful get request!');
-        console.log(res);
+        console.log('result', res)
+        this.setState({
+          productDesc: res.product,
+          productStyle: res.styles
+        });
       },
       error: (err) => {
         console.log('Unsuccessful get request.');
@@ -37,13 +40,15 @@ class App extends React.Component {
     this.getProduct();
   }
 
+
   render() {
     return (
-    <div>
-      React is working!
-      <ProductOverview />
-      <RelatedProducts curProductID={this.state.curProductID}/>
-      <QnA />
+      <div>
+      {/* <ProductOverview /> */}
+      <RelatedProducts
+        curProductID={this.state.curProductID}
+      />
+      {/* <QnA /> */}
       {/* <RnR /> */}
     </div>
     )
@@ -52,3 +57,5 @@ class App extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById('App'));
 root.render(<App />);
+
+

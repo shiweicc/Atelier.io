@@ -12,7 +12,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productDesc: {},
+      productStyle: {},
+      productId: window.location.href.split('/').slice(-2, -1)[0],
       curProductID: 71702,
+      outfitCollection: [],
+
     }
   }
 
@@ -36,26 +41,19 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount () {
-    this.getProduct();
-  }
-
 
   render() {
     return (
       <div>
-      {/* <ProductOverview /> */}
-      <RelatedProducts
-        curProductID={this.state.curProductID}
-      />
-      {/* <QnA /> */}
-      {/* <RnR /> */}
-    </div>
+        <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+        <RelatedProducts curProductID={this.state.curProductID}/>
+        <QnA curProductID={this.state.curProductID}/>
+        {/* <RnR /> */}
+      </div>
     )
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('App'));
-root.render(<App />);
-
-
+export default App;
+// const root = ReactDOM.createRoot(document.getElementById('App'));
+// root.render(<App />);

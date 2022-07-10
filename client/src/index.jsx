@@ -4,7 +4,7 @@ import ProductOverview from './components/ProductOverview/index.jsx';
 import RelatedProducts from './components/RelatedProducts/index.jsx';
 import QnA from './components/QnA/index.jsx';
 import RnR from './components/RnR/index.jsx';
-import $ from 'jquery';
+import axios from 'axios';
 
 
 class App extends React.Component {
@@ -16,8 +16,8 @@ class App extends React.Component {
       productId: window.location.href.split('/').slice(-2, -1)[0],
       curProductID: 71697,
       outfitCollection: [],
+
     }
-    this.getProduct = this.getProduct.bind(this);
   }
 
   getProduct () {
@@ -40,17 +40,16 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount () {
-    this.getProduct();
-  }
 
   render() {
     return (
     <div>
+
       <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
       {/* <RelatedProducts curProductID={this.state.curProductID}/> */}
-      {/* <QnA />
+      {/* <QnA curProductID={this.state.curProductID />
       <RnR /> */}
+
     </div>
     )
   }

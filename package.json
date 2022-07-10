@@ -41,6 +41,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
     "eslint": "^8.18.0",
     "jest-environment-jsdom": "^28.1.2",
     "style-loader": "^3.3.1",

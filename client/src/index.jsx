@@ -16,13 +16,15 @@ class App extends React.Component {
       productInfo: [],
       productStyles: [],
       reviews: [],
-      reviewsMetadata: []
+      reviewsMetadata: [],
+      averageReviewScore: 0
     }
     this.getProduct = this.getProduct.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
+    this.averageReviewScore = this.averageReviewScore.bind(this);
   }
 
   getProduct () {
@@ -40,7 +42,10 @@ class App extends React.Component {
       }
     })
       .then((data) => {
-        this.getProductInfo();
+        this.getProductInfo()
+        this.getProductStyles()
+        this.getReviews()
+        this.getReviewsMetadata()
       })
       .catch((err) => {
         console.log(err);
@@ -61,12 +66,6 @@ class App extends React.Component {
         console.log(err);
       }
     })
-      .then((data) => {
-        this.getProductStyles();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }
 
   getProductStyles () {
@@ -83,12 +82,6 @@ class App extends React.Component {
         console.log(err);
       }
     })
-      .then((data) => {
-        this.getReviews();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }
 
   getReviews () {
@@ -96,6 +89,9 @@ class App extends React.Component {
       url: `/reviews/`,
       method: 'GET',
       contentType: 'application/json',
+      data: {
+        productID: this.state.currentProduct.id
+      },
       success: (res) => {
         console.log('Successful get request!');
         this.setState({reviews: res});
@@ -105,12 +101,6 @@ class App extends React.Component {
         console.log(err);
       }
     })
-      .then((data) => {
-        this.getReviewsMetadata();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }
 
   getReviewsMetadata () {
@@ -130,17 +120,36 @@ class App extends React.Component {
         console.log(err);
       }
     })
+      .then((data) => {
+        this.setState({averageReviewScore: this.averageReviewScore(this.state.reviewsMetadata.ratings)});
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  averageReviewScore (scores) {
+    // break out all the keys
+    let keys = Object.keys(scores);
+    // break out all the values
+    let values = Object.values(scores);
+    // score total
+    let scoreTotal = 0;
+    for (let i = 0; i < keys.length; i++) {
+      scoreTotal += parseInt(values[i])*parseInt(keys[i]);
+    };
+    console.log('scoretotal', scoreTotal);
+    // response total
+    let responseTotal = 0;
+    for (let i = 0; i < values.length; i++) {
+      responseTotal += parseInt(values[i]);
+    };
+    console.log('responsetotal', responseTotal);
+    return Math.round(scoreTotal/responseTotal);
   }
 
   componentDidMount () {
     this.getProduct();
-  }
-
-  componentDidUpdate() {
-    // this.getProductInfo();
-    // this.getProductStyles();
-    // this.getReviews();
-    // this.getReviewsMetadata();
   }
 
   render() {
@@ -150,7 +159,7 @@ class App extends React.Component {
       <ProductOverview />
       <RelatedProducts />
       <QnA />
-      <RnR />
+      <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore}/>
     </div>
     )
   }

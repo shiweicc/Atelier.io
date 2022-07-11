@@ -1,20 +1,11 @@
 import React from 'react';
 
-class CharacteristicsBreakdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
+const CharacteristicsBreakdown = (props) => {
+  return (
     <div>
       This is the characteristics breakdown!
     </div>
-    )
-  }
+  )
 }
 
 export default CharacteristicsBreakdown;

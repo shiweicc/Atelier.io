@@ -50,8 +50,7 @@ app.get('/styles/:productID', (req, res) => {
 })
 
 app.get('/reviews/', (req, res) => {
-  console.log('hit reviews');
-  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {params: {product_id: req.query.productID}})
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID})
     .then((results) => {
       res.send(results.data);
     })
@@ -61,8 +60,7 @@ app.get('/reviews/', (req, res) => {
 })
 
 app.get('/reviews/meta/', (req, res) => {
-  console.log('hit meta');
-  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/`, {params: {product_id: req.query.productID}})
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/`, {product_id: req.query.productID})
     .then((results) => {
       res.send(results.data);
     })

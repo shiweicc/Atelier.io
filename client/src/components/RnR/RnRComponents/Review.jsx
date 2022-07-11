@@ -1,20 +1,11 @@
 import React from 'react';
 
-class Review extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
+const Review = (props) => {
+  return (
     <div>
-      This is the review list!
+      This is a review!
     </div>
-    )
-  }
+  );
 }
 
 export default Review;

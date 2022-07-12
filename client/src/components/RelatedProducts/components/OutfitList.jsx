@@ -1,10 +1,12 @@
 import React from "react";
 import OutfitItem from './OutfitItem.jsx';
+import AddOutfit from './AddOutfit.jsx';
 
 const OutfitList = (props) => {
   return (
     <div>
-      <h3> ~~~ This is OutfitList Component! ~~~ </h3>
+      <h3> 🛍️ YOUR OUTFIT 🛍️ </h3>
+      <AddOutfit />
       <OutfitItem />
     </div>
   )

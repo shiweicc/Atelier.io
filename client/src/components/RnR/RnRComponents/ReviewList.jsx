@@ -19,7 +19,6 @@ class ReviewList extends React.Component {
           This is the review list!
           <Review />
           <Review />
-          <Review />
         </div>
       </div>
 

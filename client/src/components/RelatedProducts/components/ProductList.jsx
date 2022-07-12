@@ -12,7 +12,7 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <h3> 🏝️ RELATED PRODUCT 🏝️</h3>
+      {/* <h3> 🏝️ RELATED PRODUCT 🏝️</h3> */}
       <div className="cardList">{listProductItem }</div>
     </div>
   )

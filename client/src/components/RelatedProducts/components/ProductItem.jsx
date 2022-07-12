@@ -1,6 +1,6 @@
 import React from "react";
-const styles = require ('../sampleData/product_id_styles.js');
-const helper = require ('../helpers/helpers.js');
+import styles from '../sampleData/product_id_styles.js';
+import helper from '../helpers/helpers.js';
 
 
 const ProductItem = (props) => {
@@ -12,11 +12,18 @@ const ProductItem = (props) => {
 
   let info = props.eachProductInfo.productInfo;
   let imgURL = props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+  let img = (<>
+    {
+      imgURL ?
+      <img src={imgURL} className="card__image" />
+      : <img src={`https://source.unsplash.com/1000x1000/?${info.name}`} className="card__image"/>
+    }
+  </>)
 
   return (
     <div className="card">
       <div className="card__body">
-        <img src={imgURL} class="card__image" />
+        {img}
         <p className="card__category">{info.category}</p>
         <em className="card__name">{info.name}</em>
         <p className="card__price">${info.default_price}</p>

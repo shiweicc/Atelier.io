@@ -1,11 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import ProductList from './components/ProductList.jsx';
 import OutfitList from './components/OutfitList.jsx';
 import AddOutfit from './components/AddOutfit.jsx';
 import Comparing from './components/Comparing.jsx';
-import axios from 'axios';
-const products = require ('./sampleData/products.js');
-const helper = require ('./helpers/helpers.js');
+import products from './sampleData/products.js';
+import helper from './helpers/helpers.js';
+
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -33,12 +34,12 @@ class RelatedProducts extends React.Component {
       let result = [];
 
       for (var i = 0; i < relatedIDList.data.length; i++) {
-        let curProduct = relatedIDList.data[i];
-        var productURL = `/products/${relatedIDList.data[i]}`;
+        let curProductID = relatedIDList.data[i];
+        var productURL = `/products/${curProductID}`;
 
         axios.get(productURL)
           .then(productInfo => {
-            let styleURL =  `/products/${curProduct}/styles`;
+            let styleURL =  `/products/${curProductID}/styles`;
 
             axios.get(styleURL)
             .then(productStyles => {
@@ -61,6 +62,27 @@ class RelatedProducts extends React.Component {
         console.log('fail get related products data at client!!!', err);
     })
   }
+
+
+  render() {
+    return (
+    <div>
+      <p>__________________________________</p>
+      {/* <h2>⛱️⛱️⛱️ Related Products 🛼🛼🛼</h2> */}
+      <h3> 🏝️ RELATED PRODUCT 🏝️</h3>
+      <ProductList
+        newRelatedProductList={this.state.newRelatedProductList}
+        curProductID={this.props.curProductID}
+      />
+      <OutfitList />
+      {/* <Comparing /> */}
+    </div>
+    )
+  }
+}
+
+export default RelatedProducts;
+
 
   //******************* get realted product STYLES list *******************//
   // getRelatedProductStyles(id) {
@@ -116,22 +138,54 @@ class RelatedProducts extends React.Component {
   // }
 
 
+ //******************* GET related products info and images (USE Promise.all) *******************//
+  // getRelatedProductList(id) {
+  //   let relatedIdURL = '/products/' + id + '/related';
 
-  render() {
-    return (
-    <div>
-      <p>__________________________________</p>
-      {/* <h2>⛱️⛱️⛱️ Related Products 🛼🛼🛼</h2> */}
-      <ProductList
-        newRelatedProductList={this.state.newRelatedProductList}
-        curProductID={this.props.curProductID}
-      />
-      <OutfitList />
-      {/* <AddOutfit /> */}
-      {/* <Comparing /> */}
-    </div>
-    )
-  }
-}
+  //   axios.get(relatedIdURL)
+  //   .then(relatedIDList => {
+  //     let result = [];
+  //     let getInfoArr = [];
 
-export default RelatedProducts;
+  //     for (let i = 0; i < relatedIDList.data.length; i++) {
+  //       let curProductID = relatedIDList.data[i];
+  //       // .map -> an array of productID
+  //       var productURL = `/products/${curProductID}`;
+  //       getInfoArr.push(axios.get(productURL));
+  //     }
+
+  //     Promise.all(getInfoArr)
+  //     .then(data => {
+  //       let productInfoArr = data;
+  //       let getStylesArr = [];
+
+  //       console.log('product info array: ', productInfoArr);
+
+  //       for (let i = 0; i < productInfoArr.length; i++) {
+  //         let productID = productInfoArr[i].data.id;
+  //         let styleURL =  `/products/${productID}/styles`;
+  //         getStylesArr.push(axios.get(styleURL));
+  //       }
+
+  //       Promise.all(getStylesArr)
+  //       .then(data => {
+  //         let productStylesArr = data;
+  //         console.log('product styles array: ', productStylesArr);
+
+  //         result.push({
+  //           productInfo: productInfoArr,
+  //           productStyles: productStylesArr,
+  //         })
+
+  //         this.setState({newRelatedProductList: [...result]}, () => {
+  //           console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
+  //         })
+  //       })
+  //       .catch(err => console.log('fail get product styles at client!', err))
+  //     })
+  //     .catch(err => console.log('fail to get product info at client!', err))
+  //   })
+  //   .catch(err => {
+  //       console.log('fail get related products data at client!!!', err);
+  //   })
+  // }

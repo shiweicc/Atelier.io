@@ -31,7 +31,7 @@ class App extends React.Component {
 
   getProducts() {
     $.ajax({
-      url: `/info/${this.state.curProductID}`,
+      url: `/info/${this.state.productId}`,
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
@@ -57,7 +57,7 @@ class App extends React.Component {
 
   getProductStyles() {
     $.ajax({
-      url: `/styles/${this.state.curProductID}`,
+      url: `/styles/${this.state.productId}`,
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
@@ -77,7 +77,7 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.curProductID
+        productID: this.state.productId
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -96,7 +96,7 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.curProductID
+        productID: this.state.productId
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -148,8 +148,8 @@ class App extends React.Component {
       return (
         <div>
           <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.curProductID}/>
-          <QnA curProductID={this.state.curProductID}/>
+          <RelatedProducts curProductID={this.state.productId}/>
+          <QnA curProductID={this.state.productId}/>
           <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
         </div>
       )

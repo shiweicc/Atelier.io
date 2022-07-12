@@ -1,3 +1,5 @@
+/*****************CSS for Ratings and Reviews*****************/
+
 .RnR {
   display: grid;
   grid-template-columns: 1fr 1fr;

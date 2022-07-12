@@ -8,8 +8,21 @@ class RnR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortOrder: "recommended"
+      sortOrder: "relevance",
+      ratingsPercent: 0
     }
+    this.percentRatings = this.percentRatings.bind(this);
+  }
+
+  percentRatings () {
+    let total = parseInt(this.props.reviewsMetadata.recommended.false) + parseInt(this.props.reviewsMetadata.recommended.true);
+    let percent = parseInt(this.props.reviewsMetadata.recommended.true) / total;
+    percent = Math.floor(percent * 100);
+    this.setState({ratingsPercent: percent});
+  }
+
+  componentDidMount () {
+    this.percentRatings();
   }
 
   render() {
@@ -24,13 +37,14 @@ class RnR extends React.Component {
             </div>
           </div>
           <div class='RnRRatings'>
+            {this.state.ratingsPercent}&#37; of reviewers recommend this product
             <RatingsBreakdown ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
           </div>
           <div class='RnRCharacteristics'>
             <CharacteristicsBreakdown characteristics={this.props.reviewsMetadata.characteristics} />
           </div>
           <div class='RnRReviewList'>
-            <ReviewList results={this.props.reviews} sortOrder={this.state.sortOrder} />
+            <ReviewList reviews={this.props.reviews} reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.state.sortOrder} />
           </div>
         </div>
       </div>

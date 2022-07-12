@@ -69,12 +69,6 @@ class App extends React.Component {
         console.log(err);
       }
     })
-      .then((data) => {
-        this.setState({ready: true});
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }
 
   getReviews() {
@@ -106,7 +100,6 @@ class App extends React.Component {
       },
       success: (res) => {
         // console.log('Successful get request!');
-        console.log(res);
         this.setState({ reviewsMetadata: res });
       },
       error: (err) => {
@@ -115,7 +108,7 @@ class App extends React.Component {
       }
     })
       .then((data) => {
-        this.setState({ averageReviewScore: this.averageReviewScore(this.state.reviewsMetadata.ratings) });
+        this.setState({ averageReviewScore: this.averageReviewScore(this.state.reviewsMetadata.ratings), ready: true });
       })
       .catch((err) => {
         console.log(err);
@@ -134,18 +127,15 @@ class App extends React.Component {
       for (let i = 0; i < keys.length; i++) {
         scoreTotal += parseInt(values[i]) * parseInt(keys[i]);
       };
-      console.log('scoretotal', scoreTotal);
       // response total
       let responseTotal = 0;
       for (let i = 0; i < values.length; i++) {
         responseTotal += parseInt(values[i]);
       };
-      console.log('responsetotal', responseTotal);
       return Math.round(scoreTotal / responseTotal);
     } else {
       return 'No reviews';
     }
-
   }
 
   componentDidMount() {
@@ -157,7 +147,6 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          React is working!
           <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts curProductID={this.state.curProductID}/>
           <QnA curProductID={this.state.curProductID}/>

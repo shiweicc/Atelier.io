@@ -20,16 +20,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-<<<<<<< HEAD
         use: ['style-loader', 'css-loader'],
       },
-=======
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
->>>>>>> 81c9d9e (added functionality of switching between styles, changed css)
     ],
   },
 };

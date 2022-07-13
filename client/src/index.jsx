@@ -145,10 +145,10 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.productId}/>
-          <QnA curProductID={this.state.productId}/> */}
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          {/* <RelatedProducts curProductID={this.state.productId}/>
+          <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
         </div>
       )
     }

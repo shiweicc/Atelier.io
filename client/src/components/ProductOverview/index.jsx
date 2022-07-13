@@ -8,7 +8,7 @@ class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      style: 2,
+      style: 1,
       image: 0
     }
   }
@@ -18,6 +18,7 @@ class ProductOverview extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     let index = this.state.style;
     return (
       this.props.desc.id && (<div style={{'display': 'flex', 'flex-direction': 'row'}}>

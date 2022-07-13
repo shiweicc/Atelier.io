@@ -7,14 +7,12 @@ const authedPost = require('./helper.js').authedPost;
 const path = require('path');
 const router = express.Router();
 
-
 app.use(express.static(__dirname + '/../client/dist'));
 app.use('/productpage/*', express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
-
 
 //******************* get current product info *******************//
 app.get('/products/:id', function (req, res) {
@@ -64,8 +62,6 @@ app.get('/products/:id/styles', function (req, res) {
   })
 });
 
-
-
 app.get('/questions', (req, res) => {
   // console.log(req.method, req.url);
   const product_id = req.url.substring(req.url.indexOf('?') + 1);
@@ -79,13 +75,12 @@ app.get('/questions', (req, res) => {
     })
 })
 
-
 app.get('/answers', (req, res) => {
   const product_id = req.url.substring(req.url.indexOf('=') + 1);
   const id = product_id.substring(0, 6);
   const count = product_id.substring(product_id.indexOf('&'));
 
-  console.log(id, count);
+  // console.log(id, count);
   authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + id + '/answers?' + count)
     .then((results) => {
       //console.log(res.data);
@@ -108,7 +103,46 @@ app.get('/products/:id', (req, res) => {
     })
     .catch((err) => {
       res.sendStatus(400);
+    })
+})
 
+app.get('/info/:productID', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.productID}`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/styles/:productID', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.productID}/styles`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/reviews/', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID})
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.get('/reviews/meta/', (req, res) => {
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/`, {product_id: req.query.productID})
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
     })
 })
 

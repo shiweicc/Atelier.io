@@ -1,7 +1,6 @@
 import React from 'react';
 import Review from './Review.jsx';
 import Sort from './Sort.jsx';
-import RatingsBreakdown from './RatingsBreakdown.jsx';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -21,7 +20,6 @@ class ReviewList extends React.Component {
           })}
         </div>
       </div>
-
     )
   }
 }

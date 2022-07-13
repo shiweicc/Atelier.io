@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Review = (props) => {
-  console.log(props);
   return (
     <div class="review">
       <div>{props.reviews.rating}</div>

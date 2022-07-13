@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewList from './RnRComponents/ReviewList.jsx';
-import RatingsBreakdown from './RnRComponents/RatingsBreakdown.jsx';
-import CharacteristicsBreakdown from './RnRComponents/CharacteristicsBreakdown.jsx';
+import RatingsList from './RnRComponents/RatingsList.jsx';
+import CharacteristicsList from './RnRComponents/CharacteristicsList.jsx';
 import Review from './RnRComponents/Review.jsx';
 
 class RnR extends React.Component {
@@ -38,10 +38,10 @@ class RnR extends React.Component {
           </div>
           <div class='RnRRatings'>
             {this.state.ratingsPercent}&#37; of reviewers recommend this product
-            <RatingsBreakdown ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
+            <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
           </div>
           <div class='RnRCharacteristics'>
-            <CharacteristicsBreakdown characteristics={this.props.reviewsMetadata.characteristics} />
+            <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
           </div>
           <div class='RnRReviewList'>
             <ReviewList reviews={this.props.reviews} reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.state.sortOrder} />

@@ -1,0 +1,48 @@
+#POstyles {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 350px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#POleft {
+  width: 37%;
+}
+
+#POright {
+  width: 37%;
+  padding-left: 6%;
+}
+
+#POprice {
+  display: flex;
+  flex-direction: 'row';
+}
+
+#POsalesPrice {
+  margin-right: 20px;
+}
+
+.POstyle {
+  margin-right:30px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+
+}
+
+#POimage {
+  display: flex;
+  flex-direction: 'row';
+}
+
+#PO {
+  display: flex;
+  flex-direction: 'row';
+}
+
+#App {
+  margin-left: 10%;
+  margin-right: 10%;
+}

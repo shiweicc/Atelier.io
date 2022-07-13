@@ -7,13 +7,11 @@ import RnR from './components/RnR/index.jsx';
 import $ from 'jquery';
 import axios from 'axios';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productId: window.location.href.split('/').slice(-2, -1)[0],
-      curProductID: 71697,
       productDesc: {},
       productStyle: {},
       reviews: [],
@@ -156,8 +154,5 @@ class App extends React.Component {
     }
   }
 }
-
-export default App;
-
 const root = ReactDOM.createRoot(document.getElementById('App'));
 root.render(<App />);

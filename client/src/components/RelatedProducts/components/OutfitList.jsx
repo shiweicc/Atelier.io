@@ -4,7 +4,7 @@ import AddOutfit from './AddOutfit.jsx';
 
 const OutfitList = (props) => {
   return (
-    <div>
+    <div className="outfitListWrapper">
       <h3> 🛍️ YOUR OUTFIT 🛍️ </h3>
       <AddOutfit />
       <OutfitItem />

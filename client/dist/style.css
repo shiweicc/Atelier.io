@@ -60,16 +60,51 @@ div.review {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
   gap: 2rem;
-  justify-content: center;
+  width: 10000px;
+}
+
+.productListWrapper {
+  background-color: #f1f1f1;
+  white-space: nowrap;
+  margin: 20px;
+  padding: 20px;
+  height: 400px;
+  width: 1130px;
+  overflow-x: scroll;
 }
 
 .card__image {
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 200px;
   object-fit: cover;
 }
 
 .addOutfit__btn {
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 200px;
+}
+
+.outfitListWrapper {
+  background-color: #f1f1f1;
+  white-space: nowrap;
+  margin: 20px;
+  text-align: justify;
+  padding: 20px;
+  height: 400px;
+  width: 1130px;
+  overflow-x: scroll;
+}
+
+/******styles for related products scrollbars******/
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track:horizontal  {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }

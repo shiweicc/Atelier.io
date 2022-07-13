@@ -6,6 +6,7 @@ import AddOutfit from './components/AddOutfit.jsx';
 import Comparing from './components/Comparing.jsx';
 import products from './sampleData/products.js';
 import helper from './helpers/helpers.js';
+import css from '../../../dist/style.css';
 
 
 class RelatedProducts extends React.Component {
@@ -21,7 +22,7 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('what ?', this.props);
+    console.log('what ???', this.props);
     this.getRelatedProductList(this.props.curProductID);
   }
 
@@ -48,6 +49,7 @@ class RelatedProducts extends React.Component {
                 productInfo: productInfo.data,
                 productStyles: productStyles.data,
               })
+              // this.setState({newRelatedProductList: result});
 
               this.setState({newRelatedProductList: [...result]}, () => {
                 // console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);

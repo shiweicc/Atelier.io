@@ -30,10 +30,9 @@ const ProductItem = (props) => {
         <p className="card__rating">⭐⭐⭐⭐⭐</p>
       </div>
       <button className="card__btn">❤️</button>
-      <p>__________________________________</p>
+      {/* <p>__________________________________</p> */}
     </div>
   )
 }
 
 export default ProductItem;
-

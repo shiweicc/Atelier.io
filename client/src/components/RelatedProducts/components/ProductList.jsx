@@ -11,7 +11,7 @@ const ProductList = (props) => {
   );
 
   return (
-    <div>
+    <div className="productListWrapper">
       {/* <h3> 🏝️ RELATED PRODUCT 🏝️</h3> */}
       <div className="cardList">{listProductItem }</div>
     </div>

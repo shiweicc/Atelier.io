@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 //******************* get current product info *******************//
-app.get('/products/:id', function (req, res) {
+app.get('/products/:id', (req, res) => {
+  console.log('server here: ', req.url);
   let endpoint = req.originalUrl;
   let url =  apiUrl + `${endpoint}`;
 
@@ -31,7 +32,7 @@ app.get('/products/:id', function (req, res) {
 });
 
 //******************* get realted product ID list *******************//
-app.get('/products/:id/related', function (req, res) {
+app.get('/products/:id/related', (req, res) => {
   let endpoint = req.originalUrl;
   let url =  apiUrl + `${endpoint}`;
 
@@ -47,7 +48,7 @@ app.get('/products/:id/related', function (req, res) {
 });
 
 //******************* get realted product STYLES list *******************//
-app.get('/products/:id/styles', function (req, res) {
+app.get('/products/:id/styles', (req, res) => {
   let endpoint = req.originalUrl;
   let url =  apiUrl + `${endpoint}`;
 

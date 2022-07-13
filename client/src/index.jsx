@@ -7,13 +7,11 @@ import RnR from './components/RnR/index.jsx';
 import $ from 'jquery';
 import axios from 'axios';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productId: window.location.href.split('/').slice(-2, -1)[0],
-      curProductID: 71697,
       productDesc: {},
       productStyle: {},
       reviews: [],
@@ -147,17 +145,14 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.productId}/>
-          <QnA curProductID={this.state.productId}/> */}
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          {/* <RelatedProducts curProductID={this.state.productId}/>
+          <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
         </div>
       )
     }
   }
 }
-
-export default App;
-
 const root = ReactDOM.createRoot(document.getElementById('App'));
 root.render(<App />);

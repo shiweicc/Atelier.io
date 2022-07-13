@@ -2,7 +2,7 @@ import React from 'react';
 
 var Preview = (props) => {
   return (
-    <div id='preview'>
+    <div id='POpreview'>
       {
         props.sources.map((source) => {
           return (<div>

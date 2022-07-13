@@ -6,13 +6,14 @@ const ProductList = (props) => {
 
   const listProductItem = props.newRelatedProductList.map((item) =>
     <ProductItem
+      curProductID={props.curProductID}
       eachProductInfo={item}
+      updateOutfitCollection={props.updateOutfitCollection}
     />
   );
 
   return (
     <div className="productListWrapper">
-      {/* <h3> 🏝️ RELATED PRODUCT 🏝️</h3> */}
       <div className="cardList">{listProductItem }</div>
     </div>
   )

@@ -16,7 +16,6 @@ let apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 //******************* get current product info *******************//
 app.get('/products/:id', (req, res) => {
-  console.log('server here: ', req.url);
   let endpoint = req.originalUrl;
   let url =  apiUrl + `${endpoint}`;
 

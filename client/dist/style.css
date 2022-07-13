@@ -64,7 +64,7 @@ div.review {
 }
 
 .productListWrapper {
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   white-space: nowrap;
   margin: 20px;
   padding: 20px;
@@ -85,12 +85,12 @@ div.review {
 }
 
 .outfitListWrapper {
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   white-space: nowrap;
   margin: 20px;
   text-align: justify;
   padding: 20px;
-  height: 400px;
+  height: 600px;
   width: 1130px;
   overflow-x: scroll;
 }

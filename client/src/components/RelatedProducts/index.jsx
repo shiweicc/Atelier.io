@@ -6,7 +6,7 @@ import AddOutfit from './components/AddOutfit.jsx';
 import Comparing from './components/Comparing.jsx';
 import products from './sampleData/products.js';
 import helper from './helpers/helpers.js';
-import css from '../../../dist/style.css';
+// import css from '../../../dist/style.css';
 
 
 class RelatedProducts extends React.Component {
@@ -14,15 +14,12 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       newRelatedProductList:[],
-      outFitList: [],
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
-    // this.getRelatedProductObj = this.getRelatedProductObj.bind(this);
-    // this.getCurProduct = this.getCurProduct.bind(this);
   }
 
   componentDidMount() {
-    console.log('what ???', this.props);
+    // console.log('what props in RelatedProduct ???', this.props);
     this.getRelatedProductList(this.props.curProductID);
   }
 
@@ -44,12 +41,10 @@ class RelatedProducts extends React.Component {
 
             axios.get(styleURL)
             .then(productStyles => {
-
               result.push({
                 productInfo: productInfo.data,
                 productStyles: productStyles.data,
               })
-              // this.setState({newRelatedProductList: result});
 
               this.setState({newRelatedProductList: [...result]}, () => {
                 // console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
@@ -69,14 +64,19 @@ class RelatedProducts extends React.Component {
   render() {
     return (
     <div>
-      <p>__________________________________</p>
-      {/* <h2>⛱️⛱️⛱️ Related Products 🛼🛼🛼</h2> */}
-      <h3> 🏝️ RELATED PRODUCT 🏝️</h3>
+      <h3> RELATED PRODUCT </h3>
       <ProductList
         newRelatedProductList={this.state.newRelatedProductList}
         curProductID={this.props.curProductID}
+        updateOutfitCollection={this.props.updateOutfitCollection}
       />
-      <OutfitList />
+      <OutfitList
+        curProductID={this.props.curProductID}
+        outfitCollection={this.props.outfitCollection}
+        newRelatedProductList={this.state.newRelatedProductList}
+        style={this.props.style} desc={this.props.desc}
+        updateOutfitCollection={this.props.updateOutfitCollection}
+      />
       {/* <Comparing /> */}
     </div>
     )

@@ -25,6 +25,7 @@ class App extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
+    this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
   }
 
   getProducts() {
@@ -136,6 +137,13 @@ class App extends React.Component {
     }
   }
 
+  updateOutfitCollection(productObj) {
+    // this.setState({outfitCollection: [...product]});
+    this.setState({outfitCollection: [...productObj]}, () => {
+      console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+    })
+  }
+
   componentDidMount() {
     this.getProducts();
   }
@@ -144,10 +152,15 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.productId}/>
-          <QnA curProductID={this.state.productId}/>
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
+          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
+          <RelatedProducts
+            curProductID={this.state.productId}
+            outfitCollection={this.state.outfitCollection}
+            style={this.state.productStyle} desc={this.state.productDesc}
+            updateOutfitCollection={this.updateOutfitCollection}
+          />
+          {/* <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
         </div>
       )
     }

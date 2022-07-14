@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       productId: window.location.href.split('/').slice(-2, -1)[0],
       productDesc: {},
       productStyle: {},
@@ -133,6 +134,7 @@ class App extends React.Component {
       return Math.round(scoreTotal / responseTotal);
     } else {
       return 'No reviews';
+
     }
   }
 
@@ -142,6 +144,7 @@ class App extends React.Component {
 
 
   render() {
+
     if (this.state.ready) {
       return (
         <div>
@@ -152,6 +155,7 @@ class App extends React.Component {
         </div>
       )
     }
+
   }
 }
 const root = ReactDOM.createRoot(document.getElementById('App'));

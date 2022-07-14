@@ -12,13 +12,12 @@ class AddOutfit extends React.Component {
 
   handleAddOutfit() {
     this.props.updateOutfitCollection(this.props.productObj);
-    console.log('hello: ', this.props.productObj);
   }
 
   render() {
     return (
       <div>
-      <button className="addOutfit__btn" onClick={()=> this.handleAddOutfit()}>➕ Add Your Outfit</button>
+      <button className="addOutfit__btn" onClick={() => this.handleAddOutfit()}>➕ Add Your Outfit</button>
     </div>
     )
   }

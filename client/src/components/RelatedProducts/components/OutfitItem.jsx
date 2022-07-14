@@ -6,8 +6,6 @@ class OutfitItem extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('???', this.props.eachOutfitInfo.productInfo.id);
-    // console.log('func???', this.props.deleteOutfitItem);
     // this.handleDeleteOutfit(this.props.outfitCollection)
   }
 

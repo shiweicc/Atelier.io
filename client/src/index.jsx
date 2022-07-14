@@ -140,13 +140,13 @@ class App extends React.Component {
 
   updateOutfitCollection(productObj) {
     this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
-      console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+      // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
     })
   }
 
   deleteOutfitItem(updatedOutfitCollection) {
     this.setState({outfitCollection: updatedOutfitCollection}, () => {
-      console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
+      // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
     })
   }
 

@@ -84,16 +84,6 @@ div.review {
   height: 200px;
 }
 
-.outfitListWrapper {
-  /* background-color: #f1f1f1; */
-  white-space: nowrap;
-  margin: 20px;
-  padding: 20px;
-  height: 500px;
-  width: 1130px;
-  overflow-x: scroll;
-}
-
 /******styles for related products scrollbars******/
 ::-webkit-scrollbar {
   width: 12px;

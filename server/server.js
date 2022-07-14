@@ -7,6 +7,7 @@ const authedPost = require('./helper.js').authedPost;
 const helpfulness = require('./qnaHelper.js').helpfulness;
 
 app.use(express.static(__dirname + '/../client/dist'));
+app.use('/productpage/*', express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

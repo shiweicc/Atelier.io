@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // curProductID: 71701
+     // curProductID: 71701
       curProductID: window.location.href.split('/').slice(-2, -1)[0]
     }
   }
@@ -20,9 +20,10 @@ class App extends React.Component {
 
   render() {
     return (
+
     <div>
-      React is working!
-      <ProductOverview />
+        React is working!
+        <ProductOverview />
         {/* <RelatedProducts /> */}
         <QnA curProductID={this.state.curProductID} />
         {/* <RnR /> */}

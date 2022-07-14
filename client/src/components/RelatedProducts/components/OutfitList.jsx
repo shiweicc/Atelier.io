@@ -13,21 +13,24 @@ const OutfitList = (props) => {
     }
   });
 
-  let productInfoImg = [{
+  let productInfoImg = {
     productInfo: props.desc,
-    productStyles: props.style,
-  }]
+    productStyles: props.style.results[0].photos[0]["thumbnail_url"],
+  };
 
   const listOutfitItem = props.outfitCollection.map((item) =>
     <OutfitItem
       eachOutfitInfo={item}
       updateOutfitCollection={props.updateOutfitCollection}
+      deleteOutfitItem={props.deleteOutfitItem}
+      outfitCollection={props.outfitCollection}
     />
   );
 
   return (
-    <div className="outfitListWrapper">
-      <h3> 🛍️ YOUR OUTFIT 🛍️ </h3>
+    <div>
+      <h3> YOUR OUTFIT </h3>
+      <div className="outfitListWrapper">
       {checkOutfitList(outfitCollection)
         ?
         <AddOutfit
@@ -36,6 +39,7 @@ const OutfitList = (props) => {
         />
         : <div className="outfitList">{listOutfitItem }</div>
       }
+      </div>
     </div>
   )
 }

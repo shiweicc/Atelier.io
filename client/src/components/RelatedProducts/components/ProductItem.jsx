@@ -13,8 +13,15 @@ class ProductItem extends React.Component {
   }
 
   handleAddOutfit() {
-    this.props.updateOutfitCollection(this.props.productObj);
-    console.log('hello');
+    let selectedInfo = this.props.eachProductInfo.productInfo;
+    let selectedStyles = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+
+    let selectedProductObj = {
+      productInfo: selectedInfo,
+      productStyles: selectedStyles,
+    };
+
+    this.props.updateOutfitCollection(selectedProductObj);
   }
 
   render() {
@@ -43,40 +50,5 @@ class ProductItem extends React.Component {
     )
   }
 }
-
-
-// const ProductItem = (props) => {
-//   console.log('props in ProdcutItem: ', props);
-
-//   const handleAddOutfit = () => {
-//     props.updateOutfitCollection(this.props.productObj);
-//     console.log('hello');
-//   };
-
-
-//   let info = props.eachProductInfo.productInfo;
-//   let imgURL = props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
-//   let img = (<>
-//     {
-//       imgURL ?
-//       <img src={imgURL} className="card__image" />
-//       : <img src={`https://source.unsplash.com/1000x1000/?${info.name}`} className="card__image"/>
-//     }
-//   </>)
-
-//   return (
-//     <div className="card">
-//       <div className="card__body">
-//         {img}
-//         <p className="card__category">{info.category}</p>
-//         <em className="card__name">{info.name}</em>
-//         <p className="card__price">${info.default_price}</p>
-//         <p className="card__rating">⭐⭐⭐⭐⭐</p>
-//       </div>
-//       <button className="card__btn" >❤️</button>
-//       {/* <p>__________________________________</p> */}
-//     </div>
-//   )
-// }
 
 export default ProductItem;

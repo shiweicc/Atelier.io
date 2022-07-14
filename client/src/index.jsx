@@ -26,6 +26,7 @@ class App extends React.Component {
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
     this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
+    this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
   }
 
   getProducts() {
@@ -138,9 +139,14 @@ class App extends React.Component {
   }
 
   updateOutfitCollection(productObj) {
-    // this.setState({outfitCollection: [...product]});
-    this.setState({outfitCollection: [...productObj]}, () => {
+    this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
       console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+    })
+  }
+
+  deleteOutfitItem(updatedOutfitCollection) {
+    this.setState({outfitCollection: updatedOutfitCollection}, () => {
+      console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
     })
   }
 
@@ -158,6 +164,7 @@ class App extends React.Component {
             outfitCollection={this.state.outfitCollection}
             style={this.state.productStyle} desc={this.state.productDesc}
             updateOutfitCollection={this.updateOutfitCollection}
+            deleteOutfitItem={this.deleteOutfitItem}
           />
           {/* <QnA curProductID={this.state.productId}/>
           <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}

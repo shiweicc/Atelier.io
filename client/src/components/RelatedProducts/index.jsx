@@ -19,7 +19,7 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('what props in RelatedProduct ???', this.props);
+    // console.log('what props in RelatedProduct ???', this.props.deleteOutfitItem);
     this.getRelatedProductList(this.props.curProductID);
   }
 
@@ -69,13 +69,15 @@ class RelatedProducts extends React.Component {
         newRelatedProductList={this.state.newRelatedProductList}
         curProductID={this.props.curProductID}
         updateOutfitCollection={this.props.updateOutfitCollection}
+        style={this.props.style} desc={this.props.desc}
       />
       <OutfitList
         curProductID={this.props.curProductID}
         outfitCollection={this.props.outfitCollection}
         newRelatedProductList={this.state.newRelatedProductList}
-        style={this.props.style} desc={this.props.desc}
         updateOutfitCollection={this.props.updateOutfitCollection}
+        deleteOutfitItem={this.props.deleteOutfitItem}
+        style={this.props.style} desc={this.props.desc}
       />
       {/* <Comparing /> */}
     </div>

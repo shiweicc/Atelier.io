@@ -1,18 +1,5 @@
 import React from "react";
 
-// const AddOutfit = (props) => {
-//   console.log('props in AddOutfit: ', props);
-//   let handleClickAddOutfit = props.onClick;
-//   // console.log('props in AddOutfit func: ', handleClickAddOutfit);
-
-//   return (
-//     <div>
-//       <button className="addOutfit__btn" onClick={(props.productObj) => props.onClick(props.productObj)}>➕ Add Your Outfit</button>
-//     </div>
-//   )
-// }
-
-
 class AddOutfit extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +12,7 @@ class AddOutfit extends React.Component {
 
   handleAddOutfit() {
     this.props.updateOutfitCollection(this.props.productObj);
-    // console.log('hello');
+    console.log('hello: ', this.props.productObj);
   }
 
   render() {

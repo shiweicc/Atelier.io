@@ -50,6 +50,13 @@ div.review {
   border-color: black;
   background-color: aliceblue;
 }
+
+.star {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
 /*****************CSS for Related Products*****************/
 .card {
   display: flex;

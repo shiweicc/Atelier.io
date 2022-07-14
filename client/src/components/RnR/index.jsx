@@ -3,6 +3,7 @@ import ReviewList from './RnRComponents/ReviewList.jsx';
 import RatingsList from './RnRComponents/RatingsList.jsx';
 import CharacteristicsList from './RnRComponents/CharacteristicsList.jsx';
 import Review from './RnRComponents/Review.jsx';
+import Stars from './RnRComponents/Stars.jsx';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class RnR extends React.Component {
             RATINGS &#38; REVIEWS
             <div>
               {this.props.averageReviewScore}
+              <Stars ratings={this.props.averageReviewScore}/>
             </div>
           </div>
           <div class='RnRRatings'>

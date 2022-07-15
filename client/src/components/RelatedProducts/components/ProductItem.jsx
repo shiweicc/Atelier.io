@@ -36,7 +36,7 @@ class ProductItem extends React.Component {
     </>)
 
     return (
-      <div className="card">
+      <div className="eachProductCard">
         <div className="card__body">
           {img}
           <p className="card__category">{info.category}</p>
@@ -45,7 +45,6 @@ class ProductItem extends React.Component {
           <p className="card__rating">⭐⭐⭐⭐⭐</p>
         </div>
         <button className="card__btn" onClick={()=> this.handleAddOutfit()}>❤️</button>
-        {/* <p>__________________________________</p> */}
       </div>
     )
   }

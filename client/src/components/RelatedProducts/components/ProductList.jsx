@@ -17,9 +17,9 @@ const ProductList = (props) => {
   );
 
   return (
-    <div className="productListWrapper">
-      <div className="cardList">{listProductItem }</div>
-    </div>
+    // <div className="productListWrapper">
+      <div className="productCardList">{listProductItem }</div>
+    // {/* </div> */}
   )
 }
 

@@ -30,19 +30,26 @@ const OutfitList = (props) => {
   return (
     <div>
       <h3> YOUR OUTFIT </h3>
-      <div className="productListWrapper">
-      {checkOutfitList(outfitCollection)
+      <div className="outfitListWrapper">
+      {/* {checkOutfitList(outfitCollection)
         ?
         <AddOutfit
         productObj={productInfoImg}
         updateOutfitCollection={props.updateOutfitCollection}
         />
         : <div className="cardList">{listOutfitItem }</div>
-      }
+      } */}
+        <AddOutfit
+        productObj={productInfoImg}
+        updateOutfitCollection={props.updateOutfitCollection}
+        />
+        <div className="outfitCardList">{listOutfitItem }</div>
       </div>
     </div>
   )
 }
 
 export default OutfitList;
+
+//
 

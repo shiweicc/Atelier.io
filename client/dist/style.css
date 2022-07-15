@@ -51,25 +51,100 @@ div.review {
   background-color: aliceblue;
 }
 /*****************CSS for Related Products*****************/
-.card {
-  display: flex;
-  flex-direction: column;
-}
-
-.cardList {
+.eachProductCard{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  gap: 2rem;
-  justify-content: center;
+  flex-direction: column;
+  /* border-style: solid;
+  border-width: 4px 4px 4px 4px;
+  border-color: #f1f1f1;; */
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.6;
+  width: 300px;
+  height: 360px;
+  background-color: #f1f1f1;
 }
 
-.card__image {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
+.productCardList {
+  display: inline-flex;
+  gap: 2rem;
+  white-space: nowrap;
+  height: 500px;
+  width: 1130px;
+  overflow-x: scroll;
+}
+
+.outfitListWrapper {
+  white-space: nowrap;
+  height: 500px;
+  width: 1130px;
+  overflow-x: scroll;
+  display: inline-flex;
+  justify-content: space-between;
 }
 
 .addOutfit__btn {
   width: 200px;
-  height: 300px;
+  height: 350px;
+  padding-right: 20px;
+  margin: 20px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 4px 4px 4px 4px;
+  border-color: #f1f1f1;
+  border-radius: 0.5rem;
+}
+
+.outfitCardList {
+  display: inline-flex;
+  gap: 2rem;
+  width: 10000px;
+  height: 400px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.6;
+  width: 200px;
+  height: 360px;
+  background-color: #f1f1f1;
+}
+
+/******shared styles for each card******/
+.card__name {
+  font-weight: bolder;
+}
+
+.card__image {
+  object-fit: cover;
+  width: 200px;
+  height: 250px;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/******styles for related products scrollbars******/
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track:horizontal  {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/******styles for sales price******/
+.card_sale_price {
+  color:red;
+}
+
+.card_default_price{
+  text-decoration: line-through;
 }

@@ -139,9 +139,23 @@ class App extends React.Component {
   }
 
   updateOutfitCollection(productObj) {
-    this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
-      // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
-    })
+    let outfitList = this.state.outfitCollection;
+
+    if (outfitList.length === 0) {
+      this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+        // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+      })
+    } else {
+      for (let i = 0; i < outfitList.length; i++) {
+        let existedID = outfitList[i].productInfo.id;
+        // check if no existed ID in outfitCollection, then add the product info into the collection.
+        if (existedID !== productObj.productInfo.id) {
+          this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+            // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+          })
+        }
+      }
+    }
   }
 
   deleteOutfitItem(updatedOutfitCollection) {

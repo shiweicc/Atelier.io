@@ -6,12 +6,12 @@ const OutfitList = (props) => {
   // console.log('props in OutfitList: ', props.outfitCollection);
 
   // check if outfitList is empty
-  let outfitCollection = props.outfitCollection;
-  let checkOutfitList = ((outfitCollection) => {
-    if (Array.isArray(outfitCollection) && outfitCollection.length === 0) {
-      return true;
-    }
-  });
+  // let outfitCollection = props.outfitCollection;
+  // let checkOutfitList = ((outfitCollection) => {
+  //   if (Array.isArray(outfitCollection) && outfitCollection.length === 0) {
+  //     return true;
+  //   }
+  // });
 
   let productInfoImg = {
     productInfo: props.desc,

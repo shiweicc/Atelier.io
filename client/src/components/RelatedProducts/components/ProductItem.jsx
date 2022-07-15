@@ -27,6 +27,8 @@ class ProductItem extends React.Component {
   render() {
     let info = this.props.eachProductInfo.productInfo;
     let imgURL = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+    let salePrice = this.props.eachProductInfo.productStyles.results[0]["sale_price"];
+
     let img = (<>
       {
         imgURL ?
@@ -35,16 +37,29 @@ class ProductItem extends React.Component {
       }
     </>)
 
+    let price = (
+      <>
+      {
+        salePrice ?
+        <>
+          <p className="card_sale_price">${salePrice}</p>
+          <p className="card_default_price">${info.default_price}</p>
+        </>
+        : <p className="card_price">${info.default_price}</p>
+      }
+      </>
+    )
+
     return (
       <div className="eachProductCard">
-        <div className="card__body">
+        <div className="card_body">
           {img}
-          <p className="card__category">{info.category}</p>
-          <em className="card__name">{info.name}</em>
-          <p className="card__price">${info.default_price}</p>
-          <p className="card__rating">⭐⭐⭐⭐⭐</p>
+          <p className="card_category">{info.category}</p>
+          <em className="card_name">{info.name}</em>
+          {price}
+          <p className="card_rating">⭐⭐⭐⭐⭐</p>
         </div>
-        <button className="card__btn" onClick={()=> this.handleAddOutfit()}>❤️</button>
+        <button className="card_btn" onClick={()=> this.handleAddOutfit()}>❤️</button>
       </div>
     )
   }

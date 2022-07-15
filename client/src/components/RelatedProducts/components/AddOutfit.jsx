@@ -6,8 +6,6 @@ class AddOutfit extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('obj: ', this.props.productObj)
-    // console.log('func: ', this.props.updateOutfitCollection);
   }
 
   handleAddOutfit() {

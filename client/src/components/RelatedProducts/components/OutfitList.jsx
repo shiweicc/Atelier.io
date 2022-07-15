@@ -15,7 +15,8 @@ const OutfitList = (props) => {
 
   let productInfoImg = {
     productInfo: props.desc,
-    productStyles: props.style.results[0].photos[0]["thumbnail_url"],
+    productImg: props.style.results[0].photos[0]["thumbnail_url"],
+    productSalePrice: props.style.results[0]["sale_price"],
   };
 
   const listOutfitItem = props.outfitCollection.map((item) =>

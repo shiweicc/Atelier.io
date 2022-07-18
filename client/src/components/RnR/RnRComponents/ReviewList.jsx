@@ -13,12 +13,9 @@ class ReviewList extends React.Component {
   render() {
     return (
       <div>
-        <Sort reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.props.sortOrder}/>
-        <div>
-          {this.props.reviews.results.map((review) => {
-            return <Review reviews={review}/>
-          })}
-        </div>
+        {this.props.reviews.results.map((review) => {
+          return <Review reviews={review} />
+        })}
       </div>
     )
   }

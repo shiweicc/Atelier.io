@@ -2,7 +2,7 @@ import React from 'react';
 
 const Review = (props) => {
   return (
-    <div class="review">
+    <div class='review'>
       <div>{props.reviews.rating}</div>
       <div>{props.reviews.reviewer_name}, {props.reviews.date}</div>
       <div>{props.reviews.summary}</div>

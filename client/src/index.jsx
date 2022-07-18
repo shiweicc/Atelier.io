@@ -175,13 +175,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-<<<<<<< HEAD
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.productId}/>
-          <QnA curProductID={this.state.productId}/> */}
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
-=======
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -189,9 +183,8 @@ class App extends React.Component {
             updateOutfitCollection={this.updateOutfitCollection}
             deleteOutfitItem={this.deleteOutfitItem}
           />
-          {/* <QnA curProductID={this.state.productId}/>
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
->>>>>>> 7955565f1913a36256f3eddcd61be3a8d09d42e8
+          <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
         </div>
       )
     }

@@ -1,12 +1,24 @@
 import React from "react";
 
-const AddOutfit = (props) => {
-  return (
-    <div>
-      <button className="addOutfit__btn">➕ Add Your Outfit</button>
-      {/* <p>__________________________________</p> */}
+class AddOutfit extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+  }
+
+  handleAddOutfit() {
+    this.props.updateOutfitCollection(this.props.productObj);
+  }
+
+  render() {
+    return (
+      <div>
+      <button className="addOutfit__btn" onClick={() => this.handleAddOutfit()}>➕ Add Your Outfit</button>
     </div>
-  )
+    )
+  }
 }
 
 export default AddOutfit;

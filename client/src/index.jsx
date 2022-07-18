@@ -26,6 +26,8 @@ class App extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
+    this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
+    this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
   }
 
   getProducts() {
@@ -138,20 +140,58 @@ class App extends React.Component {
     }
   }
 
+  updateOutfitCollection(productObj) {
+    let outfitList = this.state.outfitCollection;
+
+    if (outfitList.length === 0) {
+      this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+        // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+      })
+    } else {
+      for (let i = 0; i < outfitList.length; i++) {
+        let existedID = outfitList[i].productInfo.id;
+        // check if no existed ID in outfitCollection, then add the product info into the collection.
+        if (existedID !== productObj.productInfo.id) {
+          this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+            // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+          })
+        }
+      }
+    }
+  }
+
+  deleteOutfitItem(updatedOutfitCollection) {
+    this.setState({outfitCollection: updatedOutfitCollection}, () => {
+      // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
+    })
+  }
+
   componentDidMount() {
     this.getProducts();
   }
-
 
   render() {
 
     if (this.state.ready) {
       return (
         <div>
+<<<<<<< HEAD
           {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts curProductID={this.state.productId}/>
           <QnA curProductID={this.state.productId}/> */}
           <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} />
+=======
+          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
+          <RelatedProducts
+            curProductID={this.state.productId}
+            outfitCollection={this.state.outfitCollection}
+            style={this.state.productStyle} desc={this.state.productDesc}
+            updateOutfitCollection={this.updateOutfitCollection}
+            deleteOutfitItem={this.deleteOutfitItem}
+          />
+          {/* <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
+>>>>>>> 7955565f1913a36256f3eddcd61be3a8d09d42e8
         </div>
       )
     }

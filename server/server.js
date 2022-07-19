@@ -127,7 +127,7 @@ app.get('/styles/:productID', (req, res) => {
 })
 
 app.get('/reviews/', (req, res) => {
-  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID})
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID, sort: req.query.reviewsSort, count: req.query.reviewsCount})
     .then((results) => {
       res.send(results.data);
     })

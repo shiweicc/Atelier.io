@@ -2,8 +2,9 @@
 
 .RnR {
   display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-rows: 20% 40% 40%;
+  grid-template-columns: 40% 30% 30%;
+  grid-template-rows: auto auto auto auto;
+  gap: 1rem;
 }
 
 .RnRHead {
@@ -26,6 +27,7 @@
   border-radius: 5px;
   box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
   margin: 10px;
+  padding: 10px;
 }
 
 .RnRCharacteristics {
@@ -41,11 +43,79 @@
 
 .RnRReviewList {
   grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+.RnRAddReview {
+  display: flex;
+  justify-content: space-evenly;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.RnRReviewHead {
+  grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 4;
-  border-style: dotted;
-  border-color: black;
+  grid-row-end: 1;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
+}
+
+.RnRSortHead {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
+}
+
+.RnRHeadReviews {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 2px;
+}
+
+.RnRReviewListButton1 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 5px 5px 5px;
+  background-color: #fafbfb;
+  width: 40%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.RnRReviewListButton2 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 5px 5px 5px;
+  background-color: lightgray;
+  width: 40%;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 div.review {
@@ -53,9 +123,11 @@ div.review {
   padding: 10px;
   margin: 5px;
   border: 2px;
-  width: 100%;
+  width: 95%;
   border-color: black;
-  background-color: aliceblue;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  background-color: #fafbfb;
+  border-radius: 5px;
 }
 
 .star {
@@ -72,7 +144,7 @@ h1.rating {
 }
 
 div.rating {
-  font-size: 26px;
+  font-size: 36px;
   font-weight: bold;
   align-items: left;
   display:inline-block;
@@ -107,6 +179,27 @@ span.percent {
   padding: 4px;
 }
 
+span.reviewsCount {
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-top: 30px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 2px;
+}
+
+.sort {
+  position: relative;
+  display: inline-block;
+  margin-top: 44px;
+  margin-left: 30px;
+  font-size: medium;
+  font-weight: bold;
+}
+
 div.percent {
   margin-top: 10px;
   margin-right: 10px;
@@ -122,6 +215,20 @@ div.container {
   display: inline-block;
 }
 
+div.container {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+}
+
+div.characteristicContainer {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
 div.bar {
   position: absolute;
   display: inline-block;
@@ -129,7 +236,7 @@ div.bar {
   align-items: right;
   background-color: lightgrey;
   height: 18px;
-  width: 80%;
+  width: 88%;
   top: -14px;
   left: 30px;
 }
@@ -169,6 +276,30 @@ div.quality {
   height: auto;
   transform: rotate(180deg);
   top: -5px
+}
+
+.reviewHead {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewTitle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  overflow-wrap: break-word;
+}
+
+.reviewBody {
+  margin: 5px;
+  padding: 5px;
+  font-weight: lighter;
+}
+
+.helpful {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /*****************CSS for Related Products*****************/

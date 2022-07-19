@@ -27,7 +27,7 @@ const Characteristic = (props) => {
   }
 
   return (
-    <div class='container'>
+    <div class='characteristicContainer'>
       <div class='characteristic'>{props.characteristic}</div>
       <div class='barContainer'>
         <div class='barCharacteristic'></div>

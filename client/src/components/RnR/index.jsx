@@ -10,10 +10,10 @@ class RnR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortOrder: "relevance",
       ratingsPercent: 0
     }
     this.percentRatings = this.percentRatings.bind(this);
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
 
   percentRatings () {
@@ -23,43 +23,102 @@ class RnR extends React.Component {
     this.setState({ratingsPercent: percent});
   }
 
+  handleMoreReviews () {
+    this.props.setReviewsCount();
+  }
+
   componentDidMount () {
     this.percentRatings();
   }
 
   render() {
-    return (
-      <div>
-        <p>__________________________________</p>
-        <div class='RnR'>
-          <div class='RnRHead'>
-            <div>
-              <h1 class="rating">RATINGS &#38; REVIEWS</h1>
+    if (this.props.reviewsCount === 'Not expanded') {
+      return (
+        <div>
+          <div class='RnR'>
+            <div class='RnRHead'>
+              <div>
+                <h1 class="rating">RATINGS &#38; REVIEWS</h1>
+              </div>
+              <div class='rating'>
+                {this.props.averageReviewScore}
+              </div>
+              <div class='rating'>
+                <Stars ratings={this.props.averageReviewScore}/>
+              </div>
             </div>
-            <div class='rating'>
-              {this.props.averageReviewScore}
+            <div class='RnRRatings'>
+              <div class='percent'>
+                <span class='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
+              </div>
+              <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
             </div>
-            <div class='rating'>
-              <Stars ratings={this.props.averageReviewScore}/>
+            <div class='RnRCharacteristics'>
+              <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
             </div>
-          </div>
-          <div class='RnRRatings'>
-            <div class='percent'>
-              <span class='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
+            <div class='RnRReviewHead'>
+              <Sort reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.props.sortOrder} />
             </div>
-            <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
-          </div>
-          <div class='RnRCharacteristics'>
-            <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
-          </div>
-          <div class='RnRReviewList'>
-            <Sort reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.state.sortOrder} />
-            <ReviewList reviews={this.props.reviews} reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.state.sortOrder} />
+            <div class='RnRSortHead'>
+              <div class='RnRHeadReviews'>
+                <span>sorted by </span>
+                <div class='sort'>{this.props.sortOrder}</div>
+              </div>
+            </div>
+            <div class='RnRReviewList'>
+              <ReviewList reviews={this.props.reviews} reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.props.sortOrder} ratings={this.props.averageReviewScore} reviewsCount={this.props.reviewsCount}/>
+            </div>
+            <div class='RnRAddReview'>
+              <button class='RnRReviewListButton1' onClick={this.handleMoreReviews}>More Reviews</button>
+              <button class='RnRReviewListButton2'>Add Review</button>
+            </div>
           </div>
         </div>
-      </div>
-    )
-
+      )
+    } else {
+      return (
+        <div>
+          <div class='RnR'>
+            <div class='RnRHead'>
+              <div>
+                <h1 class="rating">RATINGS &#38; REVIEWS</h1>
+              </div>
+              <div class='rating'>
+                {this.props.averageReviewScore}
+              </div>
+              <div class='rating'>
+                <Stars ratings={this.props.averageReviewScore}/>
+              </div>
+            </div>
+            <div class='RnRRatings'>
+              <div class='percent'>
+                <span class='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
+              </div>
+              <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} />
+            </div>
+            <div class='RnRCharacteristics'>
+              <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
+            </div>
+            <div class='RnRReviewHead'>
+              <Sort reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.props.sortOrder} />
+            </div>
+            <div class='RnRSortHead'>
+              <div class='RnRHeadReviews'>
+                <span>sorted by </span>
+                <div class='sort'>{this.props.sortOrder}</div>
+              </div>
+            </div>
+            <div class='RnRReviewList'>
+              <ReviewList reviews={this.props.reviews} reviewsMetadata={this.props.reviewsMetadata} sortOrder={this.props.sortOrder} ratings={this.props.averageReviewScore} reviewsCount={this.props.reviewsCount}/>
+            </div>
+            <div class='RnRAddReview'>
+                <button class='RnRReviewListButton1' onClick={this.handleMoreReviews}>Less Reviews</button>
+                <button class='RnRReviewListButton2'>Add Review</button>
+              </div>
+          </div>
+        </div>
+      )
+    }
   }
 }
 

@@ -7,13 +7,23 @@
   padding: 0;
   list-style: none;
 }
+#PO {
+  width: 80%;
+  margin: 0% 10%;
+  display: flex;
+  flex-direction: row;
+}
+
 #POleft {
-  width: 37%;
+  width: 50%;
+  position: relative;
+  border: solid;
+
 }
 
 #POright {
-  width: 37%;
-  padding-left: 6%;
+  width: 50%;
+  border: solid;
 }
 
 #POprice {
@@ -22,9 +32,50 @@
 }
 
 #POsalesPrice {
-  margin-right: 20px;
+
 }
 
+.POthumbnail-button {
+  border-radius: 100%;
+  position: absolute;
+  width: 8%;
+  border: 0px solid black;
+  color: greenyellow;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#POthumbnail-up {
+  top: -5%;
+  left: 8px;
+}
+
+#POthumbnail-down {
+  top: 86%;
+  left: 8px;
+}
+
+.POthumbnail {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 22px;
+  height: 100%;
+  width: 90%;
+}
+.POthumbnail-img {
+  width: 50px;
+  height: 40px;
+  margin:  5px 0px;
+}
+.POthumbnail-img-selected {
+  width: 50px;
+  height: 40px;
+  border-width: 2px;
+  border: solid red;
+  margin:  5px 0px;
+}
 .POcheckmark {
   display: inline-block;
   font-size: 25px;
@@ -32,12 +83,56 @@
 }
 
 .POstyle {
-  margin-right:30px;
+  margin: 10px 15px;
   border-radius: 100%;
-  margin-bottom: 20px;
   border: 1px solid black;
 }
 
+#POstyles {
+  border: 1px solid;
+}
+
+.POcarousel-button {
+  border-radius: 50px;
+  font-weight: bold;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+}
+
+#POcarousel-right {
+  transform: translate(-110%, -50%);
+}
+
+#POcarousel-left {
+  transform: translate(50px, -50%);
+}
+
+.POcarousel-img {
+  width: 450px;
+  height: 400px;
+}
+
+/* .POcarousel-arrows {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10%;
+} */
+
+#POcarousel-left {
+  margin-left: 1%;
+}
+
+#POcarousel-right {
+  margin-right: 1%;
+}
 #POimage {
   display: flex;
   flex-direction: 'row';
@@ -52,3 +147,10 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+/* .fade-in {
+  animation: fadeIn ease 10s;
+  -webkit-animation: fadeIn ease 10s;
+  -moz-animation: fadeIn ease 10s;
+  -o-animation: fadeIn ease 10s;
+  -ms-animation: fadeIn ease 10s;
+} */

@@ -11,12 +11,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       productId: window.location.href.split('/').slice(-2, -1)[0],
       productDesc: {},
       productStyle: {},
       reviews: [],
       reviewsMetadata: [],
+      reviewsSort: 'relevant',
+      reviewsCount: 'Not expanded',
       averageReviewScore: 0,
       outfitCollection: [],
       ready: false,
@@ -28,6 +29,7 @@ class App extends React.Component {
     this.averageReviewScore = this.averageReviewScore.bind(this);
     this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
     this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
+    this.setReviewsCount = this.setReviewsCount.bind(this);
   }
 
   getProducts() {
@@ -78,7 +80,9 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.productId
+        productID: this.state.productId,
+        reviewsSort: this.state.reviewsSort,
+        reviewsCount: 100
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -97,7 +101,9 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.productId
+        productID: this.state.productId,
+        reviewsSort: this.state.reviewsSort,
+        reviewsCount: 100
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -115,6 +121,20 @@ class App extends React.Component {
         console.log(err);
       })
   }
+
+  setReviewsCount () {
+    if (this.state.reviewsCount === 'Not expanded') {
+      this.setState({reviewsCount: 'Expanded'});
+      this.getProducts();
+    } else {
+      this.setState({reviewsCount: 'Not expanded'});
+      this.getProducts();
+    }
+  }
+
+  // setReviewsSort () {
+
+  // }
 
   averageReviewScore(scores) {
     // break out all the keys
@@ -175,7 +195,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
+          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -183,8 +203,8 @@ class App extends React.Component {
             updateOutfitCollection={this.updateOutfitCollection}
             deleteOutfitItem={this.deleteOutfitItem}
           />
-          {/* <QnA curProductID={this.state.productId}/>
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
+          <QnA curProductID={this.state.productId}/> */}
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} sortOrder={this.state.reviewsSort} setReviewsCount={this.setReviewsCount} reviewsCount={this.state.reviewsCount}/>
         </div>
       )
     }

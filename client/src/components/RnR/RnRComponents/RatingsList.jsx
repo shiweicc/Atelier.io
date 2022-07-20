@@ -8,7 +8,7 @@ const RatingsList = (props) => {
   return (
     <div>
       {Object.keys(props.ratings).map((key) => {
-        return <Rating rating={key} percentage={Math.floor((parseInt(props.ratings[key])/total)*100)}/>;
+        return <Rating rating={key} percentage={Math.floor((parseInt(props.ratings[key])/total)*100)}/>
       })}
     </div>
   );

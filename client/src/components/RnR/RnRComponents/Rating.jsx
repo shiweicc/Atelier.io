@@ -1,9 +1,11 @@
 import React from 'react';
+import Bar from './Bar.jsx';
+import full from './resources/100.png';
 
 const Rating = (props) => {
   return (
-    <div>
-      {props.rating} | {props.percentage}
+    <div class='ratings'>
+    <img class='star' src={full}/> {props.rating} Stars <Bar rating={props.percentage}/>
     </div>
   );
 }

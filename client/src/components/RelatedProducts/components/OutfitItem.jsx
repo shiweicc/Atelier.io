@@ -47,7 +47,7 @@ class OutfitItem extends React.Component {
     )
 
     return (
-      <div className="card">
+      <div className="eachOutfitCard">
         <div className="card_body">
           <button className="card_btn" onClick={() => this.handleDeleteOutfit(this.props.outfitCollection)}>❌</button>
           {img}

@@ -317,7 +317,7 @@ div.quality {
   border-radius: 0.5rem;
   text-align: center;
   line-height: 0.6;
-  width: 300px;
+  width: 200px;
   height: 360px;
   background-color: #f1f1f1;
 }
@@ -344,7 +344,7 @@ div.quality {
   width: 200px;
   height: 350px;
   padding-right: 20px;
-  margin: 20px;
+  margin-right: 20px;
   background-color: transparent;
   border-style: solid;
   border-width: 4px 4px 4px 4px;
@@ -404,4 +404,12 @@ div.quality {
 
 .card_default_price{
   text-decoration: line-through;
+}
+
+.card_btn {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  position:relative;
+  float: right;
 }

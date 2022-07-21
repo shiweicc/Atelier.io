@@ -3,20 +3,35 @@ import $ from 'jquery';
 import Price from './price.jsx';
 import Style from './style.jsx';
 import Image from './image.jsx';
+import Carousel from './carousel.jsx';
+import Thumbnail from './thumbnail.jsx';
 import "./styles.css";
+
 
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      style: 1,
-      image: 0
+      style: 0,
+      image: 0,
+      start: 0,
+      end: 6
     }
     this.clickedStyle = this.clickedStyle.bind(this);
+    this.updateImage = this.updateImage.bind(this);
+    this.updateThumbnail = this.updateThumbnail.bind(this);
   }
 
 
   componentDidMount () {
+  }
+
+  updateImage (index, start, end) {
+    this.setState({
+      image: index,
+      start,
+      end
+    })
   }
 
   clickedStyle (e) {
@@ -25,9 +40,16 @@ class ProductOverview extends React.Component {
       var position = $(`[data-styleid="${style}"]`).offset();
       $('.POcheckmark').css({ position:'absolute', top:position.top - 30, left: position.left + 35});
       this.setState({
-        style
+        style,
+        image: 0
       })
     }
+  }
+
+  updateThumbnail(start, end) {
+    this.setState({
+      start, end
+    })
   }
 
   render() {
@@ -35,7 +57,8 @@ class ProductOverview extends React.Component {
     return (
       this.props.desc.id && (<div id='PO'>
         <div id='POleft'>
-          <Image sources={this.props.style.results[index].photos} name={this.props.desc.name} image={this.state.image}/>
+          <Thumbnail sources={this.props.style.results[index].photos} image={this.state.image} start={this.state.start} end={this.state.end} updateThumbnail={this.updateThumbnail} updateImage={this.updateImage}/>
+          <Carousel sources={this.props.style.results[index].photos} image={this.state.image} update={this.updateImage} start={this.state.start} end={this.state.end}/>
         </div>
         <div id='POright'>
           <p>{this.props.desc.category}</p>

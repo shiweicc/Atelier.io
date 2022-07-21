@@ -4,8 +4,8 @@ import full from './resources/100.png';
 
 const Rating = (props) => {
   return (
-    <div class='ratings'>
-    <img class='star' src={full}/> {props.rating} Stars <Bar rating={props.percentage}/>
+    <div className='ratings'>
+      <span className='underlined' onClick={props.setStarsFilter}>{props.rating} Stars <Bar rating={props.percentage}/></span>
     </div>
   );
 }

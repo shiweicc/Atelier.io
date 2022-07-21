@@ -8,8 +8,8 @@ const Sort = (props) => {
   }, 0);
 
   return (
-    <div class='RnRHeadReviews'>
-      <span class='reviewsCount'>{totalRatings}</span>
+    <div className='RnRHeadReviews'>
+      <span className='reviewsCount'>{totalRatings}</span>
       <span> reviews</span>
     </div>
   );

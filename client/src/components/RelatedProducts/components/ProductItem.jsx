@@ -12,17 +12,17 @@ class ProductItem extends React.Component {
     // console.log('func: ', this.props.updateOutfitCollection);
   }
 
-  handleAddOutfit() {
-    let selectedInfo = this.props.eachProductInfo.productInfo;
-    let selectedStyles = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+  // handleAddOutfit() {
+  //   let selectedInfo = this.props.eachProductInfo.productInfo;
+  //   let selectedStyles = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
 
-    let selectedProductObj = {
-      productInfo: selectedInfo,
-      productStyles: selectedStyles,
-    };
+  //   let selectedProductObj = {
+  //     productInfo: selectedInfo,
+  //     productStyles: selectedStyles,
+  //   };
 
-    this.props.updateOutfitCollection(selectedProductObj);
-  }
+  //   this.props.updateOutfitCollection(selectedProductObj);
+  // }
 
   render() {
     let info = this.props.eachProductInfo.productInfo;
@@ -53,7 +53,7 @@ class ProductItem extends React.Component {
     return (
       <div className="eachProductCard">
         <div className="card_body">
-          <button className="card_btn" onClick={()=> this.handleAddOutfit()}>❤️</button>
+          <button className="card_btn" onClick={()=> this.props.openModal()}>❤️</button>
           {img}
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>

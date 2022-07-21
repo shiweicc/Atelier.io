@@ -326,7 +326,7 @@ div.quality {
   display: inline-flex;
   gap: 2rem;
   white-space: nowrap;
-  height: 500px;
+  height: 400px;
   width: 1130px;
   overflow-x: scroll;
 }
@@ -334,7 +334,7 @@ div.quality {
 /****** styles for Outfit ******/
 .outfitListWrapper {
   white-space: nowrap;
-  height: 500px;
+  height: 400px;
   width: 1130px;
   overflow-x: scroll;
   display: inline-flex;
@@ -415,5 +415,34 @@ div.quality {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
+/****** styles for comparison modal ******/
+.compare_modal {
+  display: block;
+  text-align: center;
+  width: 470px;
+  height: 360px;
+  padding-right: 20px;
+  margin-right: 20px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 3px 3px 3px 3px;
+  border-color: #f1f1f1;
+  border-radius: 0.5rem;
+  background-color: #f1f1f1;
+  position:relative;
+}
 
+.compare_table{
+  text-align: center;
+  width: 470px;
+}
 
+.compare_column{
+  width: 155px;
+}
+
+.closeModal_btn {
+  position: absolute;
+  right:    10px;
+  bottom:   10px;
+}

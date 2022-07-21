@@ -13,6 +13,7 @@ const ProductList = (props) => {
       curProductID={props.curProductID}
       eachProductInfo={item}
       updateOutfitCollection={props.updateOutfitCollection}
+      openModal={props.openModal}
     />
   );
 

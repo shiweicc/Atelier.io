@@ -14,13 +14,28 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       newRelatedProductList:[],
+      showModal: false,
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
     // console.log('what props in RelatedProduct ???', this.props.deleteOutfitItem);
     this.getRelatedProductList(this.props.curProductID);
+  }
+
+  openModal() {
+    this.setState({showModal: !this.state.showModal}, () => {
+      console.log('****set state when OPEN showModal****: ', this.state.showModal);
+    });
+  }
+
+  closeModal() {
+    this.setState({showModal: false}, () => {
+      console.log('****set state when CLOSE showModal****: ', this.state.showModal);
+    });
   }
 
   //******************* GET related products info and images *******************//
@@ -70,6 +85,11 @@ class RelatedProducts extends React.Component {
         curProductID={this.props.curProductID}
         updateOutfitCollection={this.props.updateOutfitCollection}
         style={this.props.style} desc={this.props.desc}
+        openModal={this.openModal}
+      />
+      <Comparing
+        showModal={this.state.showModal}
+        closeModal={this.closeModal}
       />
       <OutfitList
         curProductID={this.props.curProductID}
@@ -79,7 +99,6 @@ class RelatedProducts extends React.Component {
         deleteOutfitItem={this.props.deleteOutfitItem}
         style={this.props.style} desc={this.props.desc}
       />
-      {/* <Comparing /> */}
     </div>
     )
   }

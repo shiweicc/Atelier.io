@@ -4,8 +4,12 @@ import $ from 'jquery';
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: false
+    }
     this.clickedLeft = this.clickedLeft.bind(this);
     this.clickedRight = this.clickedRight.bind(this);
+    this.clickedImage = this.clickedImage.bind(this);
   }
 
   clickedLeft() {
@@ -31,6 +35,30 @@ class Carousel extends React.Component {
     }
     this.props.update(currImage, start, end);
   }
+
+  clickedImage(e) {
+    let element = e.target;
+    if (this.state.expanded) {
+      requestAnimationFrame(() => {
+        element.style.transition = `
+          width 350ms ease-in-out
+        `;
+        element.style.width = '450px';
+      })
+    } else {
+      console.log('hi')
+      requestAnimationFrame(() => {
+        element.style.transition = `
+          width 350ms ease-in-out
+        `;
+        element.style.width = '805px';
+      })
+    }
+    this.setState({
+      expanded: !this.state.expanded
+    })
+  }
+
   componentDidMount () {
 
   }
@@ -43,7 +71,7 @@ class Carousel extends React.Component {
           current !== 0 && <button id='POcarousel-left' class='POcarousel-button' aria-label='previous-slide' onClick={this.clickedLeft}>{'<'}</button>
         }
         {
-          <img class='POcarousel-img' index={this.props.image} src={this.props.sources[this.props.image].url}></img>
+          <img class='POcarousel-img' index={this.props.image} src={this.props.sources[this.props.image].url} onClick={this.clickedImage}></img>
         }
         {
           current !== this.props.sources.length - 1 && <button id='POcarousel-right' class='POcarousel-button' aria-label='next-slide' onClick={this.clickedRight}>{'>'}</button>

@@ -1,44 +1,37 @@
-
-
 import React from 'react';
 import DisplayAnswer from './DisplayAnswer.jsx'
 
-class DisplayQuestion extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 5,
-      question_id: ''
-    }
-  }
-  accessDisplayAnswer = () => {
-    this.refs.DisplayAnswer.getAnswers(this.state.question_id, this.state.count);
-  };
+const DisplayQuestion = (props) => {
 
-  render() {
+  // accessDisplayAnswer = () => {
+  //   this.refs.DisplayAnswer.getAnswers(this.state.question_id, 5);
+  // };
+
+
     return (
-      < div className="questionList" >
+      < div >
         {
-          this.props.questions.map(
+          props.questions.map(
             (question) => {
-              this.setState({
-                question_id: question.question_id
-              });
               return (
                 <div>
-                  <div className="question" id='block1'>Q: {question.question_body} </div>
-                  <div id='block2'>Helpful?  <a href='' onClink=''>Yes</a>({question.question_helpfulness}) | <a href='' onClink=''>Add Answer</a></div>
-                  <DisplayAnswer key={question.question_id} answers={question.question_id} ref='DisplayAnswer' />
-
+                  <div id="parent-block">
+                    <div id='block1'>Q: {question.question_body} </div>
+                    <div id='block2'>Helpful? &nbsp;<a href='' onClink=''>Yes  </a>({question.question_helpfulness}) &nbsp; | &nbsp; <a href='' onClink=''> Add Answer </a></div>
+                  </div>
+                  <DisplayAnswer key={question.question_id} question_id={question.question_id} />
                 </div>
               )
             }
           )
         }
-        <button type='button' onClick={this.accessDisplayAnswer.bind(this)}>LOAD MORE ANSWERS</button>
+
+
+        {/* <button id='buttonAnswer' type='button' onClick={this.accessDisplayAnswer.bind(this)}>COLLAPSE ANSWERS</button> */}
+        {/* ref='DisplayAnswer' */}
       </div >
     );
   }
-}
+
 
 export default DisplayQuestion;

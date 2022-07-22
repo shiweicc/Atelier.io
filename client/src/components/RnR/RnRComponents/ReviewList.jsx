@@ -11,7 +11,7 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    if (this.props.starsFilter === 0) {
+    if (this.props.starsFilter.length < 1) {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
@@ -31,7 +31,7 @@ class ReviewList extends React.Component {
       }
     } else {
       let results = this.props.reviews.results.filter((element) => {
-        return parseInt(element.rating) === parseInt(this.props.starsFilter);
+        return this.props.starsFilter.includes(element.rating.toString());
       })
       if (this.props.reviewsCount === 'Not expanded') {
         return (

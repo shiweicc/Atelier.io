@@ -11,7 +11,7 @@ class RnR extends React.Component {
     super(props);
     this.state = {
       ratingsPercent: 0,
-      starsFilter: 0
+      starsFilter: []
     }
     this.percentRatings = this.percentRatings.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
@@ -30,7 +30,14 @@ class RnR extends React.Component {
   }
 
   setStarsFilter () {
-    this.setState({starsFilter: event.target.innerText[0]});
+    if (!this.state.starsFilter.includes(event.target.innerText[0])) {
+      this.setState({starsFilter: [...this.state.starsFilter, event.target.innerText[0]]}, () => {console.log(this.state.starsFilter)});
+    } else {
+      let newState = this.state.starsFilter.filter((element) => {
+        return element !== event.target.innerText[0];
+      });
+      this.setState({starsFilter: newState}, () => {console.log(this.state.starsFilter)});
+    }
   }
 
   componentDidMount () {

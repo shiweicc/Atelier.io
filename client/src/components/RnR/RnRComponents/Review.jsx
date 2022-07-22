@@ -5,8 +5,6 @@ import full from './resources/100.png';
 
 const Review = (props) => {
 
-  console.log(props.reviews);
-
   const getStars = (value) => {
     const stars = [];
     const [whole, part] = parseFloat(value).toString().split(".");

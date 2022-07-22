@@ -15,6 +15,8 @@ class RelatedProducts extends React.Component {
     this.state = {
       newRelatedProductList:[],
       showModal: false,
+      selectedCard: {},
+      currentCard: this.props.productDesc,
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -22,19 +24,21 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('what props in RelatedProduct ???', this.props.deleteOutfitItem);
+    console.log('what props in RelatedProduct ???', this.props.productDesc);
     this.getRelatedProductList(this.props.curProductID);
   }
 
-  openModal() {
-    this.setState({showModal: !this.state.showModal}, () => {
-      console.log('****set state when OPEN showModal****: ', this.state.showModal);
+  openModal(info) {
+    console.log('openModal info: ', info);
+
+    this.setState({showModal: true, selectedCard: info}, () => {
+      console.log('**** set state when OPEN showModal ****: ', this.state.selectedCard);
     });
   }
 
   closeModal() {
     this.setState({showModal: false}, () => {
-      console.log('****set state when CLOSE showModal****: ', this.state.showModal);
+      console.log('**** set state when CLOSE showModal ****: ', this.state.showModal);
     });
   }
 
@@ -90,6 +94,8 @@ class RelatedProducts extends React.Component {
       <Comparing
         showModal={this.state.showModal}
         closeModal={this.closeModal}
+        selectedCard={this.state.selectedCard}
+        currentCard={this.state.currentCard}
       />
       <OutfitList
         curProductID={this.props.curProductID}

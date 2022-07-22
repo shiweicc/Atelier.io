@@ -445,17 +445,35 @@ div.quality {
   position:relative;
 }
 
-.compare_table{
+/* .compare_table{
   text-align: center;
   width: 470px;
+} */
+
+/* .compare_column{
+  width: 155px;
+  text-align: center;
 }
 
-.compare_column{
+.compare_row{
   width: 155px;
-}
+  text-align: center;
+  background-color: pink;
+} */
 
 .closeModal_btn {
   position: absolute;
   right:    10px;
   bottom:   10px;
 }
+
+td {
+  width: 155px;
+  text-align: center;
+}
+
+th {
+  width: 155px;
+  text-align: center;
+}
+

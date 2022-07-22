@@ -3,11 +3,14 @@ import React from "react";
 class Comparing extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      curProductFeatures: this.props.currentCard.features,
+    };
   }
 
   componentDidMount() {
     // console.log('selectedCard: ', this.props.selectedCard.features[0].feature)
-    console.log('currentCard: ', this.props.currentCard.features[0].feature)
+    console.log('currentCard: ', this.props.currentCard.features)
   }
 
   render() {
@@ -25,7 +28,6 @@ class Comparing extends React.Component {
 
     // let selFeatureOneFunc = () => {this.props.selectedCard.features[0].value ? 'hi' : 'X'};
     // let selFeature = () => {this.props.selectedCard.features[0].feature ? 'what' : 'X'};
-
     // let selFeatureOne = selFeatureOneFunc();
 
     if (!this.props.showModal) {
@@ -36,33 +38,23 @@ class Comparing extends React.Component {
       <div className="compare_modal_wrapper">
         <div className="compare_modal">
           <h3> COMPARING </h3>
-          <div className="compare_modal_content" onClick={e => e.stopPropagation()}>
+          <div className="compare_modal_content">
             <table className="compare_table">
-              <tr className="compare_column">
-                <th>{curProductName}</th>
-                <th></th>
-                <th>{selProductName}</th>
-              </tr>
-              <tr>
-                <td>{curFeatureOne}</td>
-                <td>{featureOne}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>{curFeatureTwo}</td>
-                <td>{featureTwo}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>{curFeatureThree}</td>
-                <td>{featureThree}</td>
-                <td></td>
-              </tr>
-              <tr>
-                {/* <td>{selFeatureOne}</td> */}
-                {/* <td>{selFeature}</td> */}
-                <td></td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>{curProductName}</th>
+                  <th></th>
+                  <th>{selProductName}</th>
+                </tr>
+
+                  {this.state.curProductFeatures.length !== 0
+                    ? this.state.curProductFeatures.map((obj, index) => (
+                      // console.log('feature: ', obj)
+                      <CurProductFeaturesGetter feature={obj.feature} value={obj.value} key={index} />
+                    ))
+                    : null}
+
+              </tbody>
             </table>
           </div>
           <button className="closeModal_btn" onClick={()=> this.props.closeModal()}>Close</button>
@@ -71,6 +63,21 @@ class Comparing extends React.Component {
     )
   }
 }
+
+const CurProductFeaturesGetter = (props) => {
+  return (
+    <tr>
+      <td>{props.value}</td>
+      <td>
+        <em>
+        {props.feature}
+        </em>
+      </td>
+      <td>X</td>
+    </tr>
+  );
+};
+
 
 export default Comparing;
 

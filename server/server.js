@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000;
 const authedGet = require('./helper.js').authedGet;
 const authedPost = require('./helper.js').authedPost;
+const authedPut = require('./helper.js').authedPut;
 const path = require('path');
 const router = express.Router();
 
@@ -46,6 +47,7 @@ app.get('/products/:id/related', function (req, res) {
     })
 });
 
+
 //******************* get realted product STYLES list *******************//
 app.get('/products/:id/styles', function (req, res) {
   let endpoint = req.originalUrl;
@@ -63,6 +65,8 @@ app.get('/products/:id/styles', function (req, res) {
 });
 
 
+
+//******************* get Questions and Answers list *******************//
 app.get('/questions', (req, res) => {
   //console.log(req.method, req.url);
   const product_id = req.url.substring(req.url.indexOf('?') + 1);
@@ -78,10 +82,10 @@ app.get('/questions', (req, res) => {
 })
 
 app.get('/answers', (req, res) => {
-  const product_id = req.url.substring(req.url.indexOf('=') + 1);
-  const id = product_id.substring(0, 6);
-  const count = product_id.substring(product_id.indexOf('&'));
-  console.log(id, count);
+  const question_id = req.url.substring(req.url.indexOf('=') + 1);
+  const id = question_id.substring(0, 6);
+  const count = question_id.substring(question_id.indexOf('&'));
+  //console.log(id, count);
 
   authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + id + '/answers?' + count)
     .then((results) => {
@@ -92,6 +96,32 @@ app.get('/answers', (req, res) => {
       res.sendStatus(400);
     })
 })
+
+app.put('/questions/helpful', (req, res) => {
+  const question_id = req.body.question_id;
+  //console.log(question_id);
+  authedPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + question_id + '/helpful')
+    .then((results) => {
+      res.status(204).send('put succ');
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+app.put('/answers/helpful', (req, res) => {
+  const answer_id = req.body.answer_id;
+  console.log(answer_id);
+  authedPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/helpful')
+    .then((results) => {
+      res.status(204).send('put succ');
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+})
+
+//*********************************************************************************//
 
 app.get('/products/:id', (req, res) => {
   let productURL = req.url;

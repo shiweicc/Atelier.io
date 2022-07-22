@@ -15,6 +15,7 @@ class QnA extends React.Component {
   }
 
   getQuestions(product_id, count) {
+    //console.log(`${product_id}`);
     axios.get('http://localhost:3000/questions', {
       params: {
         product_id: `${product_id}`,
@@ -39,14 +40,9 @@ class QnA extends React.Component {
       })
   }
 
-  markQuestionHelpful() {
-    axios.put('http://localhost:3000/questions/helpful'), {
-
-    }
-  }
-
   componentDidMount() {
     this.getQuestions(this.props.curProductID, this.state.questionCount);
+    //this.markQuestionHelpful(631400);
   }
 
 
@@ -57,7 +53,8 @@ class QnA extends React.Component {
         <p>QUESTIONS & ANSWERTS</p>
         <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <QuestionsList qna={this.state.qna} getQuestions={this.getQuestions.bind(this)}
-          isQuestionLoaded={this.state.questionLoaded} count={this.state.questionCount} total={this.state.totalQusCount} />
+          count={this.state.questionCount} total={this.state.totalQusCount} product_id={this.props.curProductID}
+        />
     </div>
     )
   }

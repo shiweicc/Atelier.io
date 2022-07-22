@@ -29,7 +29,18 @@ const authedPost = (url, data) => {
   return axios(options);
 }
 
+//Authenticate put request
+const authedPut = (url) => {
+  let options = {
+    method: 'put',
+    url: `${url}`,
+    headers: headers,
+  };
+  return axios(options);
+}
+
 module.exports = {
   authedGet,
-  authedPost
+  authedPost,
+  authedPut
 }

@@ -22,8 +22,8 @@ const Stars = (props) => {
 
   return (
     <div>
-      {getStars(props.ratings).map((val) => {
-        return <img class='star' src={val}/>
+      {getStars(props.ratings).map((val, i) => {
+        return <img key={i} className='star' src={val} alt='One of 5 stars designating how many stars this review has'/>
       })}
     </div>
   )

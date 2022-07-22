@@ -27,20 +27,20 @@ const Characteristic = (props) => {
   }
 
   return (
-    <div class='characteristicContainer'>
-      <div class='characteristic'>{props.characteristic}</div>
-      <div class='barContainer'>
-        <div class='barCharacteristic'></div>
-        <div class='barCharacteristic'></div>
-        <div class='barCharacteristic'></div>
+    <div className='characteristicContainer'>
+      <div className='characteristic'>{props.characteristic}</div>
+      <div className='barContainer'>
+        <div className='barCharacteristic'></div>
+        <div className='barCharacteristic'></div>
+        <div className='barCharacteristic'></div>
       </div>
-      <div class='barContainer'>
-        {qualities[props.characteristic].map((characteristic) => {
-          return <div class='quality'>{characteristic}</div>
+      <div className='barContainer'>
+        {qualities[props.characteristic].map((characteristic, i) => {
+          return <div key={i} className='quality'>{characteristic}</div>
         })}
       </div>
-      <div class='barContainer'>
-        <img style={dynamicallyPassedArrowStyling()} src={arrow}></img>
+      <div className='barContainer'>
+        <img style={dynamicallyPassedArrowStyling()} src={arrow} alt='Arrow marker pointing at bar graph'></img>
       </div>
     </div>
   )

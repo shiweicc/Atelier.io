@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000;
 const authedGet = require('./helper.js').authedGet;
 const authedPost = require('./helper.js').authedPost;
+const authedPut = require('./helper.js').authedPut;
 const path = require('path');
 const router = express.Router();
 
@@ -144,6 +145,26 @@ app.get('/reviews/meta/', (req, res) => {
     .catch((err) => {
       res.sendStatus(400);
     })
+})
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  authedPut(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.params.review_id}/helpful`)
+  .then((results) => {
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+})
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  authedPut(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.params.review_id}/report`)
+  .then((results) => {
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
 })
 
 app.listen(port, () => {

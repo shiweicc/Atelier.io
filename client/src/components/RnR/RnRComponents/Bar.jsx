@@ -13,8 +13,8 @@ const Bar = (props) => {
   };
 
   return (
-    <div class='container'>
-      <div class='bar'>
+    <div className='container'>
+      <div className='bar'>
         <div style={innerStyle}>
         </div>
       </div>

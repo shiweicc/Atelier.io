@@ -200,6 +200,11 @@ span.reviewsCount {
   font-weight: bold;
 }
 
+.underlined {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 div.percent {
   margin-top: 10px;
   margin-right: 10px;

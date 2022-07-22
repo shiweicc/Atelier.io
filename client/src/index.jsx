@@ -17,10 +17,12 @@ class App extends React.Component {
       reviews: [],
       reviewsMetadata: [],
       reviewsSort: 'relevant',
+      sortOptions: ['relevant', 'newest', 'helpful'],
       reviewsCount: 'Not expanded',
       averageReviewScore: 0,
       outfitCollection: [],
-      ready: false,
+      reviewID: 0,
+      ready: false
     }
     this.getProducts = this.getProducts.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
@@ -30,6 +32,10 @@ class App extends React.Component {
     this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
     this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
     this.setReviewsCount = this.setReviewsCount.bind(this);
+    this.setSortOptions = this.setSortOptions.bind(this);
+    this.postHelpfulReview = this.postHelpfulReview.bind(this);
+    this.postReportReview = this.postReportReview.bind(this);
+    this.getReviewID = this.getReviewID.bind(this);
   }
 
   getProducts() {
@@ -95,6 +101,34 @@ class App extends React.Component {
     })
   }
 
+  postHelpfulReview() {
+    $.ajax({
+      url: `/reviews/${this.state.reviewID}/helpful`,
+      method: 'PUT',
+      contentType: 'application/json',
+      success: (res) => {
+        this.getProducts();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  postReportReview() {
+    $.ajax({
+      url: `/reviews/${this.state.reviewID}/report`,
+      method: 'PUT',
+      contentType: 'application/json',
+      success: (res) => {
+        this.getProducts();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
   getReviewsMetadata() {
     $.ajax({
       url: `/reviews/meta/`,
@@ -131,10 +165,6 @@ class App extends React.Component {
       this.getProducts();
     }
   }
-
-  // setReviewsSort () {
-
-  // }
 
   averageReviewScore(scores) {
     // break out all the keys
@@ -180,6 +210,21 @@ class App extends React.Component {
     }
   }
 
+  setSortOptions () {
+    this.setState({reviewsSort: event.target.value});
+    this.getProducts();
+  }
+
+  getReviewID(id, source) {
+    if (source === 'Helpful') {
+      this.setState({reviewID: id});
+      this.postHelpfulReview();
+    } else if (source === 'Report') {
+      this.setState({reviewID: id});
+      this.postReportReview();
+    }
+  }
+
   deleteOutfitItem(updatedOutfitCollection) {
     this.setState({outfitCollection: updatedOutfitCollection}, () => {
       // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
@@ -195,7 +240,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -203,8 +248,8 @@ class App extends React.Component {
             updateOutfitCollection={this.updateOutfitCollection}
             deleteOutfitItem={this.deleteOutfitItem}
           />
-          <QnA curProductID={this.state.productId}/> */}
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} sortOrder={this.state.reviewsSort} setReviewsCount={this.setReviewsCount} reviewsCount={this.state.reviewsCount}/>
+          <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} sortOrder={this.state.reviewsSort} setReviewsCount={this.setReviewsCount} reviewsCount={this.state.reviewsCount} sortOptions={this.state.sortOptions} setSortOptions={this.setSortOptions} getReviewID={this.getReviewID} getProducts={this.getProducts}/>
         </div>
       )
     }

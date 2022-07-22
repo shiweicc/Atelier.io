@@ -15,31 +15,144 @@ class RelatedProducts extends React.Component {
     this.state = {
       newRelatedProductList:[],
       showModal: false,
-      selectedCard: {},
       currentCard: this.props.productDesc,
+      selectedCard: {},
+      comProdFeat: [],
+      // curProdFeat:[],
+      // selProdFeat:[],
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.findComFeatures = this.findComFeatures.bind(this);
+    this.deleteComFeatures = this.deleteComFeatures.bind(this);
+    this.combineCurFeatrues = this.combineCurFeatrues.bind(this);
+    this.combineSelFeatrues = this.combineSelFeatrues.bind(this);
   }
 
   componentDidMount() {
-    console.log('what props in RelatedProduct ???', this.props.productDesc);
+    // console.log('what props in RelatedProduct ???', this.props.productDesc);
     this.getRelatedProductList(this.props.curProductID);
   }
 
   openModal(info) {
-    console.log('openModal info: ', info);
-
     this.setState({showModal: true, selectedCard: info}, () => {
-      console.log('**** set state when OPEN showModal ****: ', this.state.selectedCard);
+      // console.log('**** set state when OPEN showModal ****: ', this.state.selectedCard);
+      this.findComFeatures();
     });
   }
 
   closeModal() {
-    this.setState({showModal: false, selectedCard: {}}, () => {
-      console.log('**** set state when CLOSE showModal ****: ', this.state.showModal);
+    // console.log('currentCard info: ', this.props.productDesc);
+    this.setState({
+      showModal: false,
+      selectedCard: {},
+      comProdFeat: [],
+      curProdFeat: [],
+      selProdFeat: [],
+      currentCard: this.props.productDesc,
+    },
+    () => {
+      console.log('**** set state for currentCard when CLOSE showModal ****: ', this.state.currentCard);
     });
+  }
+
+  findComFeatures() {
+    let curProdFeat = this.state.currentCard.features;
+    let selProdFeat = this.state.selectedCard.features;
+    let curTemp = curProdFeat;
+    let selTemp = selProdFeat;
+    let comProdFeat = [];
+
+    if (this.state.currentCard.id === this.state.selectedCard.id) {
+      for (let k = 0; k < curProdFeat.length; k++) {
+          comProdFeat.push({
+            curValue: curProdFeat[k].value,
+            feature: curProdFeat[k].feature,
+            selValue: curProdFeat[k].value,
+          })
+        }
+    } else if (selProdFeat.length === 0) {
+      console.log('yes');
+    } else {
+      let count = 0;
+      for (let i = 0; i < curProdFeat.length; i++) {
+        for (let j = 0; j < selProdFeat.length; j++) {
+          if (curProdFeat[i].feature === selProdFeat[j].feature) {
+            comProdFeat.push({
+              curValue: curProdFeat[i].value,
+              feature: curProdFeat[i].feature,
+              selValue: selProdFeat[j].value
+            })
+            count++;
+          }
+        }
+      }
+      if (count === curProdFeat.length && count === selProdFeat.length) {
+        for (let k = 0; k < curProdFeat.length; k++) {
+          comProdFeat.push({
+            curValue: curProdFeat[k].value,
+            feature: curProdFeat[k].feature,
+            selValue: curProdFeat[k].value,
+          })
+        }
+      } else {
+        this.deleteComFeatures(comProdFeat, curTemp);
+        this.deleteComFeatures(comProdFeat, selTemp);
+
+        this.combineCurFeatrues(comProdFeat, curTemp);
+        this.combineSelFeatrues(comProdFeat, selTemp);
+      }
+    }
+
+
+    this.setState({
+      comProdFeat: comProdFeat,
+      // curProdFeat: curProdFeat,
+      // selProdFeat: selProdFeat,
+      },
+      () => {
+      console.log('**** set state after find comFeat for currentCard ****: ', this.state.currentCard);
+      // console.log('**** set state after find comFeat for selectedCard ****: ', this.state.selectedCard);
+    });
+
+  };
+
+  deleteComFeatures(comProdFeat, checkProdFeat) {
+    for (let i = 0; i < checkProdFeat.length; i++) {
+      for (let j = 0; j < comProdFeat.length; j++) {
+        if (checkProdFeat[i].feature === comProdFeat[j].feature) {
+          checkProdFeat.splice(i, 1);
+        }
+      }
+    }
+    return checkProdFeat;
+  }
+
+  combineCurFeatrues(comProdFeat, curProdFeat) {
+    for (let i = 0; i < curProdFeat.length; i++) {
+      if (!curProdFeat[i].value) {
+        curProdFeat[i].value = '✔️';
+      }
+      comProdFeat.push({
+        curValue: curProdFeat[i].value,
+        feature: curProdFeat[i].feature,
+        selValue: null,
+      })
+    }
+  }
+
+  combineSelFeatrues(comProdFeat, selProdFeat) {
+    for (let i = 0; i < selProdFeat.length; i++) {
+      if (!selProdFeat[i].value) {
+        selProdFeat[i].value = '✔️';
+      }
+      comProdFeat.push({
+        curValue: null,
+        feature: selProdFeat[i].feature,
+        selValue: selProdFeat[i].value,
+      })
+    }
   }
 
   //******************* GET related products info and images *******************//
@@ -99,13 +212,16 @@ class RelatedProducts extends React.Component {
         deleteOutfitItem={this.props.deleteOutfitItem}
         style={this.props.style} desc={this.props.desc}
       />
-        {Object.keys(this.state.selectedCard).length === 0
+        {this.state.comProdFeat.length === 0
         ? null
         : <Comparing
         showModal={this.state.showModal}
         closeModal={this.closeModal}
         currentCard={this.state.currentCard}
         selectedCard={this.state.selectedCard}
+        comProdFeat={this.state.comProdFeat}
+        curProdFeat={this.state.curProdFeat}
+        selProdFeat={this.state.selProdFeat}
         />
       }
     </div>
@@ -114,6 +230,20 @@ class RelatedProducts extends React.Component {
 }
 
 export default RelatedProducts;
+
+
+// {Object.keys(this.state.selectedCard).length === 0
+//   ? null
+//   : <Comparing
+//   showModal={this.state.showModal}
+//   closeModal={this.closeModal}
+//   currentCard={this.state.currentCard}
+//   selectedCard={this.state.selectedCard}
+//   comProdFeat={this.state.comProdFeat}
+//   curProdFeat={this.state.curProdFeat}
+//   selProdFeat={this.state.selProdFeat}
+//   />
+// }
 
 
   //******************* get realted product STYLES list *******************//

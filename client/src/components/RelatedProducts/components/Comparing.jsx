@@ -4,20 +4,27 @@ class Comparing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      comProductFeatures: [],
       curProductFeatures: this.props.currentCard.features,
       selProductFeatures: this.props.selectedCard.features,
+      comProdFeat: this.props.comProdFeat,
+      // curProdFeat: this.props.curProdFeat,
+      // selProdFeat: this.props.selProdFeat,
     };
   }
 
   componentDidMount() {
     console.log('selectedCard: ', this.state.selProductFeatures)
     console.log('currentCard: ', this.state.curProductFeatures)
+
+    console.log('comProdFeat: ', this.state.comProdFeat)
+    // console.log('curProdFeat: ', this.state.curProdFeat)
+    // console.log('selProdFeat: ', this.state.selProdFeat)
   }
 
   render() {
     let curProductName = this.props.currentCard.name;
     let selProductName = this.props.selectedCard.name;
-
 
     if (!this.props.showModal) {
       return null;
@@ -35,21 +42,35 @@ class Comparing extends React.Component {
                   <th></th>
                   <th>{selProductName}</th>
                 </tr>
+                {this.state.comProdFeat.length !== 0
+                  ? this.state.comProdFeat.map((info, index) => (
+                    <ComProductFeaturesGetter feature={info.feature} curValue={info.curValue} selValue={info.selValue} key={index} />
+                  ))
+                  : 'nothing in com!'}
 
-                  {this.state.curProductFeatures.length !== 0
-                    ? this.state.curProductFeatures.map((obj, index) => (
-                      // console.log('feature: ', obj)
-                      <CurProductFeaturesGetter feature={obj.feature} value={obj.value} key={index} />
-                    ))
-                    : null}
+                {/* {this.state.curProdFeat.length !== 0
+                  ? this.state.curProdFeat.map((info, index) => (
+                    <CurProductFeaturesGetter feature={info.feature} value={info.value} key={index} />
+                  ))
+                  : 'nothing in cur!'}
+
+                {this.state.selProdFeat.length !== 0
+                  ? this.state.selProdFeat.map((info, index) => (
+                    <SelProductFeaturesGetter feature={info.feature} value={info.value} key={index} />
+                  ))
+                  : 'nothing in sel!'} */}
+
+                {/* {this.state.curProductFeatures.length !== 0
+                  ? this.state.curProductFeatures.map((info, index) => (
+                    <CurProductFeaturesGetter feature={info.feature} value={info.value} key={index} />
+                  ))
+                  : null}
 
                 {this.state.selProductFeatures.length !== 0
-                  ? this.state.selProductFeatures.map((obj, index) => (
-                    // console.log('feature: ', obj)
-                    <SelProductFeaturesGetter feature={obj.feature} value={obj.value} key={index} />
+                  ? this.state.selProductFeatures.map((info, index) => (
+                    <SelProductFeaturesGetter feature={info.feature} value={info.value} key={index} />
                   ))
-                  : 'nothing'}
-
+                  : 'nothing'} */}
               </tbody>
             </table>
           </div>
@@ -60,33 +81,47 @@ class Comparing extends React.Component {
   }
 }
 
-const CurProductFeaturesGetter = (props) => {
+const ComProductFeaturesGetter = (props) => {
   return (
     <tr>
-      <td>{props.value ? props.value : '✔️'}</td>
+      <td>{props.curValue ? props.curValue : ''}</td>
       <td>
         <em>
         {props.feature}
         </em>
       </td>
-      <td></td>
+      <td>{props.selValue ? props.selValue : ''}</td>
     </tr>
   );
 };
 
-const SelProductFeaturesGetter = (props) => {
-  return (
-    <tr>
-      <td></td>
-      <td>
-        <em>
-        {props.feature}
-        </em>
-      </td>
-      <td>{props.value ? props.value : '✔️'}</td>
-    </tr>
-  );
-};
+// const CurProductFeaturesGetter = (props) => {
+//   return (
+//     <tr>
+//       <td>{props.value ? props.value : '✔️'}</td>
+//       <td>
+//         <em>
+//         {props.feature}
+//         </em>
+//       </td>
+//       <td></td>
+//     </tr>
+//   );
+// };
+
+// const SelProductFeaturesGetter = (props) => {
+//   return (
+//     <tr>
+//       <td></td>
+//       <td>
+//         <em>
+//         {props.feature}
+//         </em>
+//       </td>
+//       <td>{props.value ? props.value : '✔️'}</td>
+//     </tr>
+//   );
+// };
 
 
 export default Comparing;

@@ -37,7 +37,7 @@ class RelatedProducts extends React.Component {
   }
 
   closeModal() {
-    this.setState({showModal: false}, () => {
+    this.setState({showModal: false, selectedCard: {}}, () => {
       console.log('**** set state when CLOSE showModal ****: ', this.state.showModal);
     });
   }
@@ -91,12 +91,6 @@ class RelatedProducts extends React.Component {
         style={this.props.style} desc={this.props.desc}
         openModal={this.openModal}
       />
-      <Comparing
-        showModal={this.state.showModal}
-        closeModal={this.closeModal}
-        selectedCard={this.state.selectedCard}
-        currentCard={this.state.currentCard}
-      />
       <OutfitList
         curProductID={this.props.curProductID}
         outfitCollection={this.props.outfitCollection}
@@ -105,6 +99,15 @@ class RelatedProducts extends React.Component {
         deleteOutfitItem={this.props.deleteOutfitItem}
         style={this.props.style} desc={this.props.desc}
       />
+        {Object.keys(this.state.selectedCard).length === 0
+        ? null
+        : <Comparing
+        showModal={this.state.showModal}
+        closeModal={this.closeModal}
+        currentCard={this.state.currentCard}
+        selectedCard={this.state.selectedCard}
+        />
+      }
     </div>
     )
   }

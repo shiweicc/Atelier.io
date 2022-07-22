@@ -5,30 +5,19 @@ class Comparing extends React.Component {
     super(props);
     this.state = {
       curProductFeatures: this.props.currentCard.features,
+      selProductFeatures: this.props.selectedCard.features,
     };
   }
 
   componentDidMount() {
-    // console.log('selectedCard: ', this.props.selectedCard.features[0].feature)
-    console.log('currentCard: ', this.props.currentCard.features)
+    console.log('selectedCard: ', this.state.selProductFeatures)
+    console.log('currentCard: ', this.state.curProductFeatures)
   }
 
   render() {
     let curProductName = this.props.currentCard.name;
     let selProductName = this.props.selectedCard.name;
 
-    let curFeatureOne = this.props.currentCard.features[0].value;
-    let featureOne = this.props.currentCard.features[0].feature;
-
-    let curFeatureTwo = this.props.currentCard.features[1].value;
-    let featureTwo = this.props.currentCard.features[1].feature;
-
-    let curFeatureThree = this.props.currentCard.features[2].value;
-    let featureThree = this.props.currentCard.features[2].feature;
-
-    // let selFeatureOneFunc = () => {this.props.selectedCard.features[0].value ? 'hi' : 'X'};
-    // let selFeature = () => {this.props.selectedCard.features[0].feature ? 'what' : 'X'};
-    // let selFeatureOne = selFeatureOneFunc();
 
     if (!this.props.showModal) {
       return null;
@@ -54,6 +43,13 @@ class Comparing extends React.Component {
                     ))
                     : null}
 
+                {this.state.selProductFeatures.length !== 0
+                  ? this.state.selProductFeatures.map((obj, index) => (
+                    // console.log('feature: ', obj)
+                    <SelProductFeaturesGetter feature={obj.feature} value={obj.value} key={index} />
+                  ))
+                  : 'nothing'}
+
               </tbody>
             </table>
           </div>
@@ -67,13 +63,27 @@ class Comparing extends React.Component {
 const CurProductFeaturesGetter = (props) => {
   return (
     <tr>
-      <td>{props.value}</td>
+      <td>{props.value ? props.value : '✔️'}</td>
       <td>
         <em>
         {props.feature}
         </em>
       </td>
-      <td>X</td>
+      <td></td>
+    </tr>
+  );
+};
+
+const SelProductFeaturesGetter = (props) => {
+  return (
+    <tr>
+      <td></td>
+      <td>
+        <em>
+        {props.feature}
+        </em>
+      </td>
+      <td>{props.value ? props.value : '✔️'}</td>
     </tr>
   );
 };

@@ -13,18 +13,6 @@ class ProductItem extends React.Component {
     // console.log('styles in productList: ', this.props.eachProductInfo.productStyles);
   }
 
-  // handleAddOutfit() {
-  //   let selectedInfo = this.props.eachProductInfo.productInfo;
-  //   let selectedStyles = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
-
-  //   let selectedProductObj = {
-  //     productInfo: selectedInfo,
-  //     productStyles: selectedStyles,
-  //   };
-
-  //   this.props.updateOutfitCollection(selectedProductObj);
-  // }
-
   getSelectedCard() {
     let info = this.props.eachProductInfo.productInfo;
     this.props.openModal(info);

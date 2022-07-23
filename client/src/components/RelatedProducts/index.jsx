@@ -8,7 +8,6 @@ import products from './sampleData/products.js';
 import helper from './helpers/helpers.js';
 // import css from '../../../dist/style.css';
 
-
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
@@ -17,17 +16,13 @@ class RelatedProducts extends React.Component {
       showModal: false,
       currentCard: this.props.productDesc,
       selectedCard: {},
-      comProdFeat: [],
-      // curProdFeat:[],
-      // selProdFeat:[],
+      productFeature: [],
+
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.findComFeatures = this.findComFeatures.bind(this);
-    this.deleteComFeatures = this.deleteComFeatures.bind(this);
-    this.combineCurFeatrues = this.combineCurFeatrues.bind(this);
-    this.combineSelFeatrues = this.combineSelFeatrues.bind(this);
   }
 
   componentDidMount() {
@@ -43,117 +38,69 @@ class RelatedProducts extends React.Component {
   }
 
   closeModal() {
-    // console.log('currentCard info: ', this.props.productDesc);
     this.setState({
       showModal: false,
-      selectedCard: {},
-      comProdFeat: [],
-      curProdFeat: [],
-      selProdFeat: [],
-      currentCard: this.props.productDesc,
-    },
-    () => {
-      console.log('**** set state for currentCard when CLOSE showModal ****: ', this.state.currentCard);
     });
   }
 
   findComFeatures() {
+    // current and selected products' features arrays
     let curProdFeat = this.state.currentCard.features;
     let selProdFeat = this.state.selectedCard.features;
-    let curTemp = curProdFeat;
-    let selTemp = selProdFeat;
-    let comProdFeat = [];
 
-    if (this.state.currentCard.id === this.state.selectedCard.id) {
-      for (let k = 0; k < curProdFeat.length; k++) {
-          comProdFeat.push({
-            curValue: curProdFeat[k].value,
-            feature: curProdFeat[k].feature,
-            selValue: curProdFeat[k].value,
-          })
-        }
-    } else if (selProdFeat.length === 0) {
-      console.log('yes');
-    } else {
-      let count = 0;
-      for (let i = 0; i < curProdFeat.length; i++) {
-        for (let j = 0; j < selProdFeat.length; j++) {
-          if (curProdFeat[i].feature === selProdFeat[j].feature) {
-            comProdFeat.push({
-              curValue: curProdFeat[i].value,
-              feature: curProdFeat[i].feature,
-              selValue: selProdFeat[j].value
-            })
-            count++;
-          }
-        }
+    // create variables for product feactures array and each feact cache object
+    let prodFeatData = [];
+    let featCache = {};
+
+    //Adding current product's features into cache
+    for (let i = 0; i < curProdFeat.length; i++) {
+      let curFeature = curProdFeat[i].feature;
+      let curValue = curProdFeat[i].value;
+
+      // if feacture's value is true/false, then change it to a checkmark
+      if (!curValue) {
+        curValue = '✔️';
       }
-      if (count === curProdFeat.length && count === selProdFeat.length) {
-        for (let k = 0; k < curProdFeat.length; k++) {
-          comProdFeat.push({
-            curValue: curProdFeat[k].value,
-            feature: curProdFeat[k].feature,
-            selValue: curProdFeat[k].value,
-          })
-        }
-      } else {
-        this.deleteComFeatures(comProdFeat, curTemp);
-        this.deleteComFeatures(comProdFeat, selTemp);
+      featCache[curFeature] = [curValue, null];
+    }
 
-        this.combineCurFeatrues(comProdFeat, curTemp);
-        this.combineSelFeatrues(comProdFeat, selTemp);
+    //Adding related product's features into the cache whether it existing or not
+    for (let j = 0; j < selProdFeat.length; j++) {
+      let selFeature = selProdFeat[j].feature;
+      let selValue = selProdFeat[j].value;
+
+      // if feacture's value is true/false, then change it to a checkmark
+      if (!selValue) {
+        selValue = '✔️';
+      }
+
+      if (featCache[selFeature] !== undefined) {
+        featCache[selFeature][1] = selValue;
+      } else {
+        featCache[selFeature] = [null, selValue];
       }
     }
 
+    //push each feature into the products' features array
+    for (let key in featCache) {
+      let eachFeat = {
+        curValue: featCache[key][0],
+        feature: key,
+        selValue: featCache[key][1],
+      }
+      prodFeatData.push(eachFeat);
+    }
 
     this.setState({
-      comProdFeat: comProdFeat,
-      // curProdFeat: curProdFeat,
-      // selProdFeat: selProdFeat,
+      productFeature: {
+        curProductName:this.props.productDesc.name,
+        selProductName: this.state.selectedCard.name,
+        feature: prodFeatData,
       },
-      () => {
-      console.log('**** set state after find comFeat for currentCard ****: ', this.state.currentCard);
-      // console.log('**** set state after find comFeat for selectedCard ****: ', this.state.selectedCard);
+    }, () => {
+      // console.log('**** set state for product Features data ****: ', this.state.productFeature);
     });
-
   };
-
-  deleteComFeatures(comProdFeat, checkProdFeat) {
-    for (let i = 0; i < checkProdFeat.length; i++) {
-      for (let j = 0; j < comProdFeat.length; j++) {
-        if (checkProdFeat[i].feature === comProdFeat[j].feature) {
-          checkProdFeat.splice(i, 1);
-        }
-      }
-    }
-    return checkProdFeat;
-  }
-
-  combineCurFeatrues(comProdFeat, curProdFeat) {
-    for (let i = 0; i < curProdFeat.length; i++) {
-      if (!curProdFeat[i].value) {
-        curProdFeat[i].value = '✔️';
-      }
-      comProdFeat.push({
-        curValue: curProdFeat[i].value,
-        feature: curProdFeat[i].feature,
-        selValue: null,
-      })
-    }
-  }
-
-  combineSelFeatrues(comProdFeat, selProdFeat) {
-    for (let i = 0; i < selProdFeat.length; i++) {
-      if (!selProdFeat[i].value) {
-        selProdFeat[i].value = '✔️';
-      }
-      comProdFeat.push({
-        curValue: null,
-        feature: selProdFeat[i].feature,
-        selValue: selProdFeat[i].value,
-      })
-    }
-  }
 
   //******************* GET related products info and images *******************//
   getRelatedProductList(id) {
@@ -163,9 +110,9 @@ class RelatedProducts extends React.Component {
     .then(relatedIDList => {
       let result = [];
 
-      for (var i = 0; i < relatedIDList.data.length; i++) {
+      for (let i = 0; i < relatedIDList.data.length; i++) {
         let curProductID = relatedIDList.data[i];
-        var productURL = `/products/${curProductID}`;
+        let productURL = `/products/${curProductID}`;
 
         axios.get(productURL)
           .then(productInfo => {
@@ -192,7 +139,6 @@ class RelatedProducts extends React.Component {
     })
   }
 
-
   render() {
     return (
     <div>
@@ -212,16 +158,12 @@ class RelatedProducts extends React.Component {
         deleteOutfitItem={this.props.deleteOutfitItem}
         style={this.props.style} desc={this.props.desc}
       />
-        {this.state.comProdFeat.length === 0
+        {Object.keys(this.state.productFeature).length === 0
         ? null
         : <Comparing
         showModal={this.state.showModal}
         closeModal={this.closeModal}
-        currentCard={this.state.currentCard}
-        selectedCard={this.state.selectedCard}
-        comProdFeat={this.state.comProdFeat}
-        curProdFeat={this.state.curProdFeat}
-        selProdFeat={this.state.selProdFeat}
+        productFeature={this.state.productFeature}
         />
       }
     </div>
@@ -232,122 +174,4 @@ class RelatedProducts extends React.Component {
 export default RelatedProducts;
 
 
-// {Object.keys(this.state.selectedCard).length === 0
-//   ? null
-//   : <Comparing
-//   showModal={this.state.showModal}
-//   closeModal={this.closeModal}
-//   currentCard={this.state.currentCard}
-//   selectedCard={this.state.selectedCard}
-//   comProdFeat={this.state.comProdFeat}
-//   curProdFeat={this.state.curProdFeat}
-//   selProdFeat={this.state.selProdFeat}
-//   />
-// }
 
-
-  //******************* get realted product STYLES list *******************//
-  // getRelatedProductStyles(id) {
-  //   let url = '/products/' + id + '/styles';
-
-  //   axios.get(url)
-  //   .then(data => {
-  //     // console.log('success get related products data at client!', data.data)
-
-  //     let result = [];
-  //     for (var i = 0; i < data.data.length; i++) {
-  //       var url = `/products/${data.data[i]}`;
-  //       axios.get(url)
-  //         .then(data => {
-  //           console.log('STYLES data: ', data.data)
-  //           result.push(data.data)
-
-  //           this.setState({relatedProductStyles: [...result]}, () => {
-  //             console.log('****set state for relatedProductIDList****: ', this.state.relatedProductStyles);
-  //           });
-  //         });
-  //     }
-  //   })
-  //   .catch(err => {
-  //       console.log('fail get related products STYLES data at client!!!', err);
-  //   })
-  // }
-
-  //******************* get each product info *******************//
-  // getCurProduct(id) {
-  //   let url = '/products/' + id;
-
-  //   axios.get(url)
-  //   .then(data => {
-  //     console.log('success get current product data at client!', data.data);
-  //     this.setState({ relatedProductIDList: [...this.state.relatedProductIDList, data.data] });
-  //   })
-  //   .catch(err => {
-  //     console.log('fail get current product data at client!', err);
-  //   })
-  // }
-
-  //******************* get realted products list *******************//
-  // getRelatedProductObj(arr) {
-  //   let result = [];
-  //   for (let i = 0; i < arr.length; i++) {
-  //     let id = arr[i];
-  //     let obj = this.getCurProduct(id);
-  //     console.log('obj: ', obj);
-  //     result.push(obj);
-  //   }
-  //   return result;
-  // }
-
-
- //******************* GET related products info and images (USE Promise.all) *******************//
-  // getRelatedProductList(id) {
-  //   let relatedIdURL = '/products/' + id + '/related';
-
-  //   axios.get(relatedIdURL)
-  //   .then(relatedIDList => {
-  //     let result = [];
-  //     let getInfoArr = [];
-
-  //     for (let i = 0; i < relatedIDList.data.length; i++) {
-  //       let curProductID = relatedIDList.data[i];
-  //       // .map -> an array of productID
-  //       var productURL = `/products/${curProductID}`;
-  //       getInfoArr.push(axios.get(productURL));
-  //     }
-
-  //     Promise.all(getInfoArr)
-  //     .then(data => {
-  //       let productInfoArr = data;
-  //       let getStylesArr = [];
-
-  //       console.log('product info array: ', productInfoArr);
-
-  //       for (let i = 0; i < productInfoArr.length; i++) {
-  //         let productID = productInfoArr[i].data.id;
-  //         let styleURL =  `/products/${productID}/styles`;
-  //         getStylesArr.push(axios.get(styleURL));
-  //       }
-
-  //       Promise.all(getStylesArr)
-  //       .then(data => {
-  //         let productStylesArr = data;
-  //         console.log('product styles array: ', productStylesArr);
-
-  //         result.push({
-  //           productInfo: productInfoArr,
-  //           productStyles: productStylesArr,
-  //         })
-
-  //         this.setState({newRelatedProductList: [...result]}, () => {
-  //           console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
-  //         })
-  //       })
-  //       .catch(err => console.log('fail get product styles at client!', err))
-  //     })
-  //     .catch(err => console.log('fail to get product info at client!', err))
-  //   })
-  //   .catch(err => {
-  //       console.log('fail get related products data at client!!!', err);
-  //   })
-  // }

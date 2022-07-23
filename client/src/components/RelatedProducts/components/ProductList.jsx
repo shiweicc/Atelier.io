@@ -8,12 +8,13 @@ const ProductList = (props) => {
     productStyles: props.style,
   }]
 
-  const listProductItem = props.newRelatedProductList.map((item) =>
+  const listProductItem = props.newRelatedProductList.map((item, index) =>
     <ProductItem
       curProductID={props.curProductID}
       eachProductInfo={item}
       updateOutfitCollection={props.updateOutfitCollection}
       openModal={props.openModal}
+      key={index}
     />
   );
 

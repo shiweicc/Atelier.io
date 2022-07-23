@@ -19,12 +19,13 @@ const OutfitList = (props) => {
     productSalePrice: props.style.results[0]["sale_price"],
   };
 
-  const listOutfitItem = props.outfitCollection.map((item) =>
+  const listOutfitItem = props.outfitCollection.map((item, index) =>
     <OutfitItem
       eachOutfitInfo={item}
       updateOutfitCollection={props.updateOutfitCollection}
       deleteOutfitItem={props.deleteOutfitItem}
       outfitCollection={props.outfitCollection}
+      key={index}
     />
   );
 

@@ -5,23 +5,17 @@ import helper from '../helpers/helpers.js';
 class ProductItem extends React.Component {
   constructor(props) {
     super(props);
+    this.getSelectedCard = this.getSelectedCard.bind(this);
   }
 
   componentDidMount() {
-    // console.log('obj: ', this.props.productObj)
-    // console.log('func: ', this.props.updateOutfitCollection);
+    // console.log('info in productList: ', this.props.eachProductInfo.productInfo)
+    // console.log('styles in productList: ', this.props.eachProductInfo.productStyles);
   }
 
-  handleAddOutfit() {
-    let selectedInfo = this.props.eachProductInfo.productInfo;
-    let selectedStyles = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
-
-    let selectedProductObj = {
-      productInfo: selectedInfo,
-      productStyles: selectedStyles,
-    };
-
-    this.props.updateOutfitCollection(selectedProductObj);
+  getSelectedCard() {
+    let info = this.props.eachProductInfo.productInfo;
+    this.props.openModal(info);
   }
 
   render() {
@@ -53,13 +47,13 @@ class ProductItem extends React.Component {
     return (
       <div className="eachProductCard">
         <div className="card_body">
+          <button className="card_btn" onClick={this.getSelectedCard}>❤️</button>
           {img}
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>
           {price}
           <p className="card_rating">⭐⭐⭐⭐⭐</p>
         </div>
-        <button className="card_btn" onClick={()=> this.handleAddOutfit()}>❤️</button>
       </div>
     )
   }

@@ -242,7 +242,9 @@ class App extends React.Component {
         <div>
 
 
-          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          <ProductOverview style={this.state.productStyle}
+            desc={this.state.productDesc}
+            ratings={this.props.averageReviewScore}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -251,8 +253,9 @@ class App extends React.Component {
             deleteOutfitItem={this.deleteOutfitItem}
             productDesc={this.state.productDesc}
             updateProductId={this.updateProductId}
-          />
-          <QnA curProductID={this.state.productId}/>
+            ratings={this.props.averageReviewScore}/>
+          <QnA curProductID={this.state.productId}
+            ratings={this.props.averageReviewScore}/>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}
@@ -263,7 +266,6 @@ class App extends React.Component {
             setSortOptions={this.setSortOptions}
             getReviewID={this.getReviewID}
             getProducts={this.getProducts}/>
-
         </div>
       )
     }

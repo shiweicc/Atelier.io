@@ -1,6 +1,5 @@
 import React from "react";
 import styles from '../sampleData/product_id_styles.js';
-import helper from '../helpers/helpers.js';
 
 class ProductItem extends React.Component {
   constructor(props) {

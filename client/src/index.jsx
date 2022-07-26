@@ -211,6 +211,14 @@ class App extends React.Component {
     let id = JSON.stringify(productObj.productInfo.id);
     localStorage.setItem(id, JSON.stringify(productObj));
     let savedProducts = JSON.parse(localStorage.getItem(id));
+
+    for (let key in localStorage) {
+      if (parseInt(key) === productObj.productInfo.id) {
+        alert('😊 Dear user: This product has been added to your ourfit!');
+      }
+    }
+
+
     this.addOutfitItem();
   }
 

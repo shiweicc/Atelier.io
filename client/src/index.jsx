@@ -240,6 +240,8 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
+
+
           <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
@@ -261,6 +263,7 @@ class App extends React.Component {
             setSortOptions={this.setSortOptions}
             getReviewID={this.getReviewID}
             getProducts={this.getProducts}/>
+
         </div>
       )
     }

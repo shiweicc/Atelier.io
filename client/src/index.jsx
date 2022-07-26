@@ -21,6 +21,7 @@ class App extends React.Component {
       reviewsCount: 'Not expanded',
       averageReviewScore: 0,
       outfitCollection: [],
+      outfitIDList: [],
       reviewID: 0,
       ready: false
     }
@@ -29,13 +30,14 @@ class App extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
-    this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
+    this.addOutfitItem = this.addOutfitItem.bind(this);
     this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
     this.setReviewsCount = this.setReviewsCount.bind(this);
     this.setSortOptions = this.setSortOptions.bind(this);
     this.postHelpfulReview = this.postHelpfulReview.bind(this);
     this.postReportReview = this.postReportReview.bind(this);
     this.getReviewID = this.getReviewID.bind(this);
+    this.updateLocalStorage = this.updateLocalStorage.bind(this);
   }
 
   getProducts() {
@@ -205,34 +207,47 @@ class App extends React.Component {
     }
   }
 
-  updateOutfitCollection(productObj) {
-    let outfitList = this.state.outfitCollection;
+  /************************ for Related Product ************************/
+  updateLocalStorage(productObj) {
+    let id = JSON.stringify(productObj.productInfo.id);
+    localStorage.setItem(id, JSON.stringify(productObj));
 
-    if (outfitList.length === 0) {
-      this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
-        // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+    let savedProducts = JSON.parse(localStorage.getItem(id));
+
+    if (!this.state.outfitIDList.includes(id)) {
+      this.setState({outfitIDList: [...this.state.outfitIDList, id]}, () => {
+        // console.log('**** set state for outfitIDList ****: ', this.state.outfitIDList);
+        this.addOutfitItem();
       })
-    } else {
-      for (let i = 0; i < outfitList.length; i++) {
-        let existedID = outfitList[i].productInfo.id;
-        // check if no existed ID in outfitCollection, then add the product info into the collection.
-        if (existedID !== productObj.productInfo.id) {
-          this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
-            // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
-          })
-        }
-      }
     }
   }
 
-  deleteOutfitItem(updatedOutfitCollection) {
+  addOutfitItem() {
+    let local = localStorage;
+    let arr = [];
+
+    for (let key in local) {
+      if (parseInt(key)) {
+        let savedProducts = JSON.parse(localStorage.getItem(key));
+        arr.push(savedProducts);
+      }
+    }
+
+    this.setState({ outfitCollection: arr }, () => {
+      // console.log('****set state for outfitCollection INITIAL STATE****: ', this.state.outfitCollection);
+    })
+  }
+
+  deleteOutfitItem(updatedOutfitCollection, deletedProductID) {
     this.setState({outfitCollection: updatedOutfitCollection}, () => {
       // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
+      localStorage.removeItem(deletedProductID);
     })
   }
 
   componentDidMount() {
     this.getProducts();
+    this.addOutfitItem();
   }
 
   render() {
@@ -240,18 +255,19 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
             style={this.state.productStyle} desc={this.state.productDesc}
-            updateOutfitCollection={this.updateOutfitCollection}
+            addOutfitItem={this.addOutfitItem}
             deleteOutfitItem={this.deleteOutfitItem}
             productDesc={this.state.productDesc}
             updateProductId={this.updateProductId}
+            updateLocalStorage={this.updateLocalStorage}
           />
-          <QnA curProductID={this.state.productId}/>
-          <RnR reviews={this.state.reviews}
+          {/* <QnA curProductID={this.state.productId}/> */}
+          {/* <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}
             sortOrder={this.state.reviewsSort}
@@ -260,12 +276,13 @@ class App extends React.Component {
             sortOptions={this.state.sortOptions}
             setSortOptions={this.setSortOptions}
             getReviewID={this.getReviewID}
-            getProducts={this.getProducts}/>
+            getProducts={this.getProducts}/> */}
         </div>
       )
     }
 
   }
 }
+
 const root = ReactDOM.createRoot(document.getElementById('App'));
 root.render(<App />);

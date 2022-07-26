@@ -6,6 +6,7 @@ class OutfitItem extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('props in OUtfitItem: ', this.props.eachOutfitInfo);
   }
 
   handleDeleteOutfit(outfitCollection) {
@@ -17,7 +18,7 @@ class OutfitItem extends React.Component {
         outfitCollection.splice(i, 1);
       }
     }
-    this.props.deleteOutfitItem(outfitCollection);
+    this.props.deleteOutfitItem(outfitCollection, this.props.eachOutfitInfo.productInfo.id);
   }
 
   render() {

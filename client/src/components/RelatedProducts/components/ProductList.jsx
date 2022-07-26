@@ -11,7 +11,6 @@ const ProductList = (props) => {
     <ProductItem
       curProductID={props.curProductID}
       eachProductInfo={item}
-      updateOutfitCollection={props.updateOutfitCollection}
       openModal={props.openModal}
       key={index}
       updateProductId={props.updateProductId}

@@ -16,7 +16,6 @@ class RelatedProducts extends React.Component {
       currentCard: this.props.productDesc,
       selectedCard: {},
       productFeature: [],
-
     }
     this.getRelatedProductList = this.getRelatedProductList.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -25,7 +24,7 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('what props in RelatedProduct ???', this.props.productDesc);
+    // console.log('what props in RelatedProduct ???', this.props.updateLocalStorage);
     this.getRelatedProductList(this.props.curProductID);
   }
 
@@ -42,6 +41,44 @@ class RelatedProducts extends React.Component {
     });
   }
 
+  //******************* GET related products info and images *******************//
+  getRelatedProductList(id) {
+    let relatedIdURL = '/products/' + id + '/related';
+
+    axios.get(relatedIdURL)
+    .then(relatedIDList => {
+      let result = [];
+
+      for (let i = 0; i < relatedIDList.data.length; i++) {
+        let curProductID = relatedIDList.data[i];
+        let productURL = `/products/${curProductID}`;
+
+        axios.get(productURL)
+          .then(productInfo => {
+            let styleURL =  `/products/${curProductID}/styles`;
+
+            axios.get(styleURL)
+            .then(productStyles => {
+              result.push({
+                productInfo: productInfo.data,
+                productStyles: productStyles.data,
+              })
+
+              this.setState({newRelatedProductList: [...result]}, () => {
+                // console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
+              })
+            })
+            .catch(err => console.log('fail get product styles at client!', err))
+          })
+          .catch(err => console.log('fail to get product info at client!', err))
+      }
+    })
+    .catch(err => {
+        console.log('fail get related products data at client!!!', err);
+    })
+  }
+
+  //******************* data manipulation for table *******************//
   findComFeatures() {
     // current and selected products' features arrays
     let curProdFeat = this.state.currentCard.features;
@@ -101,43 +138,6 @@ class RelatedProducts extends React.Component {
     });
   };
 
-  //******************* GET related products info and images *******************//
-  getRelatedProductList(id) {
-    let relatedIdURL = '/products/' + id + '/related';
-
-    axios.get(relatedIdURL)
-    .then(relatedIDList => {
-      let result = [];
-
-      for (let i = 0; i < relatedIDList.data.length; i++) {
-        let curProductID = relatedIDList.data[i];
-        let productURL = `/products/${curProductID}`;
-
-        axios.get(productURL)
-          .then(productInfo => {
-            let styleURL =  `/products/${curProductID}/styles`;
-
-            axios.get(styleURL)
-            .then(productStyles => {
-              result.push({
-                productInfo: productInfo.data,
-                productStyles: productStyles.data,
-              })
-
-              this.setState({newRelatedProductList: [...result]}, () => {
-                // console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
-              })
-            })
-            .catch(err => console.log('fail get product styles at client!', err))
-          })
-          .catch(err => console.log('fail to get product info at client!', err))
-      }
-    })
-    .catch(err => {
-        console.log('fail get related products data at client!!!', err);
-    })
-  }
-
   render() {
     return (
     <div>
@@ -145,7 +145,6 @@ class RelatedProducts extends React.Component {
       <ProductList
         newRelatedProductList={this.state.newRelatedProductList}
         curProductID={this.props.curProductID}
-        updateOutfitCollection={this.props.updateOutfitCollection}
         style={this.props.style} desc={this.props.desc}
         openModal={this.openModal}
       />
@@ -153,9 +152,10 @@ class RelatedProducts extends React.Component {
         curProductID={this.props.curProductID}
         outfitCollection={this.props.outfitCollection}
         newRelatedProductList={this.state.newRelatedProductList}
-        updateOutfitCollection={this.props.updateOutfitCollection}
+        addOutfitItem={this.props.addOutfitItem}
         deleteOutfitItem={this.props.deleteOutfitItem}
         style={this.props.style} desc={this.props.desc}
+        updateLocalStorage={this.props.updateLocalStorage}
       />
         {Object.keys(this.state.productFeature).length === 0
         ? null

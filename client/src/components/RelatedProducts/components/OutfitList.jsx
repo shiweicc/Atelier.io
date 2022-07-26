@@ -3,7 +3,7 @@ import OutfitItem from './OutfitItem.jsx';
 import AddOutfit from './AddOutfit.jsx';
 
 const OutfitList = (props) => {
-  // console.log('props in OutfitList: ', props.outfitCollection);
+  // console.log('props in OutfitList: ', props.outfitCollection)
 
   // check if outfitList is empty
   // let outfitCollection = props.outfitCollection;
@@ -22,7 +22,6 @@ const OutfitList = (props) => {
   const listOutfitItem = props.outfitCollection.map((item, index) =>
     <OutfitItem
       eachOutfitInfo={item}
-      updateOutfitCollection={props.updateOutfitCollection}
       deleteOutfitItem={props.deleteOutfitItem}
       outfitCollection={props.outfitCollection}
       key={index}
@@ -33,19 +32,16 @@ const OutfitList = (props) => {
     <div>
       <h3> YOUR OUTFIT </h3>
       <div className="outfitListWrapper">
-      {/* {checkOutfitList(outfitCollection)
-        ?
         <AddOutfit
         productObj={productInfoImg}
-        updateOutfitCollection={props.updateOutfitCollection}
+        addOutfitItem={props.addOutfitItem}
+        updateLocalStorage={props.updateLocalStorage}
         />
-        : <div className="cardList">{listOutfitItem }</div>
-      } */}
-        <AddOutfit
-        productObj={productInfoImg}
-        updateOutfitCollection={props.updateOutfitCollection}
-        />
-        <div className="outfitCardList">{listOutfitItem }</div>
+        {props.outfitCollection.length === 0
+        ? null
+        : <div className="outfitCardList">{listOutfitItem }</div>
+        }
+        {/* <div className="outfitCardList">{listOutfitItem }</div> */}
       </div>
     </div>
   )

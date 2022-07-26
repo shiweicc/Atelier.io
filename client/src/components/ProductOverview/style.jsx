@@ -8,7 +8,8 @@ class Style extends React.Component {
 
   componentDidMount () {
     var position = $(".POstyle").offset();
-    $('.POcheckmark').css({ position:'absolute', top:position.top - 30, left: position.left + 35});
+    var parentPosition = $("#POright").offset();
+    $('.POcheckmark').css({ position:'absolute', top:position.top - 40, left: position.left - parentPosition.left + 30});
   }
 
   render () {

@@ -8,22 +8,41 @@
   list-style: none;
 }
 #PO {
-  width: 80%;
-  margin: 0% 10%;
+  width: 750px;
+  margin: 0px 290px;
   display: flex;
   flex-direction: row;
 }
 
 #POleft {
   width: 450px;
-  position: relative;
-  border: solid;
-
+  position: absolute;
+  /* border: solid; */
+  z-index: 2;
 }
 
 #POright {
   width: 355px;
-  border: solid;
+  /* border: solid; */
+  position: absolute;
+  z-index: -1;
+  left: 755px;
+}
+
+#POlens {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 5;
+  background-color: rgb(255, 255, 255, 0.3);
+}
+
+#POzoomed {
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 400px;
 }
 
 #POprice {
@@ -47,49 +66,65 @@
 }
 
 #POthumbnail-up {
-  top: -5%;
-  left: 11px;
+  transform: translate(11px, -185px);
 }
 
 #POthumbnail-down {
-  top: 86%;
-  left: 11px;
+  transform: translate(11px, 185px);
 }
 
 .POthumbnail {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   position: absolute;
-  margin-top: 22px;
-  height: 100%;
-  /* width: 90%; */
+  padding-top: 22px;
+  height: 360px;
+  padding-bottom: 22px;
 }
 .POthumbnail-img {
   width: 50px;
   height: 40px;
-  margin:  5px 0px;
+  /* margin:  5px 0px; */
 }
 .POthumbnail-img-selected {
   width: 50px;
   height: 40px;
   border-width: 2px;
   border: solid red;
-  margin:  5px 0px;
+  /* margin:  5px 0px; */
+}
+
+.POthumbnail-dot {
+  font-size: 20px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  margin-left: 14.5px;
+}
+.POthumbnail-dot-selected {
+  font-size: 30px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  margin-left: 14px;
+  color: red;
 }
 .POcheckmark {
   display: inline-block;
   font-size: 25px;
   color: rgb(38, 164, 88);
+  z-index: 2;
 }
 
 .POstyle {
   margin: 10px 15px;
   border-radius: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #POstyles {
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 
 .POcarousel-button {
@@ -105,10 +140,12 @@
 
 #POcarousel-right {
   transform: translate(-110%, -50%);
+  z-index: 1;
 }
 
 #POcarousel-left {
   transform: translate(50px, -50%);
+  margin-left: 1%;
 }
 
 .POcarousel-img {
@@ -116,29 +153,91 @@
   height: 400px;
 }
 
-#POcarousel-left {
-  margin-left: 1%;
-}
-
 .POcarousel-img:hover {
   cursor: zoom-in;
 }
 
-
-#POcarousel-right {
-  margin-right: 1%;
+.POcarousel-zoomed:hover {
+  cursor: crosshair;
 }
-#POimage {
+
+#POlens:hover {
+  cursor: zoom-out;
+}
+
+.dropdown{
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  background-color: transparent;
+  font-family:'Courier New', Courier, monospace;
+  border: 0.5px solid black;
+  border-radius: 5%;
+}
+
+#POsize-button {
+  margin-right: 10px;
+}
+
+#POaddToBag {
+  width: 250px;
+  height: 30px;
+  font-size: 15px;
+  margin-right: 10px;
+  border: 0.5px solid black;
+  border-radius: 5%;
+  font-family:'Courier New', Courier, monospace;
+  background-color: transparent;
+}
+
+#POstar {
+  width: 50px;
+  border: 0.5px solid black;
+  border-radius: 5%;
+  font-family:'Courier New', Courier, monospace;
+  background-color: transparent;
+}
+
+#POAddBottom {
   display: flex;
-  flex-direction: 'row';
+  flex-direction: row;
 }
 
-#PO {
+.dropdown-options {
+  display: none;
+  position: absolute;
+  background-color: rgb(251, 249, 249);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-family:'Courier New', Courier, monospace;
+}
+
+#POAddButtons {
   display: flex;
-  flex-direction: 'row';
+  flex-direction: column;
+  background-color: transparent;
 }
 
-#App {
-  margin-left: 10%;
-  margin-right: 10%;
+#POsizeNQuantity {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 7px;
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+#POdescription {
+  font-family: sans-serif;
+  display: block;
+  text-align: left;
+  font-size: 13px;
+  position: absolute;
+}
+
+h2 {
+  margin: 0px;
 }

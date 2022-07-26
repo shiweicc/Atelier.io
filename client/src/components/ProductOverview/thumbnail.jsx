@@ -46,10 +46,17 @@ class Thumbnail extends React.Component {
         <div class='POthumbnail'>
           {
             this.props.sources.map((source, index) => {
-              if (start + index === this.props.image) {
-                return (<img class='POthumbnail-img-selected' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
+              if (this.props.expanded) {
+                if (start + index === this.props.image) {
+                  return (<p class='POthumbnail-dot-selected' index={start + index} onClick={this.clickedThumbnail}>&#9677;</p>)
+                }
+                return (<p class='POthumbnail-dot' index={start + index} onClick={this.clickedThumbnail}>	&#9677;</p>)
+              } else {
+                if (start + index === this.props.image) {
+                  return (<img class='POthumbnail-img-selected' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
+                }
+                return (<img class='POthumbnail-img' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
               }
-              return (<img class='POthumbnail-img' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
             })
           }
         </div>
@@ -62,10 +69,17 @@ class Thumbnail extends React.Component {
         }
         {
           this.props.sources.slice(start, end + 1).map((source, index) => {
-            if (start + index === this.props.image) {
-              return (<img class='POthumbnail-img-selected' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
+            if (this.props.expanded) {
+              if (start + index === this.props.image) {
+                return (<p class='POthumbnail-dot-selected' index={start + index} onClick={this.clickedThumbnail}>&#9677;</p>)
+              }
+              return (<p class='POthumbnail-dot' index={start + index} onClick={this.clickedThumbnail}>	&#9677;</p>)
+            } else {
+              if (start + index === this.props.image) {
+                return (<img class='POthumbnail-img-selected' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
+              }
+              return (<img class='POthumbnail-img' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
             }
-            return (<img class='POthumbnail-img' index={start + index} src={source['thumbnail_url']} onClick={this.clickedThumbnail}></img>)
           })
         }
         {

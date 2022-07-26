@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 //******************* get current product info *******************//
-app.get('/products/:id', function (req, res) {
+app.get('/products/:id', (req, res) => {
   let endpoint = req.originalUrl;
   let url = apiUrl + `${endpoint}`;
 
@@ -32,7 +32,7 @@ app.get('/products/:id', function (req, res) {
 });
 
 //******************* get realted product ID list *******************//
-app.get('/products/:id/related', function (req, res) {
+app.get('/products/:id/related', (req, res) => {
   let endpoint = req.originalUrl;
   let url = apiUrl + `${endpoint}`;
 
@@ -49,7 +49,7 @@ app.get('/products/:id/related', function (req, res) {
 
 
 //******************* get realted product STYLES list *******************//
-app.get('/products/:id/styles', function (req, res) {
+app.get('/products/:id/styles', (req, res) => {
   let endpoint = req.originalUrl;
   let url = apiUrl + `${endpoint}`;
 
@@ -208,7 +208,9 @@ app.get('/styles/:productID', (req, res) => {
 })
 
 app.get('/reviews/', (req, res) => {
-  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, { product_id: req.query.productID })
+
+  authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID, sort: req.query.reviewsSort, count: req.query.reviewsCount})
+
     .then((results) => {
       res.send(results.data);
     })
@@ -225,6 +227,26 @@ app.get('/reviews/meta/', (req, res) => {
     .catch((err) => {
       res.sendStatus(400);
     })
+})
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  authedPut(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.params.review_id}/helpful`)
+  .then((results) => {
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+})
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  authedPut(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.params.review_id}/report`)
+  .then((results) => {
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
 })
 
 app.listen(port, () => {

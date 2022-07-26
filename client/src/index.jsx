@@ -16,15 +16,26 @@ class App extends React.Component {
       productStyle: {},
       reviews: [],
       reviewsMetadata: [],
+      reviewsSort: 'relevant',
+      sortOptions: ['relevant', 'newest', 'helpful'],
+      reviewsCount: 'Not expanded',
       averageReviewScore: 0,
       outfitCollection: [],
-      ready: false,
+      reviewID: 0,
+      ready: false
     }
     this.getProducts = this.getProducts.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
+    this.updateOutfitCollection = this.updateOutfitCollection.bind(this);
+    this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
+    this.setReviewsCount = this.setReviewsCount.bind(this);
+    this.setSortOptions = this.setSortOptions.bind(this);
+    this.postHelpfulReview = this.postHelpfulReview.bind(this);
+    this.postReportReview = this.postReportReview.bind(this);
+    this.getReviewID = this.getReviewID.bind(this);
   }
 
   getProducts() {
@@ -75,7 +86,9 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.productId
+        productID: this.state.productId,
+        reviewsSort: this.state.reviewsSort,
+        reviewsCount: 100
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -88,13 +101,43 @@ class App extends React.Component {
     })
   }
 
+  postHelpfulReview() {
+    $.ajax({
+      url: `/reviews/${this.state.reviewID}/helpful`,
+      method: 'PUT',
+      contentType: 'application/json',
+      success: (res) => {
+        this.getProducts();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  postReportReview() {
+    $.ajax({
+      url: `/reviews/${this.state.reviewID}/report`,
+      method: 'PUT',
+      contentType: 'application/json',
+      success: (res) => {
+        this.getProducts();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
   getReviewsMetadata() {
     $.ajax({
       url: `/reviews/meta/`,
       method: 'GET',
       contentType: 'application/json',
       data: {
-        productID: this.state.productId
+        productID: this.state.productId,
+        reviewsSort: this.state.reviewsSort,
+        reviewsCount: 100
       },
       success: (res) => {
         // console.log('Successful get request!');
@@ -111,6 +154,16 @@ class App extends React.Component {
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  setReviewsCount () {
+    if (this.state.reviewsCount === 'Not expanded') {
+      this.setState({reviewsCount: 'Expanded'});
+      this.getProducts();
+    } else {
+      this.setState({reviewsCount: 'Not expanded'});
+      this.getProducts();
+    }
   }
 
   averageReviewScore(scores) {
@@ -133,25 +186,88 @@ class App extends React.Component {
       return Math.round(scoreTotal / responseTotal);
     } else {
       return 'No reviews';
+
     }
+  }
+
+  setSortOptions () {
+    this.setState({reviewsSort: event.target.value});
+    this.getProducts();
+  }
+
+  getReviewID(id, source) {
+    if (source === 'Helpful') {
+      this.setState({reviewID: id});
+      this.postHelpfulReview();
+    } else if (source === 'Report') {
+      this.setState({reviewID: id});
+      this.postReportReview();
+    }
+  }
+
+  updateOutfitCollection(productObj) {
+    let outfitList = this.state.outfitCollection;
+
+    if (outfitList.length === 0) {
+      this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+        // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+      })
+    } else {
+      for (let i = 0; i < outfitList.length; i++) {
+        let existedID = outfitList[i].productInfo.id;
+        // check if no existed ID in outfitCollection, then add the product info into the collection.
+        if (existedID !== productObj.productInfo.id) {
+          this.setState({outfitCollection: [...this.state.outfitCollection, productObj]}, () => {
+            // console.log('****set state for outfitCollection****: ', this.state.outfitCollection);
+          })
+        }
+      }
+    }
+  }
+
+  deleteOutfitItem(updatedOutfitCollection) {
+    this.setState({outfitCollection: updatedOutfitCollection}, () => {
+      // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
+    })
   }
 
   componentDidMount() {
     this.getProducts();
   }
 
-
   render() {
+
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
-          <RelatedProducts curProductID={this.state.productId} /> */}
-          <QnA curProductID={this.state.productId} />
-          {/* <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} /> */}
+
+
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          <RelatedProducts
+            curProductID={this.state.productId}
+            outfitCollection={this.state.outfitCollection}
+            style={this.state.productStyle} desc={this.state.productDesc}
+            updateOutfitCollection={this.updateOutfitCollection}
+            deleteOutfitItem={this.deleteOutfitItem}
+            productDesc={this.state.productDesc}
+            updateProductId={this.updateProductId}
+          />
+          <QnA curProductID={this.state.productId}/>
+          <RnR reviews={this.state.reviews}
+            reviewsMetadata={this.state.reviewsMetadata}
+            averageReviewScore={this.state.averageReviewScore}
+            sortOrder={this.state.reviewsSort}
+            setReviewsCount={this.setReviewsCount}
+            reviewsCount={this.state.reviewsCount}
+            sortOptions={this.state.sortOptions}
+            setSortOptions={this.setSortOptions}
+            getReviewID={this.getReviewID}
+            getProducts={this.getProducts}/>
+
         </div>
       )
     }
+
   }
 }
 const root = ReactDOM.createRoot(document.getElementById('App'));

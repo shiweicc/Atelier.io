@@ -43,6 +43,16 @@ const authedPut = (url) => {
   return axios(options);
 }
 
+const authedPut = (url, params) => {
+  let options = {
+    method: 'put',
+    url: `${url}`,
+    headers: headers,
+    params: params
+  };
+  return axios(options);
+}
+
 module.exports = {
   authedGet,
   authedPost,

@@ -1,9 +1,9 @@
 /*****************CSS for Ratings and Reviews*****************/
-
 .RnR {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 40% 30% 30%;
+  grid-template-rows: auto auto auto auto;
+  gap: 1rem;
 }
 
 .RnRHead {
@@ -11,8 +11,10 @@
   grid-column-end: 1;
   grid-row-start: 1;
   grid-row-end: 1;
-  border-style: dotted;
-  border-color: black;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
 }
 
 .RnRRatings {
@@ -20,8 +22,11 @@
   grid-column-end: 1;
   grid-row-start: 2;
   grid-row-end: 2;
-  border-style: dotted;
-  border-color: black;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
+  padding: 10px;
 }
 
 .RnRCharacteristics {
@@ -29,17 +34,87 @@
   grid-column-end: 1;
   grid-row-start: 3;
   grid-row-end: 3;
-  border-style: dotted;
-  border-color: black;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
 }
 
 .RnRReviewList {
   grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+.RnRAddReview {
+  display: flex;
+  justify-content: space-evenly;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.RnRReviewHead {
+  grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 4;
-  border-style: dotted;
-  border-color: black;
+  grid-row-end: 1;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
+}
+
+.RnRSortHead {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: #fffbf5;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  margin: 10px;
+}
+
+.RnRHeadReviews {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 2px;
+}
+
+.RnRReviewListButton1 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 5px 5px 5px;
+  background-color: #fafbfb;
+  width: 40%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.RnRReviewListButton2 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 5px 5px 5px;
+  background-color: lightgray;
+  width: 40%;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 div.review {
@@ -47,29 +122,344 @@ div.review {
   padding: 10px;
   margin: 5px;
   border: 2px;
+  width: 95%;
   border-color: black;
-  background-color: aliceblue;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+  background-color: #fafbfb;
+  border-radius: 5px;
 }
+
+.star {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+h1.rating {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 4px;
+}
+
+div.rating {
+  font-size: 36px;
+  font-weight: bold;
+  align-items: left;
+  display:inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 4px;
+}
+
+div.ratings {
+  font-size: 16px;
+  justify-content: center;
+  font-weight: bold;
+  align-items: left;
+  margin: 10px;
+}
+
+div.characteristic {
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 4px;
+  position: relative;
+}
+
+span.percent {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+  padding: 4px;
+}
+
+span.reviewsCount {
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-top: 30px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 2px;
+}
+
+.sort {
+  position: relative;
+  display: inline-block;
+  margin-top: 44px;
+  margin-left: 30px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.underlined {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div.percent {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-top: 4px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+
+div.container {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+}
+
+div.container {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+}
+
+div.characteristicContainer {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+div.bar {
+  position: absolute;
+  display: inline-block;
+  justify-content: center;
+  align-items: right;
+  background-color: lightgrey;
+  height: 18px;
+  width: 88%;
+  top: -14px;
+  left: 30px;
+}
+
+div.barContainer {
+  position: absolute;
+  width: 80%;
+  margin-left: 20px;
+  display: flex;
+  top: 10px;
+  left: 100px;
+  justify-content: space-between;
+}
+
+div.barCharacteristic {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: lightgrey;
+  height: 6px;
+  width: 30%;
+  top: 10px;
+}
+
+div.quality {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  top: 20px;
+  font-size: 12px;
+}
+
+.arrow {
+  transform: translateX();
+  position: relative;
+  width: 15px;
+  height: auto;
+  transform: rotate(180deg);
+  top: -5px
+}
+
+.reviewHead {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewTitle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  overflow-wrap: break-word;
+}
+
+.reviewBody {
+  margin: 5px;
+  padding: 5px;
+  font-weight: lighter;
+}
+
+.helpful {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 /*****************CSS for Related Products*****************/
-.card {
+/****** styles for Product ******/
+.eachProductCard{
+  display: grid;
+  flex-direction: column;
+  /* border-style: solid;
+  border-width: 4px 4px 4px 4px;
+  border-color: #f1f1f1;; */
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.6;
+  width: 200px;
+  height: 360px;
+  background-color: #f1f1f1;
+}
+
+.productCardList {
+  display: inline-flex;
+  gap: 2rem;
+  white-space: nowrap;
+  height: 400px;
+  width: 1130px;
+  overflow-x: scroll;
+}
+
+/****** styles for Outfit ******/
+.outfitListWrapper {
+  white-space: nowrap;
+  height: 400px;
+  width: 1130px;
+  overflow-x: scroll;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.outfitCardList {
+  display: inline-flex;
+  gap: 2rem;
+  width: 10000px;
+  height: 400px;
+}
+
+.eachOutfitCard {
   display: flex;
   flex-direction: column;
-}
-
-.cardList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  gap: 2rem;
-  justify-content: center;
-}
-
-.card__image {
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.6;
   width: 200px;
-  height: 300px;
-  object-fit: cover;
+  height: 360px;
+  background-color: #f1f1f1;
 }
 
 .addOutfit__btn {
   width: 200px;
-  height: 300px;
+  height: 360px;
+  padding-right: 20px;
+  margin-right: 20px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 4px 4px 4px 4px;
+  border-color: #f1f1f1;
+  border-radius: 0.5rem;
 }
+
+/****** shared styles for each card ******/
+.card__name {
+  font-weight: bolder;
+}
+
+.card__image {
+  object-fit: cover;
+  width: 200px;
+  height: 250px;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.card_btn {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  position:relative;
+  float: right;
+}
+
+/****** styles for sales price ******/
+.card_sale_price {
+  color:red;
+}
+
+.card_default_price{
+  text-decoration: line-through;
+}
+
+/****** styles for related products scrollbars ******/
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track:horizontal  {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/****** styles for comparison modal ******/
+.compare_modal_wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index:1;
+}
+
+.compare_modal{
+  display: block;
+  text-align: center;
+  width: 470px;
+  height: 360px;
+  padding-right: 20px;
+  margin-right: 20px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 3px 3px 3px 3px;
+  border-color: #f1f1f1;
+  border-radius: 0.5rem;
+  background-color: #f1f1f1;
+  position:relative;
+}
+
+.closeModal_btn {
+  position: absolute;
+  right:    10px;
+  bottom:   10px;
+}
+
+/****** styles for table column ******/
+td {
+  width: 155px;
+  text-align: center;
+}
+
+/****** styles for table header ******/
+th {
+  width: 155px;
+  text-align: center;
+}
+

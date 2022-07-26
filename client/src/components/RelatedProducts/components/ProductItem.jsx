@@ -1,32 +1,80 @@
 import React from "react";
-const styles = require ('../sampleData/product_id_styles.js');
-const helper = require ('../helpers/helpers.js');
+import styles from '../sampleData/product_id_styles.js';
 
+class ProductItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clickedProductId: 0,
+    }
+    this.getSelectedCard = this.getSelectedCard.bind(this);
+    this.updateURLtoClickedProduct = this.updateURLtoClickedProduct.bind(this);
+    this.updateClickedProductId = this.updateClickedProductId.bind(this);
+  }
 
-const ProductItem = (props) => {
-  // console.log('props in ProdcutItem: ', props);
+  componentDidMount() {
+    // console.log('id in state: ', this.state.clickedProductId)
+  }
 
-  //*********** use sample data to get image URL ***********//
-  // let stylesObj = styles.product_id_styles;
-  // let url = helper.getImage(stylesObj);
+  updateClickedProductId() {
+    let id = this.props.eachProductInfo.productInfo.id;
+    this.setState({clickedProductId: id}, (id) => {
+      // console.log('**** set state for productId ****: ', this.state.clickedProductId);
+      this.updateURLtoClickedProduct(this.state.clickedProductId);
+    })
+  }
 
-  let info = props.eachProductInfo.productInfo;
-  let imgURL = props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+  updateURLtoClickedProduct(id) {
+    window.location.href = `http://localhost:3000/productpage/${id}/`;
+  }
 
-  return (
-    <div className="card">
-      <div className="card__body">
-        <img src={imgURL} class="card__image" />
-        <p className="card__category">{info.category}</p>
-        <em className="card__name">{info.name}</em>
-        <p className="card__price">${info.default_price}</p>
-        <p className="card__rating">⭐⭐⭐⭐⭐</p>
+  getSelectedCard() {
+    let info = this.props.eachProductInfo.productInfo;
+    this.props.openModal(info);
+  }
+
+  render() {
+    let curProductId = this.props.eachProductInfo.productInfo.id;
+    let info = this.props.eachProductInfo.productInfo;
+    let imgURL = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
+    let salePrice = this.props.eachProductInfo.productStyles.results[0]["sale_price"];
+
+    let img = (<>
+      {
+        imgURL ?
+        <img src={imgURL} className="card__image"
+        onClick={this.updateClickedProductId}/>
+        : <img src={`https://source.unsplash.com/1000x1000/?${info.name}`} className="card__image"
+        onClick={this.updateClickedProductId}/>
+      }
+    </>)
+
+    let price = (
+      <>
+      {
+        salePrice ?
+        <>
+          <p className="card_sale_price">${salePrice}</p>
+          <p className="card_default_price">${info.default_price}</p>
+        </>
+        : <p className="card_price">${info.default_price}</p>
+      }
+      </>
+    )
+
+    return (
+      <div className="eachProductCard">
+        <div className="card_body">
+          <button className="card_btn" onClick={this.getSelectedCard}>⭐</button>
+          {img}
+          <p className="card_category">{info.category}</p>
+          <em className="card_name">{info.name}</em>
+          {price}
+          <p className="card_rating">⭐⭐⭐⭐⭐</p>
+        </div>
       </div>
-      <button className="card__btn">❤️</button>
-      <p>__________________________________</p>
-    </div>
-  )
+    )
+  }
 }
 
 export default ProductItem;
-

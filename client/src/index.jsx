@@ -21,7 +21,6 @@ class App extends React.Component {
       reviewsCount: 'Not expanded',
       averageReviewScore: 0,
       outfitCollection: [],
-      outfitIDList: [],
       reviewID: 0,
       ready: false
     }
@@ -30,13 +29,13 @@ class App extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.getReviewsMetadata = this.getReviewsMetadata.bind(this);
     this.averageReviewScore = this.averageReviewScore.bind(this);
-    this.addOutfitItem = this.addOutfitItem.bind(this);
-    this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
     this.setReviewsCount = this.setReviewsCount.bind(this);
     this.setSortOptions = this.setSortOptions.bind(this);
     this.postHelpfulReview = this.postHelpfulReview.bind(this);
     this.postReportReview = this.postReportReview.bind(this);
     this.getReviewID = this.getReviewID.bind(this);
+    this.addOutfitItem = this.addOutfitItem.bind(this);
+    this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
     this.updateLocalStorage = this.updateLocalStorage.bind(this);
   }
 
@@ -211,28 +210,19 @@ class App extends React.Component {
   updateLocalStorage(productObj) {
     let id = JSON.stringify(productObj.productInfo.id);
     localStorage.setItem(id, JSON.stringify(productObj));
-
     let savedProducts = JSON.parse(localStorage.getItem(id));
-
-    if (!this.state.outfitIDList.includes(id)) {
-      this.setState({outfitIDList: [...this.state.outfitIDList, id]}, () => {
-        // console.log('**** set state for outfitIDList ****: ', this.state.outfitIDList);
-        this.addOutfitItem();
-      })
-    }
+    this.addOutfitItem();
   }
 
   addOutfitItem() {
     let local = localStorage;
     let arr = [];
-
     for (let key in local) {
       if (parseInt(key)) {
         let savedProducts = JSON.parse(localStorage.getItem(key));
         arr.push(savedProducts);
       }
     }
-
     this.setState({ outfitCollection: arr }, () => {
       // console.log('****set state for outfitCollection INITIAL STATE****: ', this.state.outfitCollection);
     })

@@ -1,16 +1,31 @@
 import React from "react";
 import styles from '../sampleData/product_id_styles.js';
-import helper from '../helpers/helpers.js';
 
 class ProductItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      clickedProductId: 0,
+    }
     this.getSelectedCard = this.getSelectedCard.bind(this);
+    this.updateURLtoClickedProduct = this.updateURLtoClickedProduct.bind(this);
+    this.updateClickedProductId = this.updateClickedProductId.bind(this);
   }
 
   componentDidMount() {
-    // console.log('info in productList: ', this.props.eachProductInfo.productInfo)
-    // console.log('styles in productList: ', this.props.eachProductInfo.productStyles);
+    // console.log('id in state: ', this.state.clickedProductId)
+  }
+
+  updateClickedProductId() {
+    let id = this.props.eachProductInfo.productInfo.id;
+    this.setState({clickedProductId: id}, (id) => {
+      // console.log('**** set state for productId ****: ', this.state.clickedProductId);
+      this.updateURLtoClickedProduct(this.state.clickedProductId);
+    })
+  }
+
+  updateURLtoClickedProduct(id) {
+    window.location.href = `http://localhost:3000/productpage/${id}/`;
   }
 
   getSelectedCard() {
@@ -19,6 +34,7 @@ class ProductItem extends React.Component {
   }
 
   render() {
+    let curProductId = this.props.eachProductInfo.productInfo.id;
     let info = this.props.eachProductInfo.productInfo;
     let imgURL = this.props.eachProductInfo.productStyles.results[0].photos[0]["thumbnail_url"];
     let salePrice = this.props.eachProductInfo.productStyles.results[0]["sale_price"];
@@ -26,8 +42,10 @@ class ProductItem extends React.Component {
     let img = (<>
       {
         imgURL ?
-        <img src={imgURL} className="card__image" />
-        : <img src={`https://source.unsplash.com/1000x1000/?${info.name}`} className="card__image"/>
+        <img src={imgURL} className="card__image"
+        onClick={this.updateClickedProductId}/>
+        : <img src={`https://source.unsplash.com/1000x1000/?${info.name}`} className="card__image"
+        onClick={this.updateClickedProductId}/>
       }
     </>)
 
@@ -47,7 +65,7 @@ class ProductItem extends React.Component {
     return (
       <div className="eachProductCard">
         <div className="card_body">
-          <button className="card_btn" onClick={this.getSelectedCard}>❤️</button>
+          <button className="card_btn" onClick={this.getSelectedCard}>⭐</button>
           {img}
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>

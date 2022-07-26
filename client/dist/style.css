@@ -219,12 +219,6 @@ div.container {
   display: inline-block;
 }
 
-div.container {
-  position: relative;
-  width: 80%;
-  display: inline-block;
-}
-
 div.characteristicContainer {
   position: relative;
   width: 80%;
@@ -324,18 +318,20 @@ div.quality {
 .RnRModal {
   display: flex;
   position: relative;
-  justify-content: right;
   height: 75%;
   width: 75%;
   background-color: #f1f1f1;
   z-index: 20;
+  border-radius: 5px;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
 }
 
 .CloseRnRModal {
   display: flex;
-  position: relative;
+  position: absolute;
   justify-content: center;
   align-items: center;
+  right: 0;
   height: 30px;
   width: 30px;
   margin: 10px;
@@ -343,6 +339,46 @@ div.quality {
   border-radius: 20%;
   cursor: pointer;
   z-index: 30;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalTitle {
+  display: flex;
+  position: absolute;
+  left: 0;
+  margin: 10px;
+  font-size: 26px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fffbf5;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalInput {
+  display: flex;
+  position: absolute;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  height: 85%;
+  left: 0;
+  top: 65px;
+  z-index: 30;
+}
+
+.ModalInputFieldSmall {
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 10px;
+}
+
+.ModalInputFieldLarge {
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 10px;
+  height: 60px;
 }
 
 /*****************CSS for Related Products*****************/

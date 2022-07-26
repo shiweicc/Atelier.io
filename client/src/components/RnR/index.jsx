@@ -57,8 +57,22 @@ class RnR extends React.Component {
           <div>
             <div className='RnRModalContainer'>
               <div className="RnRModal">
+                <div className='ModalTitle'>
+                  Write Your Review
+                </div>
                 <div className='CloseRnRModal' onClick={this.toggleModal}>
                   ❌
+                </div>
+                <div className='ModalInput'>
+                  <form>
+                    <label for="fname">First name:
+                      <input type="text" className="ModalInputFieldSmall" name="fname" size='30' maxlength='30'/>
+                    </label>
+                    <br></br>
+                    <label for="lname">Last name:
+                      <input type="text" className="ModalInputFieldSmall" name="lname" size='30' maxlength='30'/>
+                    </label>
+                  </form>
                 </div>
               </div>
             </div>
@@ -113,8 +127,22 @@ class RnR extends React.Component {
           <div>
             <div className='RnRModalContainer'>
               <div className="RnRModal">
+                <div className='ModalTitle'>
+                  Write Your Review
+                </div>
                 <div className='CloseRnRModal' onClick={this.toggleModal}>
                   ❌
+                </div>
+                <div className='ModalInput'>
+                  <form>
+                    <label for="fname">First name:
+                      <input type="text" className="ModalInputFieldSmall" name="fname" size='30' maxlength='30'/>
+                    </label>
+                    <br></br>
+                    <label for="lname">Last name:
+                      <input type="text" className="ModalInputFieldSmall" name="lname" size='30' maxlength='30'/>
+                    </label>
+                  </form>
                 </div>
               </div>
             </div>

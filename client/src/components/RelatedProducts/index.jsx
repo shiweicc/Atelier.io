@@ -5,7 +5,6 @@ import OutfitList from './components/OutfitList.jsx';
 import AddOutfit from './components/AddOutfit.jsx';
 import Comparing from './components/Comparing.jsx';
 import products from './sampleData/products.js';
-import helper from './helpers/helpers.js';
 // import css from '../../../dist/style.css';
 
 class RelatedProducts extends React.Component {

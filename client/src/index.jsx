@@ -190,6 +190,21 @@ class App extends React.Component {
     }
   }
 
+  setSortOptions () {
+    this.setState({reviewsSort: event.target.value});
+    this.getProducts();
+  }
+
+  getReviewID(id, source) {
+    if (source === 'Helpful') {
+      this.setState({reviewID: id});
+      this.postHelpfulReview();
+    } else if (source === 'Report') {
+      this.setState({reviewID: id});
+      this.postReportReview();
+    }
+  }
+
   updateOutfitCollection(productObj) {
     let outfitList = this.state.outfitCollection;
 
@@ -210,21 +225,6 @@ class App extends React.Component {
     }
   }
 
-  setSortOptions () {
-    this.setState({reviewsSort: event.target.value});
-    this.getProducts();
-  }
-
-  getReviewID(id, source) {
-    if (source === 'Helpful') {
-      this.setState({reviewID: id});
-      this.postHelpfulReview();
-    } else if (source === 'Report') {
-      this.setState({reviewID: id});
-      this.postReportReview();
-    }
-  }
-
   deleteOutfitItem(updatedOutfitCollection) {
     this.setState({outfitCollection: updatedOutfitCollection}, () => {
       // console.log('****set state for deleteOutfitItem****: ', this.state.outfitCollection);
@@ -240,6 +240,8 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
+
+
           <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
@@ -248,9 +250,20 @@ class App extends React.Component {
             updateOutfitCollection={this.updateOutfitCollection}
             deleteOutfitItem={this.deleteOutfitItem}
             productDesc={this.state.productDesc}
+            updateProductId={this.updateProductId}
           />
           <QnA curProductID={this.state.productId}/>
-          <RnR reviews={this.state.reviews} reviewsMetadata={this.state.reviewsMetadata} averageReviewScore={this.state.averageReviewScore} sortOrder={this.state.reviewsSort} setReviewsCount={this.setReviewsCount} reviewsCount={this.state.reviewsCount} sortOptions={this.state.sortOptions} setSortOptions={this.setSortOptions} getReviewID={this.getReviewID} getProducts={this.getProducts}/>
+          <RnR reviews={this.state.reviews}
+            reviewsMetadata={this.state.reviewsMetadata}
+            averageReviewScore={this.state.averageReviewScore}
+            sortOrder={this.state.reviewsSort}
+            setReviewsCount={this.setReviewsCount}
+            reviewsCount={this.state.reviewsCount}
+            sortOptions={this.state.sortOptions}
+            setSortOptions={this.setSortOptions}
+            getReviewID={this.getReviewID}
+            getProducts={this.getProducts}/>
+
         </div>
       )
     }

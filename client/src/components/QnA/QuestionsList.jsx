@@ -1,60 +1,64 @@
-// import React from 'react';
-// // import { dataAnswer } from './sampleAnswer.js';
-// // import { dataQuestion } from './sampleQuestion.js';
-// import DisplayQuestion from './DisplayQuestion.jsx'
-
-// const QuestionsList = (props) => (
-//   <div>
-//     {/* <p> Repo List Component </p> */}
-//     There are {props.qna.length} questions.
-//     {
-//       props.qna.map(
-//         (e) => {
-//           return <DisplayQuestion key={e.product_id} questions={e.results} />
-//         }
-//       )
-//     }
-//     <div className='moreAnswers' on>LOAD MORE ANSWERS</div>
-//     <button type='button' id='button1'>MORE ANSWERED QUESTIONS</button>
-//     <button type='button' id='button2'>ADD A QUESTION +</button>
-//   </div>
-// )
-
-// export default QuestionsList;
-
 import React from 'react';
-// import { dataAnswer } from './sampleAnswer.js';
-// import { dataQuestion } from './sampleQuestion.js';
 import DisplayQuestion from './DisplayQuestion.jsx';
+import axios from 'axios';
+import ModalQue from './ModalQue.jsx';
 
 
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: '',
-      count: 5
+      openQueModal: false
     }
   }
-  questionLoad() {
-    this.props.onLoad(this.state.product_id, this.state.count)
+
+  setOpenQueModal(isOpen) {
+    // console.log("loghere", isOpen);
+    this.setState({
+      openQueModal: isOpen
+    });
+  }
+
+  markQuestionHelpful = (question_id) => {
+    //console.log(question_id);
+    //console.log('here', this.props.product_id);
+    axios.put('http://localhost:3000/questions/helpful', {
+      question_id: question_id
+    })
+      .then((res) => {
+        // console.log(res);
+        //console.log(this.props.count, this.props.total);
+        this.props.getQuestions(this.props.product_id, this.props.total);
+      })
+      .catch((err) => {
+        console.log("client put questions helpful err" + err);
+      })
   }
 
   render() {
+    //console.log('current count' + props.count);
+    //console.log('totol' + props.total);
+    var differ = this.props.count - this.props.total;
     return (
-      <div>
+      <div >
         {
           this.props.qna.map(
             (element) => {
-              this.setState({
-                product_id: element.product_id
-              });
-              return <DisplayQuestion key={element.product_id} questions={element.results} />
+              //console.log(pro_id);
+              return <DisplayQuestion key={element.product_id} questions={element.results} markQuestionHelpful={this.markQuestionHelpful.bind(this)} />
             }
           )
         }
-        <button type='button' id='button1' onClick={this.questionLoad.bind(this)}>MORE ANSWERED QUESTIONS</button>
-        <button type='button' id='button2'>ADD A QUESTION +</button>
+        {differ < 3 ?
+          < button type='button' className='buttonQuestion' id='button1'
+            onClick={() => this.props.getQuestions(this.props.product_id, this.props.count)}>MORE ANSWERED QUESTIONS</button>
+          : < div></div>
+        }
+        <button type='button' className='buttonQuestion' id='button2'
+          onClick={() => this.setOpenQueModal(true)}>
+          ADD A QUESTION +</button>
+        {this.state.openQueModal && <ModalQue closeQueModal={this.setOpenQueModal.bind(this)} postQuestion={this.props.getQuestions.bind(this)}
+          product_id={this.props.product_id} count={this.props.count} />}
       </div>
     )
   }

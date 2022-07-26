@@ -54,6 +54,7 @@ class QnA extends React.Component {
         <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <QuestionsList qna={this.state.qna} getQuestions={this.getQuestions.bind(this)}
           count={this.state.questionCount} total={this.state.totalQusCount} product_id={this.props.curProductID}
+          // product_name={this.props.}
         />
     </div>
     )

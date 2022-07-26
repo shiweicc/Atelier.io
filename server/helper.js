@@ -20,12 +20,16 @@ const authedGet = (url, params) => {
 
 // Authenticate post request
 const authedPost = (url, data) => {
+  console.log("post here");
   let options = {
     method: 'post',
     url: `${url}`,
     headers: headers,
-    data: JSON.stringify({data: data})
+    //data: JSON.stringify({data: data})
+    data: data
   };
+
+  //console.log(axios(options));
   return axios(options);
 }
 

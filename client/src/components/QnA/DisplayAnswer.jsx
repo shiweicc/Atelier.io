@@ -15,7 +15,7 @@ class DisplayAnswer extends React.Component {
   }
 
   getAnswers(question_id, count) {
-    //console.log(`${question_id}`);
+    console.log(`${question_id}`);
     //console.log(`${count}`);
     axios.get('http://localhost:3000/answers', {
       params: {

@@ -1,16 +1,22 @@
 import React from 'react';
 import DisplayQuestion from './DisplayQuestion.jsx';
 import axios from 'axios';
+import ModalQue from './ModalQue.jsx';
 
 
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // ans: [],
-      // answerCount: 2,
-      // totalAnsCount: 0
+      openQueModal: false
     }
+  }
+
+  setOpenQueModal(isOpen) {
+    // console.log("loghere", isOpen);
+    this.setState({
+      openQueModal: isOpen
+    });
   }
 
   markQuestionHelpful = (question_id) => {
@@ -20,8 +26,9 @@ class QuestionsList extends React.Component {
       question_id: question_id
     })
       .then((res) => {
-        console.log(res);
-        this.props.getQuestions(this.props.product_id, this.props.count);
+        // console.log(res);
+        //console.log(this.props.count, this.props.total);
+        this.props.getQuestions(this.props.product_id, this.props.total);
       })
       .catch((err) => {
         console.log("client put questions helpful err" + err);
@@ -47,7 +54,11 @@ class QuestionsList extends React.Component {
             onClick={() => this.props.getQuestions(this.props.product_id, this.props.count)}>MORE ANSWERED QUESTIONS</button>
           : < div></div>
         }
-        <button type='button' className='buttonQuestion' id='button2'>ADD A QUESTION +</button>
+        <button type='button' className='buttonQuestion' id='button2'
+          onClick={() => this.setOpenQueModal(true)}>
+          ADD A QUESTION +</button>
+        {this.state.openQueModal && <ModalQue closeQueModal={this.setOpenQueModal.bind(this)} postQuestion={this.props.getQuestions.bind(this)}
+          product_id={this.props.product_id} count={this.props.count} />}
       </div>
     )
   }

@@ -1,33 +1,57 @@
 import React from 'react';
 import DisplayAnswer from './DisplayAnswer.jsx';
+import ModalAns from './ModalAns.jsx';
+import { useState } from 'react';
 
+class DisplayQuestion extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openAnsModal: false
+    };
+  }
 
-const DisplayQuestion = (props) => {
+  setOpenAnsModal(isOpen) {
+    //console.log("loghere", isOpen);
+    this.setState({
+      openAnsModal: isOpen
+    });
+  }
 
+  accessDisplayAnswer = (question_id) => {
+    this.refs.DisplayAnswer.getAnswers(question_id, 5);
+  };
+
+  render() {
   return (
     < div >
       {
-        props.questions.map(
+        this.props.questions.map(
           (question) => {
-            console.log(question.question_id);
+            //console.log(question.question_id);
             return (
               <div>
                 <div id="parent-block">
                   <div id='block1'>Q: {question.question_body} </div>
                   <div id='block2'>Helpful? &nbsp;
-                    <a href="#" onClick={() => props.markQuestionHelpful(question.question_id)}>Yes</a>
+                    <a href="#" onClick={() => this.props.markQuestionHelpful(question.question_id)}>Yes</a>
                     ({question.question_helpfulness}) &nbsp; | &nbsp;
-                    <a href='' onClink=''> Add Answer </a>
+                    <a href="#" className="openModalBtn"
+                      onClick={() => this.setOpenAnsModal(true)}> Add Answer </a>
+                    {this.state.openAnsModal && <ModalAns questionId={question.question_id} closeAnsModal={this.setOpenAnsModal.bind(this)}
+                      accessDisplayAnswer={this.accessDisplayAnswer.bind(this)} />}
                   </div>
                 </div>
-                <DisplayAnswer key={question.question_id} question_id={question.question_id} />
+                <DisplayAnswer key={question.question_id} question_id={question.question_id} ref='DisplayAnswer' />
               </div>
             )
           }
         )
       }
+
     </div >
   );
+  }
 }
 
 

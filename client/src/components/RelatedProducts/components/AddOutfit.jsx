@@ -6,10 +6,11 @@ class AddOutfit extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('props in AddOutfit: ', this.props);
   }
 
   handleAddOutfit() {
-    this.props.updateOutfitCollection(this.props.productObj);
+    this.props.updateLocalStorage(this.props.productObj)
   }
 
   render() {

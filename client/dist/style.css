@@ -381,7 +381,7 @@ div.quality {
   height: 60px;
 }
 
-/*****************CSS for Related Products*****************/
+/***************** CSS for Related Products *****************/
 /****** styles for Product ******/
 .eachProductCard{
   display: grid;
@@ -404,6 +404,7 @@ div.quality {
   height: 400px;
   width: 1130px;
   overflow-x: scroll;
+  margin-bottom: 40px;
 }
 
 /****** styles for Outfit ******/
@@ -414,13 +415,14 @@ div.quality {
   overflow-x: scroll;
   display: inline-flex;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .outfitCardList {
   display: inline-flex;
   gap: 2rem;
-  width: 10000px;
-  height: 400px;
+  width: 1130px;
+  height: 360px;
 }
 
 .eachOutfitCard {
@@ -470,10 +472,21 @@ div.quality {
 /****** styles for sales price ******/
 .card_sale_price {
   color:red;
+  display: inline-block;
 }
 
 .card_default_price{
   text-decoration: line-through;
+  display: inline-block;
+}
+
+.card_price_wrapper{
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.card_rating {
+  position: relative;
 }
 
 /****** styles for related products scrollbars ******/

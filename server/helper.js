@@ -4,7 +4,8 @@ const key = require('../config.js');
 // Create authentication headers
 let headers = {
   'User-Agent': 'request',
-  'Authorization': `${key.TOKEN}`
+  'Authorization': `${process.env.API_KEY}`
+  // 'Authorization': `${key.TOKEN}`
 };
 
 // Authenticate get request

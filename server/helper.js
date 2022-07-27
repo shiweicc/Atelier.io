@@ -4,7 +4,8 @@ const key = require('../config.js');
 // Create authentication headers
 let headers = {
   'User-Agent': 'request',
-  'Authorization': `${key.TOKEN}`
+  'Authorization': `${process.env.API_KEY}`
+  // 'Authorization': `${key.TOKEN}`
 };
 
 // Authenticate get request
@@ -39,16 +40,6 @@ const authedPut = (url) => {
     method: 'put',
     url: `${url}`,
     headers: headers,
-  };
-  return axios(options);
-}
-
-const authedPut = (url, params) => {
-  let options = {
-    method: 'put',
-    url: `${url}`,
-    headers: headers,
-    params: params
   };
   return axios(options);
 }

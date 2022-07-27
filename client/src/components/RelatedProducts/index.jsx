@@ -5,27 +5,23 @@ import OutfitList from './components/OutfitList.jsx';
 import AddOutfit from './components/AddOutfit.jsx';
 import Comparing from './components/Comparing.jsx';
 import products from './sampleData/products.js';
-// import css from '../../../dist/style.css';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newRelatedProductList:[],
       showModal: false,
       currentCard: this.props.productDesc,
       selectedCard: {},
       productFeature: [],
     }
-    this.getRelatedProductList = this.getRelatedProductList.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.findComFeatures = this.findComFeatures.bind(this);
   }
 
   componentDidMount() {
-    // console.log('what props in RelatedProduct ???', this.props.updateLocalStorage);
-    this.getRelatedProductList(this.props.curProductID);
+    // console.log('what props in RelatedProduct ???', this.props.curProductID);
   }
 
   openModal(info) {
@@ -39,43 +35,6 @@ class RelatedProducts extends React.Component {
     this.setState({
       showModal: false,
     });
-  }
-
-  //******************* GET related products info and images *******************//
-  getRelatedProductList(id) {
-    let relatedIdURL = '/products/' + id + '/related';
-
-    axios.get(relatedIdURL)
-    .then(relatedIDList => {
-      let result = [];
-
-      for (let i = 0; i < relatedIDList.data.length; i++) {
-        let curProductID = relatedIDList.data[i];
-        let productURL = `/products/${curProductID}`;
-
-        axios.get(productURL)
-          .then(productInfo => {
-            let styleURL =  `/products/${curProductID}/styles`;
-
-            axios.get(styleURL)
-            .then(productStyles => {
-              result.push({
-                productInfo: productInfo.data,
-                productStyles: productStyles.data,
-              })
-
-              this.setState({newRelatedProductList: [...result]}, () => {
-                // console.log('****set state for relatedProductSTYLES****: ', this.state.newRelatedProductList);
-              })
-            })
-            .catch(err => console.log('fail get product styles at client!', err))
-          })
-          .catch(err => console.log('fail to get product info at client!', err))
-      }
-    })
-    .catch(err => {
-        console.log('fail get related products data at client!!!', err);
-    })
   }
 
   //******************* data manipulation for table *******************//
@@ -143,18 +102,17 @@ class RelatedProducts extends React.Component {
     <div>
       <h3> RELATED PRODUCT </h3>
       <ProductList
-        newRelatedProductList={this.state.newRelatedProductList}
+        newRelatedProductList={this.props.newRelatedProductList}
+        // newRelatedProductList={this.state.newRelatedProductList}
         curProductID={this.props.curProductID}
         style={this.props.style} desc={this.props.desc}
         openModal={this.openModal}
       />
       <OutfitList
-        curProductID={this.props.curProductID}
+        style={this.props.style} desc={this.props.desc}
         outfitCollection={this.props.outfitCollection}
-        newRelatedProductList={this.state.newRelatedProductList}
         addOutfitItem={this.props.addOutfitItem}
         deleteOutfitItem={this.props.deleteOutfitItem}
-        style={this.props.style} desc={this.props.desc}
         updateLocalStorage={this.props.updateLocalStorage}
       />
         {Object.keys(this.state.productFeature).length === 0

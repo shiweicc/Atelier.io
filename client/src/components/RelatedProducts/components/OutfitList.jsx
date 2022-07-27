@@ -3,20 +3,12 @@ import OutfitItem from './OutfitItem.jsx';
 import AddOutfit from './AddOutfit.jsx';
 
 const OutfitList = (props) => {
-  // console.log('props in OutfitList: ', props.outfitCollection)
-
-  // check if outfitList is empty
-  // let outfitCollection = props.outfitCollection;
-  // let checkOutfitList = ((outfitCollection) => {
-  //   if (Array.isArray(outfitCollection) && outfitCollection.length === 0) {
-  //     return true;
-  //   }
-  // });
+  // console.log('props in OutfitList: ', props.style)
 
   let productInfoImg = {
     productInfo: props.desc,
-    productImg: props.style.results[0].photos[0]["thumbnail_url"],
-    productSalePrice: props.style.results[0]["sale_price"],
+    productImg: props.style.results[0].photos[0]["thumbnail_url"] ? props.style.results[0].photos[0]["thumbnail_url"] : null,
+    productSalePrice: props.style.results[0]["sale_price"] ? props.style.results[2]["sale_price"]: null,
   };
 
   const listOutfitItem = props.outfitCollection.map((item, index) =>
@@ -41,7 +33,6 @@ const OutfitList = (props) => {
         ? null
         : <div className="outfitCardList">{listOutfitItem }</div>
         }
-        {/* <div className="outfitCardList">{listOutfitItem }</div> */}
       </div>
     </div>
   )

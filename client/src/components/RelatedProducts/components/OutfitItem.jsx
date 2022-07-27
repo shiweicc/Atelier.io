@@ -6,10 +6,11 @@ class OutfitItem extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('props in OUtfitItem: ', this.props.eachOutfitInfo);
+    // console.log('props in OutfitItem: ', this.props.eachOutfitInfo);
   }
 
-  handleDeleteOutfit(outfitCollection) {
+  handleDeleteOutfit(e, outfitCollection) {
+    e.preventDefault();
     let selectedProductID = this.props.eachOutfitInfo.productInfo.id;
 
     for (let i = 0; i < outfitCollection.length; i++) {
@@ -38,10 +39,10 @@ class OutfitItem extends React.Component {
       <>
       {
         salePrice ?
-        <>
+        <div className="card_price_wrapper">
           <p className="card_sale_price">${salePrice}</p>
           <p className="card_default_price">${info.default_price}</p>
-        </>
+        </div>
         : <p className="card_price">${info.default_price}</p>
       }
       </>
@@ -50,7 +51,7 @@ class OutfitItem extends React.Component {
     return (
       <div className="eachOutfitCard">
         <div className="card_body">
-          <button className="card_btn" onClick={() => this.handleDeleteOutfit(this.props.outfitCollection)}>❌</button>
+          <button className="card_btn" onClick={(e) => this.handleDeleteOutfit(e, this.props.outfitCollection)}>❌</button>
           {img}
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>

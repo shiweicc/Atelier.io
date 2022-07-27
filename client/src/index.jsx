@@ -20,8 +20,9 @@ class App extends React.Component {
       sortOptions: ['relevant', 'newest', 'helpful'],
       reviewsCount: 'Not expanded',
       averageReviewScore: 0,
-      outfitCollection: [],
       reviewID: 0,
+      outfitCollection: [],
+      newRelatedProductList:[],
       ready: false
     }
     this.getProducts = this.getProducts.bind(this);
@@ -37,6 +38,7 @@ class App extends React.Component {
     this.addOutfitItem = this.addOutfitItem.bind(this);
     this.deleteOutfitItem = this.deleteOutfitItem.bind(this);
     this.updateLocalStorage = this.updateLocalStorage.bind(this);
+    this.getRelatedProductList = this.getRelatedProductList.bind(this);
   }
 
   getProducts() {
@@ -45,7 +47,7 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
-        // console.log('Successful get request!');
+        // console.log('Successful get product request!', res);
         this.setState({
           productDesc: res
         });
@@ -71,11 +73,11 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       success: (res) => {
-        // console.log('Successful get request!');
+        // console.log('Successful get styles request!');
         this.setState({ productStyle: res });
       },
       error: (err) => {
-        // console.log('Unsuccessful get request.');
+        console.log('Unsuccessful get request.');
         console.log(err);
       }
     })
@@ -208,16 +210,17 @@ class App extends React.Component {
 
   /************************ for Related Product ************************/
   updateLocalStorage(productObj) {
-    let id = JSON.stringify(productObj.productInfo.id);
-    localStorage.setItem(id, JSON.stringify(productObj));
-    let savedProducts = JSON.parse(localStorage.getItem(id));
-
+    // check if product has been added to the outfit list
     for (let key in localStorage) {
       if (parseInt(key) === productObj.productInfo.id) {
         alert('😊 Dear user: This product has been added to your ourfit!');
       }
     }
 
+    // add product to the outfit list
+    let id = JSON.stringify(productObj.productInfo.id);
+    localStorage.setItem(id, JSON.stringify(productObj));
+    let savedProducts = JSON.parse(localStorage.getItem(id));
 
     this.addOutfitItem();
   }
@@ -243,9 +246,47 @@ class App extends React.Component {
     })
   }
 
+  /********* GET related products info and images *********/
+  getRelatedProductList(id) {
+    let relatedIdURL = '/products/' + id + '/related';
+
+    axios.get(relatedIdURL)
+      .then(relatedIDList => {
+        let result = [];
+
+        for (let i = 0; i < relatedIDList.data.length; i++) {
+          let curProductID = relatedIDList.data[i];
+          let productURL = `/products/${curProductID}`;
+
+          axios.get(productURL)
+            .then(productInfo => {
+              let styleURL = `/products/${curProductID}/styles`;
+
+              axios.get(styleURL)
+                .then(productStyles => {
+                  result.push({
+                    productInfo: productInfo.data,
+                    productStyles: productStyles.data,
+                  })
+
+                  this.setState({ newRelatedProductList: [...result] }, () => {
+                    // console.log('****set state for relatedProductSTYLES???? ****: ', this.state.newRelatedProductList);
+                  })
+                })
+                .catch(err => console.log('fail get product styles at client!', err))
+            })
+            .catch(err => console.log('fail to get product info at client!', err))
+        }
+      })
+      .catch(err => {
+        console.log('fail get related products data at client!!!', err);
+      })
+  }
+
   componentDidMount() {
     this.getProducts();
     this.addOutfitItem();
+    this.getRelatedProductList(this.state.productId);
   }
 
   render() {
@@ -253,7 +294,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/> */}
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -263,9 +304,10 @@ class App extends React.Component {
             productDesc={this.state.productDesc}
             updateProductId={this.updateProductId}
             updateLocalStorage={this.updateLocalStorage}
+            newRelatedProductList={this.state.newRelatedProductList}
           />
           {/* <QnA curProductID={this.state.productId}/> */}
-          {/* <RnR reviews={this.state.reviews}
+          <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}
             sortOrder={this.state.reviewsSort}
@@ -274,7 +316,7 @@ class App extends React.Component {
             sortOptions={this.state.sortOptions}
             setSortOptions={this.setSortOptions}
             getReviewID={this.getReviewID}
-            getProducts={this.getProducts}/> */}
+            getProducts={this.getProducts}/>
         </div>
       )
     }

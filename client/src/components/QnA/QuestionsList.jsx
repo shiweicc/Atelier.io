@@ -26,9 +26,10 @@ class QuestionsList extends React.Component {
       question_id: question_id
     })
       .then((res) => {
-        // console.log(res);
+        //console.log(res);
         //console.log(this.props.count, this.props.total);
-        this.props.getQuestions(this.props.product_id, this.props.total);
+        const newCount = this.props.count - 2;
+        this.props.getQuestions(this.props.product_id, newCount);
       })
       .catch((err) => {
         console.log("client put questions helpful err" + err);
@@ -36,7 +37,7 @@ class QuestionsList extends React.Component {
   }
 
   render() {
-    //console.log('current count' + props.count);
+    console.log('current count' + this.props.count);
     //console.log('totol' + props.total);
     var differ = this.props.count - this.props.total;
     return (
@@ -51,7 +52,7 @@ class QuestionsList extends React.Component {
         }
         {differ < 3 ?
           < button type='button' className='buttonQuestion' id='button1'
-            onClick={() => this.props.getQuestions(this.props.product_id, this.props.count)}>MORE ANSWERED QUESTIONS</button>
+            onClick={() => this.props.loadQuestions(this.props.count)}>MORE ANSWERED QUESTIONS</button>
           : < div></div>
         }
         <button type='button' className='buttonQuestion' id='button2'

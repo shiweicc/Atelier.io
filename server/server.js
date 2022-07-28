@@ -5,6 +5,7 @@ const port = 3000;
 const authedGet = require('./helper.js').authedGet;
 const authedPost = require('./helper.js').authedPost;
 const authedPut = require('./helper.js').authedPut;
+const authedPutQnA = require('./helper.js').authedPutQnA;
 const path = require('path');
 const router = express.Router();
 
@@ -70,7 +71,7 @@ app.get('/products/:id/styles', (req, res) => {
 app.get('/questions', (req, res) => {
   console.log(req.method, req.url);
   const product_id = req.url.substring(req.url.indexOf('?') + 1);
-  //console.log(product_id);
+  console.log(product_id);
   authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?' + product_id)
     .then((results) => {
       //console.log(results.data);
@@ -100,7 +101,7 @@ app.get('/answers', (req, res) => {
 app.put('/questions/helpful', (req, res) => {
   const question_id = req.body.question_id;
   //console.log(question_id);
-  authedPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + question_id + '/helpful')
+  authedPutQnA('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + question_id + '/helpful')
     .then((results) => {
       res.status(204).send('put succ');
     })
@@ -112,7 +113,7 @@ app.put('/questions/helpful', (req, res) => {
 app.put('/answers/helpful', (req, res) => {
   const answer_id = req.body.answer_id;
   //console.log(answer_id);
-  authedPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/helpful')
+  authedPutQnA('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/helpful')
     .then((results) => {
       res.status(204).send('put succ');
     })
@@ -124,7 +125,7 @@ app.put('/answers/helpful', (req, res) => {
 app.put('/answers/report', (req, res) => {
   const answer_id = req.body.answer_id;
   console.log(answer_id);
-  authedPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/report')
+  authedPutQnA('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/report')
     .then((results) => {
       res.status(204).send('put report succ');
     })

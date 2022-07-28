@@ -53,13 +53,13 @@ input {
 }
 
 .buttonQuestion {
-margin-top: 12px;
-font-size: 15px;
-font-weight: bold;
-margin-right:10px;
-background-color: white;
-text-align: center;
-padding: 18px 18px;
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 10px;
+  background-color: white;
+  text-align: center;
+  padding: 18px 18px;
 }
 
 .modalBackground {
@@ -128,4 +128,48 @@ padding: 18px 18px;
 
 #cancelBtn {
   background-color: crimson;
+}
+
+.search[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  border: solid 1px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.search[type="submit"] {
+  background-color: white;
+  color:dimgray;
+  margin-left: -70px;
+  height: 34px;
+  width: 62px;
+  color: gery;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+.ListWrapper {
+  height: 400px;
+  overflow-y: scroll; /* Show vertical scrollbar */
+  overflow-x: scroll; /* Show horizontal scrollbar */
+  justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+#picture {
+  height: 70px;
+  width: 100px;
+  padding-right: 20px;
+  padding-top: 10px;
 }

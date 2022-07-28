@@ -34,7 +34,7 @@ const authedPost = (url, data) => {
 }
 
 //Authenticate put request
-const authedPut = (url) => {
+const authedPutQnA = (url) => {
   let options = {
     method: 'put',
     url: `${url}`,
@@ -42,6 +42,7 @@ const authedPut = (url) => {
   };
   return axios(options);
 }
+
 
 const authedPut = (url, params) => {
   let options = {
@@ -56,5 +57,6 @@ const authedPut = (url, params) => {
 module.exports = {
   authedGet,
   authedPost,
-  authedPut
+  authedPut,
+  authedPutQnA
 }

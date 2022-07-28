@@ -161,11 +161,9 @@ class App extends React.Component {
 
   setReviewsCount () {
     if (this.state.reviewsCount === 'Not expanded') {
-      this.setState({reviewsCount: 'Expanded'});
-      this.getProducts();
+      this.setState({reviewsCount: 'Expanded'}, () => {this.getProducts()});
     } else {
-      this.setState({reviewsCount: 'Not expanded'});
-      this.getProducts();
+      this.setState({reviewsCount: 'Not expanded'}, () => {this.getProducts()});
     }
   }
 
@@ -194,17 +192,15 @@ class App extends React.Component {
   }
 
   setSortOptions () {
-    this.setState({reviewsSort: event.target.value});
-    this.getProducts();
+    this.setState({reviewsSort: event.target.value}, () => {this.getProducts()});
+
   }
 
   getReviewID(id, source) {
     if (source === 'Helpful') {
-      this.setState({reviewID: id});
-      this.postHelpfulReview();
+      this.setState({reviewID: id}, () => {this.postHelpfulReview()});
     } else if (source === 'Report') {
-      this.setState({reviewID: id});
-      this.postReportReview();
+      this.setState({reviewID: id}, () => {this.postReportReview()});
     }
   }
 
@@ -294,7 +290,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          <ProductOverview style={this.state.productStyle}
+          {/* <ProductOverview style={this.state.productStyle}
             desc={this.state.productDesc}
             ratings={this.props.averageReviewScore}/>
           <RelatedProducts
@@ -309,7 +305,7 @@ class App extends React.Component {
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}/>
           <QnA curProductID={this.state.productId}
-            ratings={this.props.averageReviewScore}/>
+            ratings={this.props.averageReviewScore}/> */}
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}

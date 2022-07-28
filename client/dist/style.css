@@ -105,6 +105,78 @@
   cursor: pointer;
 }
 
+.star-wrapper {
+  display: flex;
+  position: absolute;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  z-index: 90;
+}
+
+.one-star {
+  display: inline-block;
+  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
+  text-decoration: none;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+.two-stars {
+  display: inline-block;
+  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
+  text-decoration: none;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+.three-stars {
+  display: inline-block;
+  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
+  text-decoration: none;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+.four-stars {
+  display: inline-block;
+  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
+  text-decoration: none;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+.five-stars {
+  display: inline-block;
+  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
+  text-decoration: none;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+.five-stars:hover,
+.five-stars:hover ~ .four-stars,
+.five-stars:hover ~ .three-stars,
+.five-stars:hover ~ .two-stars,
+.five-stars:hover ~ .one-star,
+.four-stars:hover,
+.four-stars:hover ~ .three-stars,
+.four-stars:hover ~ .two-stars,
+.four-stars:hover ~ .one-star,
+.three-stars:hover,
+.three-stars:hover ~ .two-stars,
+.three-stars:hover ~ .one-star,
+.two-stars:hover,
+.two-stars:hover ~ .one-star,
+.one-star:hover {
+  background-image: url('../src/components/RnR/RnRComponents/resources/100.png');
+  cursor: pointer;
+}
+
 .RnRReviewListButton2 {
   position: relative;
   display: inline-block;

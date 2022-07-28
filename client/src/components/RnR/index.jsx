@@ -5,6 +5,7 @@ import CharacteristicsList from './RnRComponents/CharacteristicsList.jsx';
 import Review from './RnRComponents/Review.jsx';
 import Stars from './RnRComponents/Stars.jsx';
 import Sort from './RnRComponents/Sort.jsx';
+import ReviewModal from './RnRComponents/ReviewModal.jsx';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class RnR extends React.Component {
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.setStarsFilter = this.setStarsFilter.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.removeAllFilters = this.removeAllFilters.bind(this);
   }
 
   percentRatings() {
@@ -29,6 +31,10 @@ class RnR extends React.Component {
 
   handleMoreReviews() {
     this.props.setReviewsCount();
+  }
+
+  removeAllFilters () {
+    this.setState({starsFilter: []});
   }
 
   setStarsFilter() {
@@ -55,27 +61,7 @@ class RnR extends React.Component {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
-            <div className='RnRModalContainer'>
-              <div className="RnRModal">
-                <div className='ModalTitle'>
-                  Write Your Review
-                </div>
-                <div className='CloseRnRModal' onClick={this.toggleModal}>
-                  ❌
-                </div>
-                <div className='ModalInput'>
-                  <form>
-                    <label for="fname">First name:
-                      <input type="text" className="ModalInputFieldSmall" name="fname" size='30' maxlength='30'/>
-                    </label>
-                    <br></br>
-                    <label for="lname">Last name:
-                      <input type="text" className="ModalInputFieldSmall" name="lname" size='30' maxlength='30'/>
-                    </label>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <ReviewModal toggleModal={this.toggleModal}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -92,7 +78,7 @@ class RnR extends React.Component {
                 <div>
                   <span className='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
                 </div>
-                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} />
+                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} removeAllFilters={this.removeAllFilters}/>
               </div>
               <div className='RnRCharacteristics'>
                 <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
@@ -125,27 +111,7 @@ class RnR extends React.Component {
       } else {
         return (
           <div>
-            <div className='RnRModalContainer'>
-              <div className="RnRModal">
-                <div className='ModalTitle'>
-                  Write Your Review
-                </div>
-                <div className='CloseRnRModal' onClick={this.toggleModal}>
-                  ❌
-                </div>
-                <div className='ModalInput'>
-                  <form>
-                    <label for="fname">First name:
-                      <input type="text" className="ModalInputFieldSmall" name="fname" size='30' maxlength='30'/>
-                    </label>
-                    <br></br>
-                    <label for="lname">Last name:
-                      <input type="text" className="ModalInputFieldSmall" name="lname" size='30' maxlength='30'/>
-                    </label>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <ReviewModal toggleModal={this.toggleModal}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -162,7 +128,7 @@ class RnR extends React.Component {
                 <div className='percent'>
                   <span className='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
                 </div>
-                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} />
+                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} removeAllFilters={this.removeAllFilters}/>
               </div>
               <div className='RnRCharacteristics'>
                 <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
@@ -213,7 +179,7 @@ class RnR extends React.Component {
                 <div>
                   <span className='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
                 </div>
-                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} />
+                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} removeAllFilters={this.removeAllFilters}/>
               </div>
               <div className='RnRCharacteristics'>
                 <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />
@@ -262,7 +228,7 @@ class RnR extends React.Component {
                 <div className='percent'>
                   <span className='percent'>{this.state.ratingsPercent}&#37;</span> of reviewers recommend this product
                 </div>
-                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} />
+                <RatingsList ratings={this.props.reviewsMetadata.ratings} recommended={this.props.reviewsMetadata.recommended} starsFilter={this.state.starsFilter} setStarsFilter={this.setStarsFilter} removeAllFilters={this.removeAllFilters}/>
               </div>
               <div className='RnRCharacteristics'>
                 <CharacteristicsList characteristics={this.props.reviewsMetadata.characteristics} />

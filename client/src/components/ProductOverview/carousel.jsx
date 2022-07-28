@@ -34,7 +34,8 @@ class Carousel extends React.Component {
   }
 
   clickedImage(e) {
-    let element = document.getElementById('POleft');
+    // let element = document.getElementById('POleft');
+     let element = document.getElementById('POimg-carousel');
     let ele = e.target;
     let $thumbnail = $('.POthumbnail')[0];
     let $arrows = $('.POcarousel-button');
@@ -43,11 +44,11 @@ class Carousel extends React.Component {
         element.style.transition = `
           width 350ms ease-in-out
         `;
-        element.style.width = '450px';
+        element.style.width = '500px';
         ele.style.transition = `
           width 350ms ease-in-out
         `;
-        ele.style.width = '450px';
+        ele.style.width = '500px';
       })
       let $image = $('#POcarousel-img-main');
       $image.removeClass('POcarousel-zoomed');
@@ -107,11 +108,11 @@ class Carousel extends React.Component {
         element.style.transition = `
           width 350ms ease-in-out
         `;
-        element.style.width = '810px';
+        element.style.width = '900px';
         ele.style.transition = `
         width 350ms ease-in-out
       `;
-      ele.style.width = '810px';
+      ele.style.width = '900px';
       })
       let $image = $('#POcarousel-img-main');
       $image.addClass('POcarousel-zoomed');

@@ -7,6 +7,7 @@ import Carousel from './carousel.jsx';
 import Thumbnail from './thumbnail.jsx';
 import SizeNQuantity from './size_quantity.jsx';
 import ProductDescription from './productDescription.jsx';
+import Stars from '../RnR/RnRComponents/Stars.jsx';
 import "./styles.css";
 
 
@@ -77,7 +78,6 @@ class ProductOverview extends React.Component {
   }
 
   render() {
-    console.log(this.props.desc);
     let index = this.state.style;
     return (
       this.props.desc.id && (
@@ -88,9 +88,15 @@ class ProductOverview extends React.Component {
             <ProductDescription desc={this.props.desc.description}/>
           </div>
           <div id='POright'>
-            <p>{this.props.desc.category}</p>
-            <h2><strong>{this.props.desc.name}</strong></h2>
-            <Price selected={this.props.style.results[index]}/>
+            <div id='ratingsReview'>
+              <Stars ratings={this.props.review}/>
+              <a href='#reviewSection'>Read all {this.props.reviewNum} reviews</a>
+            </div>
+            <div>
+              <p>{this.props.desc.category}</p>
+              <h2><strong>{this.props.desc.name}</strong></h2>
+              <Price selected={this.props.style.results[index]}/>
+            </div>
             <div><strong> Style > </strong>{this.props.style.results[index].name}</div>
             <Style styles={this.props.style.results} name={this.props.desc.name} handleClick={this.clickedStyle}/>
             <SizeNQuantity skus={this.props.style.results[index].skus}/>

@@ -8,16 +8,22 @@
   list-style: none;
 }
 #PO {
-  width: 750px;
-  margin: 0px 290px;
+  width: 1000px;
+  /* margin: 0px 290px; */
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 #POleft {
-  width: 450px;
-  position: absolute;
+  width: 500px;
+  position: relative;
   /* border: solid; */
+  z-index: 2;
+}
+#POimg-carousel {
+  position:relative;
+  width: 500px;
   z-index: 2;
 }
 
@@ -25,8 +31,19 @@
   width: 355px;
   /* border: solid; */
   position: absolute;
-  z-index: -1;
-  left: 755px;
+  z-index: 1;
+  left: 540px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction:  column;
+  height: 90%;
+}
+
+#ratingsReview{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
 }
 
 #POlens {
@@ -39,10 +56,12 @@
 
 #POzoomed {
   border: 1px solid black;
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 240px;
   position: absolute;
-  top: 400px;
+  left: 370px;
+  top: 0px;
+
 }
 
 #POprice {
@@ -81,6 +100,8 @@
   padding-top: 22px;
   height: 360px;
   padding-bottom: 22px;
+  z-index: 3;
+  top: 5%;
 }
 .POthumbnail-img {
   width: 50px;
@@ -125,6 +146,7 @@
 
 #POstyles {
   /* border: 1px solid; */
+  position: relative;
 }
 
 .POcarousel-button {
@@ -139,7 +161,8 @@
 }
 
 #POcarousel-right {
-  transform: translate(-110%, -50%);
+  left: 90%;
+  /* transform: translate(0, -50%); */
   z-index: 1;
 }
 
@@ -149,8 +172,8 @@
 }
 
 .POcarousel-img {
-  width: 450px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
 }
 
 .POcarousel-img:hover {
@@ -235,7 +258,7 @@ label {
   display: block;
   text-align: left;
   font-size: 13px;
-  position: absolute;
+  position: relative;
 }
 
 h2 {

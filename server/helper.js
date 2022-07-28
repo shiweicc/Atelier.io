@@ -34,14 +34,14 @@ const authedPost = (url, data) => {
 }
 
 //Authenticate put request
-const authedPut = (url) => {
-  let options = {
-    method: 'put',
-    url: `${url}`,
-    headers: headers,
-  };
-  return axios(options);
-}
+// const authedPut = (url) => {
+//   let options = {
+//     method: 'put',
+//     url: `${url}`,
+//     headers: headers,
+//   };
+//   return axios(options);
+// }
 
 const authedPut = (url, params) => {
   let options = {

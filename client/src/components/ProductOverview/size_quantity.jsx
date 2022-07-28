@@ -126,7 +126,7 @@ class SizeNQuantity extends React.Component {
             <div class='dropdown-options' id='POsize-options' onClick={this.clickedSizeOption}>
               {
                 this.state.sizes.map((size) => {
-                  return <div>{size}</div>
+                  return <div key={size}>{size}</div>
                 })
               }
             </div>
@@ -137,7 +137,7 @@ class SizeNQuantity extends React.Component {
             <div class='dropdown-options' id='POquantity-options' onClick={this.clickedStockOption}>
               {
                 this.state.stock.map((value, index) => {
-                  return <div>{index + 1}</div>
+                  return <div key={index}>{index + 1}</div>
                 })
               }
             </div>

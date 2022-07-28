@@ -544,6 +544,19 @@ div.quality {
   grid-column-start: 1;
 }
 
+.ModalRecommended {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.ModalRecommendedInput {
+  display: inline;
+  position: relative;
+  width: 5%;
+  margin-top: 30px;
+}
+
 /***************** CSS for Related Products *****************/
 /****** styles for Product ******/
 .eachProductCard{

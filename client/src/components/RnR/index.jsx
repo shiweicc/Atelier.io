@@ -16,7 +16,8 @@ class RnR extends React.Component {
       starsFilter: [],
       modalOpen: false,
       modalRating: false,
-      modalRatingValue: '0'
+      modalRatingValue: '0',
+      recommended: 'unchecked'
     }
 
     this.percentRatings = this.percentRatings.bind(this);
@@ -25,6 +26,7 @@ class RnR extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
     this.setModalRating = this.setModalRating.bind(this);
+    this.setRecommended = this.setRecommended.bind(this);
   }
 
   percentRatings() {
@@ -40,6 +42,10 @@ class RnR extends React.Component {
 
   removeAllFilters () {
     this.setState({starsFilter: []});
+  }
+
+  setRecommended (e) {
+    this.setState({recommended: e.target.value})
   }
 
   setModalRating (e) {
@@ -98,7 +104,7 @@ class RnR extends React.Component {
   }
 
   toggleModal() {
-    this.setState({ modalOpen: !this.state.modalOpen });
+    this.setState({ modalOpen: !this.state.modalOpen, recommended: 'unchecked', modalRating: false, modalRatingValue: '0'});
   }
 
   componentDidMount() {
@@ -110,7 +116,7 @@ class RnR extends React.Component {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -160,7 +166,7 @@ class RnR extends React.Component {
       } else {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>

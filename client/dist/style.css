@@ -1,3 +1,6 @@
+#App {
+  margin: 0px 260px;
+}
 /*****************CSS for Ratings and Reviews*****************/
 .RnR {
   display: grid;
@@ -474,7 +477,7 @@ div.quality {
   gap: 2rem;
   white-space: nowrap;
   height: 400px;
-  width: 1130px;
+  width: 890px;
   overflow-x: scroll;
   margin-bottom: 40px;
 }

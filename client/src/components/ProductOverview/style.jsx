@@ -9,7 +9,7 @@ class Style extends React.Component {
   componentDidMount () {
     var position = $(`[data-styleid="0"]`).offset();
     var parentPosition = $("#POright").offset();
-    $('.POcheckmark').css({ position:'absolute', top:position.top + 30, left: position.left - parentPosition.left + 30});
+    $('.POcheckmark').css({ position:'absolute', top:position.top + 16, left: position.left - parentPosition.left + 30});
   }
 
   render () {

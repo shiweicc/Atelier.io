@@ -30,10 +30,10 @@ class DisplayQuestion extends React.Component {
       < div className='ListWrapper' >
         {
           this.props.questions.map(
-            (question) => {
+            (question, index) => {
               // console.log('quesiont id ' + question.question_id);
               return (
-                <div>
+                <div key={index}>
                   <div id="parent-block">
                     <div id='block1'>Q: {question.question_body} </div>
                     <div id='block2'>Helpful? &nbsp;

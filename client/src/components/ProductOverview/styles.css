@@ -8,7 +8,6 @@
   list-style: none;
 }
 #PO {
-  width: 1000px;
   /* margin: 0px 290px; */
   display: flex;
   flex-direction: row;
@@ -16,23 +15,23 @@
 }
 
 #POleft {
-  width: 500px;
+  width: 600px;
   position: relative;
   /* border: solid; */
   z-index: 2;
 }
 #POimg-carousel {
   position:relative;
-  width: 500px;
+  width: 600px;
   z-index: 2;
 }
 
 #POright {
-  width: 355px;
+  width: 30%;
   /* border: solid; */
   position: absolute;
   z-index: 1;
-  left: 540px;
+  left: 650px;
   display: flex;
   justify-content: space-evenly;
   flex-direction:  column;
@@ -59,7 +58,7 @@
   width: 240px;
   height: 240px;
   position: absolute;
-  left: 370px;
+  left: 330px;
   top: 0px;
 
 }
@@ -172,7 +171,7 @@
 }
 
 .POcarousel-img {
-  width: 500px;
+  width: 600px;
   height: 500px;
 }
 

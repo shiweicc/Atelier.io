@@ -4,9 +4,10 @@
 /*****************CSS for Ratings and Reviews*****************/
 .RnR {
   display: grid;
-  grid-template-columns: 40% 30% 30%;
+  grid-template-columns: 39% 30% 30%;
   grid-template-rows: auto auto auto auto;
   gap: 1rem;
+  transform: translateX(-1%);
 }
 
 .RnRHead {
@@ -477,7 +478,7 @@ div.quality {
   gap: 2rem;
   white-space: nowrap;
   height: 400px;
-  width: 890px;
+  width: 1000px;
   overflow-x: scroll;
   margin-bottom: 40px;
 }

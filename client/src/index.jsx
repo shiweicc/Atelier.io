@@ -290,7 +290,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-          {/* <ProductOverview style={this.state.productStyle}
+          <ProductOverview style={this.state.productStyle}
             desc={this.state.productDesc}
             ratings={this.props.averageReviewScore}/>
           <RelatedProducts
@@ -305,7 +305,7 @@ class App extends React.Component {
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}/>
           <QnA curProductID={this.state.productId}
-            ratings={this.props.averageReviewScore}/> */}
+            ratings={this.props.averageReviewScore}/>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}

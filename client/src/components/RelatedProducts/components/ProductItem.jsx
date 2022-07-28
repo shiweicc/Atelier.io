@@ -25,7 +25,10 @@ class ProductItem extends React.Component {
   }
 
   updateURLtoClickedProduct(id) {
-    window.location.href = `http://localhost:3000/productpage/${id}/`;
+    let temp = window.location.href;
+    let endpoint = temp.slice(0, temp.length - 6);
+    let URL = endpoint + id;
+    window.location.href = URL;
   }
 
   getSelectedCard(e) {

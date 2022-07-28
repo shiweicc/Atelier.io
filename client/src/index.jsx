@@ -303,7 +303,13 @@ class App extends React.Component {
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}
           />
-          <QnA curProductID={this.state.productId} ratings={this.props.averageReviewScore}/>
+          <QnA curProductID={this.state.productId}
+            ratings={this.props.averageReviewScore}
+            updateLocalStorage={this.updateLocalStorage}
+            newRelatedProductList={this.state.newRelatedProductList}/>
+          />
+          <QnA curProductID={this.state.productId} reviews={this.state.reviews}/>
+          <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}
@@ -317,7 +323,6 @@ class App extends React.Component {
         </div>
       )
     }
-
   }
 }
 

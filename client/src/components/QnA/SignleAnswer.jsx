@@ -14,7 +14,6 @@ class SignleAnswer extends React.Component {
 
   markAnswerHelpful = (answer_id) => {
     //console.log('here');
-    // console.log('here', this.props.product_id);
     axios.put('http://localhost:3000/answers/helpful', {
       answer_id: answer_id
     })
@@ -30,12 +29,12 @@ class SignleAnswer extends React.Component {
   }
 
   report = (answer_id) => {
-    console.log("here", answer_id);
+    //console.log("here", answer_id);
     axios.put('http://localhost:3000/answers/report', {
       answer_id: answer_id
     })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.props.getAnswers(this.props.que_id, 2);
       })
       .catch((err) => {

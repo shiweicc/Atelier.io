@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import S3 from 'react-aws-s3';
 
 class ModalAns extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class ModalAns extends React.Component {
       inputAnswer: '',
       name: '',
       email: ''
+      //photos: []
     }
   }
 
@@ -37,10 +39,12 @@ class ModalAns extends React.Component {
       question_id: question_id,
       body: this.state.inputAnswer,
       name: this.state.name,
-      email: this.state.email
+      email: this.state.email,
+     // photos: this.state.photos
     }
     axios.post('http://localhost:3000/addAnswer', data)
       .then((res) => {
+        console.log("add que", this.props.key, this.props.questionId);
         this.props.accessDisplayAnswer(this.props.questionId, 5);
       })
       .catch((err) => {
@@ -48,6 +52,17 @@ class ModalAns extends React.Component {
       })
   };
 
+
+  onImageChange = (event) => {
+    console.log(event.target.files[0]);
+    // S3.uplaod(e.target.files[0])
+    //   .then((data) => {
+
+    //   })
+    //   .catch((err) => {
+    //     console.log("upload pictures's err", err);
+    //   })
+  };
 
   render() {
     return (
@@ -59,6 +74,7 @@ class ModalAns extends React.Component {
             Your Answer:
             <input type="text" id='inputAnswer' value={this.state.inputAnswer} onChange={this.handleInputBody.bind(this)} />
           </label>
+
           <label>
             What is your nickname:
             <input type="text" placeholder="Example: jack543!" value={this.state.name} onChange={this.handleInputName.bind(this)} />
@@ -69,7 +85,8 @@ class ModalAns extends React.Component {
             <input type="text" placeholder="Example: jack@email.com" value={this.state.email} onChange={this.handleInputEmail.bind(this)} />
             <p>For authentication reasons, you will not be emailed.</p>
           </label>
-          <button >Upload your photos</button>
+          <label for="exampleInputFile">Upload Your Pictures</label>
+          <input type="file" id="myImage" name="myImage" onChange={this.onImageChange} />
           <button type='botton' onClick={() => this.insertAnswerClick(this.props.questionId)}>Submit</button>
           <button type='button' onClick={() => this.props.closeAnsModal(false)}>Cancel</button>
         </div>

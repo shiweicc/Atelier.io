@@ -35,6 +35,7 @@ const authedPost = (url, data) => {
 }
 
 //Authenticate put request
+
 const authedPutQnA = (url) => {
   let options = {
     method: 'put',
@@ -42,6 +43,7 @@ const authedPutQnA = (url) => {
     headers: headers,
   };
   return axios(options);
+
 }
 
 

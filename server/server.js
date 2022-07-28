@@ -73,9 +73,9 @@ app.get('/products/:id/styles', (req, res) => {
 
 //******************* get Questions and Answers list *******************//
 app.get('/questions', (req, res) => {
-  console.log(req.method, req.url);
+  // console.log(req.method, req.url);
   const product_id = req.url.substring(req.url.indexOf('?') + 1);
-  console.log(product_id);
+  // console.log(product_id);
   authedGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?' + product_id)
     .then((results) => {
       //console.log(results.data);
@@ -128,7 +128,7 @@ app.put('/answers/helpful', (req, res) => {
 
 app.put('/answers/report', (req, res) => {
   const answer_id = req.body.answer_id;
-  console.log(answer_id);
+  // console.log(answer_id);
   authedPutQnA('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/' + answer_id + '/report')
     .then((results) => {
       res.status(204).send('put report succ');
@@ -144,7 +144,6 @@ app.post('/addAnswer', (req, res) => {
   // console.log(req.body);
   // const data = JSON.stringify(req.body);
   // //console.log(question_id);
-  console.log(req.body);
   authedPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + question_id + '/answers', req.body)
     .then((result) => {
       //console.log("here", result.status);
@@ -159,13 +158,12 @@ app.post('/addAnswer', (req, res) => {
 app.post('/addQuestion', (req, res) => {
   //const product_id = req.body.product_id;
   //delete req.body.question_id;
-  console.log(req.body);
+  // console.log(req.body);
   const product_id = parseInt(req.body.product_id);
   req.body.product_id = product_id;
-  console.log(JSON.stringify(req.body));
   authedPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions', req.body)
     .then((result) => {
-      console.log(result.status);
+      // console.log(result.status);
       res.status(201).send('Question created');
     })
     .catch((err) => {
@@ -176,7 +174,6 @@ app.post('/addQuestion', (req, res) => {
 
 
 //*********************************************************************************//
-
 app.get('/products/:id', (req, res) => {
   let productURL = req.url;
   authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp${productURL}`)
@@ -213,9 +210,7 @@ app.get('/styles/:productID', (req, res) => {
 })
 
 app.get('/reviews/', (req, res) => {
-
   authedGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/`, {product_id: req.query.productID, sort: req.query.reviewsSort, count: req.query.reviewsCount})
-
     .then((results) => {
       res.send(results.data);
     })

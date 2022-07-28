@@ -13,10 +13,11 @@ const OutfitList = (props) => {
 
   const listOutfitItem = props.outfitCollection.map((item, index) =>
     <OutfitItem
+      key={index}
       eachOutfitInfo={item}
       deleteOutfitItem={props.deleteOutfitItem}
       outfitCollection={props.outfitCollection}
-      key={index}
+      ratings={props.ratings}
     />
   );
 
@@ -40,5 +41,4 @@ const OutfitList = (props) => {
 
 export default OutfitList;
 
-//
 

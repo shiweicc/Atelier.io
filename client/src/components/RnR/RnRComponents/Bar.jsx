@@ -9,7 +9,7 @@ const Bar = (props) => {
     backgroundColor: `black`,
     width: `${props.rating}%`,
     height: `18px`,
-    zIndex: 99
+    zIndex: 5
   };
 
   return (

@@ -17,13 +17,24 @@ const RatingsList = (props) => {
     }
   }
 
-  return (
-    <div>
-      {Object.keys(fullRatings).map((key, i) => {
-        return <Rating key={i} rating={key} percentage={Math.floor((parseInt(props.ratings[key])/total)*100)} starsFilter={props.starsFilter} setStarsFilter={props.setStarsFilter}/>
-      })}
-    </div>
-  );
+  if (props.starsFilter.length > 0) {
+    return (
+      <div>
+        {Object.keys(fullRatings).map((key, i) => {
+          return <Rating key={i} rating={key} percentage={Math.floor((parseInt(props.ratings[key])/total)*100)} starsFilter={props.starsFilter} setStarsFilter={props.setStarsFilter}/>
+        })}
+        <button onClick={props.removeAllFilters}>Remove all filters</button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {Object.keys(fullRatings).map((key, i) => {
+          return <Rating key={i} rating={key} percentage={Math.floor((parseInt(props.ratings[key])/total)*100)} starsFilter={props.starsFilter} setStarsFilter={props.setStarsFilter}/>
+        })}
+      </div>
+    );
+  }
 }
 
 export default RatingsList;

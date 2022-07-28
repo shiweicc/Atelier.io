@@ -1,5 +1,5 @@
 const axios = require('axios');
-const key = require('../config.js');
+// const key = require('../config.js');
 
 // Create authentication headers
 let headers = {
@@ -29,7 +29,6 @@ const authedPost = (url, data) => {
     //data: JSON.stringify({data: data})
     data: data
   };
-
   //console.log(axios(options));
   return axios(options);
 }

@@ -10,16 +10,21 @@ import ReviewModal from './RnRComponents/ReviewModal.jsx';
 class RnR extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       ratingsPercent: 0,
       starsFilter: [],
-      modalOpen: false
+      modalOpen: false,
+      modalRating: false,
+      modalRatingValue: '0'
     }
+
     this.percentRatings = this.percentRatings.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.setStarsFilter = this.setStarsFilter.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
+    this.setModalRating = this.setModalRating.bind(this);
   }
 
   percentRatings() {
@@ -35,6 +40,50 @@ class RnR extends React.Component {
 
   removeAllFilters () {
     this.setState({starsFilter: []});
+  }
+
+  setModalRating (e) {
+    if (e.target.className === 'five-stars' || e.target.className === 'five-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '5'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '5') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '5') {
+        this.setState({modalRatingValue: '5'});
+      }
+    } else if (e.target.className === 'four-stars' || e.target.className === 'four-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '4'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '4') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '4') {
+        this.setState({modalRatingValue: '4'});
+      }
+    } else if (e.target.className === 'three-stars' || e.target.className === 'three-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '3'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '3') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '3') {
+        this.setState({modalRatingValue: '3'});
+      }
+    } else if (e.target.className === 'two-stars' || e.target.className === 'two-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '2'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '2') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '2') {
+        this.setState({modalRatingValue: '2'});
+      }
+    } else if (e.target.className === 'one-star' || e.target.className === 'one-star-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '1'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '1') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '1') {
+        this.setState({modalRatingValue: '1'});
+      }
+    }
   }
 
   setStarsFilter() {
@@ -61,7 +110,7 @@ class RnR extends React.Component {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -111,7 +160,7 @@ class RnR extends React.Component {
       } else {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>

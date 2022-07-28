@@ -12,7 +12,8 @@ class QnA extends React.Component {
     this.state = {
       qna: [],
       questionCount: 2,
-      totalQusCount: 0
+      totalQusCount: 0,
+      search: ''
     }
   }
 

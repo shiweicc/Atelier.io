@@ -79,6 +79,11 @@ class ProductOverview extends React.Component {
 
   render() {
     let index = this.state.style;
+    let productInfoImg = {
+      productInfo: this.props.desc,
+      productImg: this.props.style.results[0].photos[0]["thumbnail_url"] ? this.props.style.results[0].photos[0]["thumbnail_url"] : null,
+      productSalePrice: this.props.style.results[0]["sale_price"] ? this.props.style.results[2]["sale_price"]: null,
+    };
     return (
       this.props.desc.id && (
         <div id='PO'>
@@ -99,7 +104,7 @@ class ProductOverview extends React.Component {
             </div>
             <div><strong> Style > </strong>{this.props.style.results[index].name}</div>
             <Style styles={this.props.style.results} name={this.props.desc.name} handleClick={this.clickedStyle}/>
-            <SizeNQuantity skus={this.props.style.results[index].skus}/>
+            <SizeNQuantity skus={this.props.style.results[index].skus} addOutfit={this.props.addOutfit} product={productInfoImg}/>
           </div>
         </div>
         )

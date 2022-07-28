@@ -294,9 +294,7 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
-
-
-          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc}/>
+          <ProductOverview style={this.state.productStyle} desc={this.state.productDesc} review={this.state.averageReviewScore} reviewNum={this.state.reviews.length}/>
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -309,6 +307,7 @@ class App extends React.Component {
             newRelatedProductList={this.state.newRelatedProductList}
           />
           <QnA curProductID={this.state.productId}/>
+          <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}

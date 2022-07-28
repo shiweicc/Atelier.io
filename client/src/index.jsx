@@ -294,7 +294,9 @@ class App extends React.Component {
     if (this.state.ready) {
       return (
         <div>
+
           <ProductOverview style={this.state.productStyle} desc={this.state.productDesc} review={this.state.averageReviewScore} reviewNum={this.state.reviews.length}/>
+
           <RelatedProducts
             curProductID={this.state.productId}
             outfitCollection={this.state.outfitCollection}
@@ -303,12 +305,16 @@ class App extends React.Component {
             deleteOutfitItem={this.deleteOutfitItem}
             productDesc={this.state.productDesc}
             updateProductId={this.updateProductId}
+
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}
           />
+
           <QnA curProductID={this.state.productId}/>
+
           <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}
+
             reviewsMetadata={this.state.reviewsMetadata}
             averageReviewScore={this.state.averageReviewScore}
             sortOrder={this.state.reviewsSort}
@@ -317,8 +323,7 @@ class App extends React.Component {
             sortOptions={this.state.sortOptions}
             setSortOptions={this.setSortOptions}
             getReviewID={this.getReviewID}
-            getProducts={this.getProducts}/>
-
+            getProducts={this.getProducts} /> */}
         </div>
       )
     }

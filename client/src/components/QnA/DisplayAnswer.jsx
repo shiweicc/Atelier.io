@@ -15,7 +15,7 @@ class DisplayAnswer extends React.Component {
   }
 
   getAnswers(question_id, count) {
-    console.log(`${question_id}`);
+    //console.log("get answers from question", `${question_id}`);
     //console.log(`${count}`);
     axios.get('http://localhost:3000/answers', {
       params: {
@@ -26,7 +26,7 @@ class DisplayAnswer extends React.Component {
       .then((res) => {
         //console.log(res.data);
         const totalAnsCount = Object.keys(res.data).length;
-        // console.log(totalAnsCount);
+        //console.log(totalAnsCount);
         this.setState({
           ans: [...res.data],
           totalAnsCount: totalAnsCount
@@ -45,7 +45,7 @@ class DisplayAnswer extends React.Component {
 
 
   render() {
-
+    //console.log("display que_id here", this.props.question_id);
     return (
       < div className="answerList" >
         <SignleAnswer ans={this.state.ans} getAnswers={this.getAnswers.bind(this)} que_id={this.props.question_id}

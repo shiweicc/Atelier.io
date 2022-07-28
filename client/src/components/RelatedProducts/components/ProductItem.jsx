@@ -19,7 +19,6 @@ class ProductItem extends React.Component {
   updateClickedProductId() {
     let id = this.props.eachProductInfo.productInfo.id;
     this.setState({clickedProductId: id}, (id) => {
-      // console.log('**** set state for productId ****: ', this.state.clickedProductId);
       this.updateURLtoClickedProduct(this.state.clickedProductId);
     })
   }
@@ -28,7 +27,8 @@ class ProductItem extends React.Component {
     window.location.href = `http://localhost:3000/productpage/${id}/`;
   }
 
-  getSelectedCard() {
+  getSelectedCard(e) {
+    e.preventDefault();
     let info = this.props.eachProductInfo.productInfo;
     this.props.openModal(info);
   }
@@ -65,7 +65,7 @@ class ProductItem extends React.Component {
     return (
       <div className="eachProductCard">
         <div className="card_body">
-          <button className="card_btn" onClick={this.getSelectedCard}>⭐</button>
+          <button className="card_btn" onClick={(e)=>this.getSelectedCard(e)}>⭐</button>
           {img}
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>

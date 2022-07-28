@@ -303,10 +303,9 @@ class App extends React.Component {
             deleteOutfitItem={this.deleteOutfitItem}
             productDesc={this.state.productDesc}
             updateProductId={this.updateProductId}
-            ratings={this.props.averageReviewScore}
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}
-          />
+            ratings={this.state.averageReviewScore} />
           <QnA curProductID={this.state.productId} reviews={this.state.reviews}/>
           <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}

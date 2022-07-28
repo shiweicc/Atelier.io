@@ -1,5 +1,6 @@
 import React from "react";
 import styles from '../sampleData/product_id_styles.js';
+import Stars from '../../RnR/RnRComponents/Stars.jsx';
 
 class ProductItem extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ProductItem extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('id in state: ', this.state.clickedProductId)
+    // console.log('what props in ProductItem:  ', this.props.ratings)
   }
 
   updateClickedProductId() {
@@ -24,7 +25,10 @@ class ProductItem extends React.Component {
   }
 
   updateURLtoClickedProduct(id) {
-    window.location.href = `http://localhost:3000/productpage/${id}/`;
+    let temp = window.location.href;
+    let endpoint = temp.slice(0, temp.length - 6);
+    let URL = endpoint + id;
+    window.location.href = URL;
   }
 
   getSelectedCard(e) {
@@ -70,7 +74,8 @@ class ProductItem extends React.Component {
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>
           {price}
-          <p className="card_rating">⭐⭐⭐⭐⭐</p>
+          {/* <p className="card_rating">⭐⭐⭐⭐⭐</p> */}
+          <Stars ratings={this.props.ratings}/>
         </div>
       </div>
     )

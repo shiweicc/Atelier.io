@@ -478,7 +478,7 @@ div.quality {
   gap: 2rem;
   white-space: nowrap;
   height: 400px;
-  width: 1000px;
+  width: 925px;
   overflow-x: scroll;
   margin-bottom: 40px;
 }
@@ -487,7 +487,7 @@ div.quality {
 .outfitListWrapper {
   white-space: nowrap;
   height: 400px;
-  width: 1130px;
+  width: 915px;
   overflow-x: scroll;
   display: inline-flex;
   justify-content: space-between;
@@ -497,7 +497,7 @@ div.quality {
 .outfitCardList {
   display: inline-flex;
   gap: 2rem;
-  width: 1130px;
+  width: 900px;
   height: 360px;
 }
 
@@ -556,27 +556,8 @@ div.quality {
   display: inline-block;
 }
 
-.card_price_wrapper{
-  /* display: flex; */
-  /* justify-content: space-between; */
-}
-
 .card_rating {
   position: relative;
-}
-
-/****** styles for related products scrollbars ******/
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track:horizontal  {
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 /****** styles for comparison modal ******/
@@ -590,7 +571,7 @@ div.quality {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index:1;
+  z-index:1000;
 }
 
 .compare_modal{
@@ -627,3 +608,16 @@ th {
   text-align: center;
 }
 
+/****** styles for related products scrollbars ******/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track:horizontal  {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); */
+}

@@ -13,10 +13,11 @@ const Photos = (props) => {
   return (
     <div>
       {
-        urls.map((url) => {
+        urls.map((url, index) => {
           const srcimg = { url }.url;
           // console.log(srcimg);
           return (< img id="picture"
+            key={index}
             src={srcimg}>
           </img>)
         })

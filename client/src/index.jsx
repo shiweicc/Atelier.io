@@ -306,7 +306,8 @@ class App extends React.Component {
             updateLocalStorage={this.updateLocalStorage}
             newRelatedProductList={this.state.newRelatedProductList}
             ratings={this.state.averageReviewScore} />
-          <QnA curProductID={this.state.productId} reviews={this.state.reviews}/>
+          <QnA curProductID={this.state.productId} desc={this.state.productDesc}/>
+
           <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}

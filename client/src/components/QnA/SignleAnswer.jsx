@@ -44,9 +44,10 @@ class SignleAnswer extends React.Component {
       })
   }
 
-  //console.log('total answer ' + props.total);
+
   render() {
     const totalAns = this.props.total;
+    //console.log('total answer ' + this.props.total);
   return (
     <div>
       {

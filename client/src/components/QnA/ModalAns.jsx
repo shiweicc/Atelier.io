@@ -49,7 +49,6 @@ class ModalAns extends React.Component {
     //console.log(this.state.email, vaildEmail);
     if (!data.body || !data.name || !vaildEmail) {
       swal({
-        html: true,
         title: "You must enter the following: ",
         text: "1. Any mandatory fields are bland \n 2. The email address provided is not in correct email format"
       });
@@ -58,6 +57,10 @@ class ModalAns extends React.Component {
       .then((res) => {
         //console.log("add que", this.props.questionId, this.props.questionId);
         this.props.accessDisplayAnswer(this.props.questionId, 5);
+        swal("Add Answer Successfully!", "You clicked the button!", "success");
+      })
+      .then(() => {
+        this.props.closeAnsModal(false);
       })
       .catch((err) => {
         console.log("Answer input err" + err);
@@ -91,7 +94,7 @@ class ModalAns extends React.Component {
 
   render() {
     return (
-      <div className="modalBackground" >
+      <div className="modalBackground" id='pleasenotmove' >
         <div className="modalContainer">
           <h2>Submit your Answer</h2>
           <h4>{this.props.product_name} : {this.props.question_body}</h4>

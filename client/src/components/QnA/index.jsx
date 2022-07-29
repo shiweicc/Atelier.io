@@ -4,11 +4,13 @@ import axios from 'axios';
 import "./style.css";
 import S3 from 'react-aws-s3';
 
+
 const questions = [];
 var totalQusCount = 0;
 class QnA extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       qna: [],
       questionCount: 2,
@@ -41,7 +43,7 @@ class QnA extends React.Component {
   }
 
   loadQuestions(count) {
-    //console.log('here', count);
+   // console.log('here', count);
     var list = {};
     list.product_id = questions[0].product_id;
     var resultList = questions[0].results.slice(0, count);
@@ -58,12 +60,10 @@ class QnA extends React.Component {
   }
 
   handleSearchInput(e) {
-
     const value = e.target.value;
     this.setState({
       search: value
     })
-
   }
 
   search() {
@@ -80,9 +80,11 @@ class QnA extends React.Component {
     const currentQue = [];
     currentQue.push(list);
     this.setState({
-      qna: [...currentQue],
+      qna: [...currentQue]
     });
-    if (this.state.search.length < 3) {
+
+
+    if (v.length < 3) {
       this.componentDidMount();
     }
 
@@ -100,8 +102,8 @@ class QnA extends React.Component {
     return (
       <div className="qna">
         <p>QUESTIONS & ANSWERTS</p>
-        <input className='search' type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." value={this.state.search} onChange={this.handleSearchInput.bind(this)} />
-        <input className='search' type="submit" value='Search' onClick={this.search.bind(this)}></input>
+        <input className='search' type="input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." value={this.state.search} onChange={this.handleSearchInput.bind(this)} />
+        <input className='search' type="submit" onClick={this.search.bind(this)}></input>
         <QuestionsList qna={this.state.qna} loadQuestions={this.loadQuestions.bind(this)} getQuestions={this.getQuestions.bind(this)}
           count={this.state.questionCount} total={this.state.totalQusCount} product_id={this.props.curProductID}
           product_name={this.props.desc.name}

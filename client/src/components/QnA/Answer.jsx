@@ -6,9 +6,10 @@ const Answer = (props) => {
   var d = new Date(props.ans.date);
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   const date = new Intl.DateTimeFormat('en-US', options).format(d);
-  // console.log(props.ans.answer_id);
+  console.log(props.ans.answer_id);
   // const photos = props.ans.photos;
   // console.log(photos);
+
   return (
     <div className='answers'>
 

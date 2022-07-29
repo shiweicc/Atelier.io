@@ -46,7 +46,6 @@ class ModalQue extends React.Component {
     //console.log(this.state.email, vaildEmail);
     if (!data.body || !data.name || !vaildEmail) {
       swal({
-        html: true,
         title: "You must enter the following: ",
         text: "1. Any mandatory fields are bland \n 2. The email address provided is not in correct email format"
 
@@ -57,6 +56,10 @@ class ModalQue extends React.Component {
        // console.log(res.data);
        // console.log('add question ', this.props.product_id, this.props.count);
         this.props.postQuestion(this.props.product_id, 10);
+        swal("Add Question Successfully!", "You clicked the button!", "success");
+      })
+      .then(() => {
+        this.props.closeQueModal(false);
       })
       .catch((err) => {
         console.log("Quesion input err" + err);
@@ -86,7 +89,7 @@ class ModalQue extends React.Component {
           </label >
 
           <p>For authentication reasons, you will not be emailed.</p>
-          <button className='modalButton' type='botton' onClick={() => this.insertQuestionClick(this.props.questionId)}>Submit</button>
+          <button className='modalButton' type='botton' onClick={() => this.insertQuestionClick(this.props.questionId)} >Submit</button>
           <button className='modalButton' type='button' onClick={() => this.props.closeQueModal(false)}> Cancel</button>
         </div>
       </div >

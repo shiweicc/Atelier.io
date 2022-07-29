@@ -30,10 +30,10 @@ class DisplayQuestion extends React.Component {
       < div className='ListWrapper' >
         {
           this.props.questions.map(
-            (question) => {
+            (question, index) => {
               // console.log('quesiont id ' + question.question_id);
               return (
-                <div>
+                <div key={index}>
                   <div id="parent-block">
                     <div id='block1'>Q: {question.question_body} </div>
                     <div id='block2'>Helpful? &nbsp;
@@ -41,12 +41,12 @@ class DisplayQuestion extends React.Component {
                       ({question.question_helpfulness}) &nbsp; | &nbsp;
                       <a href="#" className="openModalBtn"
                         onClick={() => this.setOpenAnsModal(true, question.question_id)}> Add Answer </a>
-                      {this.state.openAnsModal && this.state.openId === question.question_id && <ModalAns key={this.state.openId}
+                      {this.state.openAnsModal && this.state.openId === question.question_id && <ModalAns key={index}
                         questionId={question.question_id} closeAnsModal={this.setOpenAnsModal.bind(this)}
                         accessDisplayAnswer={this.accessDisplayAnswer.bind(this)} />}
                     </div>
                   </div>
-                  < DisplayAnswer key={question.question_id} question_id={question.question_id} ref='DisplayAnswer' />
+                  < DisplayAnswer key={index} question_id={question.question_id} ref='DisplayAnswer' />
                 </div>
               )
             }

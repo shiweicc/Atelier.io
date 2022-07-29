@@ -44,9 +44,9 @@ class QuestionsList extends React.Component {
       <div >
         {
           this.props.qna.map(
-            (element) => {
+            (element, index) => {
               //console.log(pro_id);
-              return <DisplayQuestion key={element.product_id} questions={element.results} markQuestionHelpful={this.markQuestionHelpful.bind(this)} />
+              return <DisplayQuestion key={index} questions={element.results} markQuestionHelpful={this.markQuestionHelpful.bind(this)} />
             }
           )
         }

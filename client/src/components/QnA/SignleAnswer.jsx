@@ -20,7 +20,7 @@ class SignleAnswer extends React.Component {
       .then((res) => {
         //console.log(this.props.total);
         this.props.total < 3 ?
-          this.props.getAnswers(this.props.que_id, 2) : this.props.getAnswers(this.props.que_id, 5);
+          this.props.getAnswers(this.props.que_id, 2) : this.props.getAnswers(this.props.que_id, 10);
 
       })
       .catch((err) => {
@@ -49,14 +49,14 @@ class SignleAnswer extends React.Component {
     <div>
       {
         this.props.ans.map(
-          (answer) => {
-            return <Answer key={answer.answer_id} ans={answer} markAnswerHelpful={this.markAnswerHelpful.bind(this)}
+          (answer, index) => {
+            return <Answer key={index} ans={answer} markAnswerHelpful={this.markAnswerHelpful.bind(this)}
               report={this.report.bind(this)} />
           }
         )
       }
       {totalAns < 3 ?
-        < button id='buttonAnswer' type='button' onClick={() => { this.props.getAnswers(this.props.que_id, 5) }}> LOAD MORE ANSWERS</button >
+        < button id='buttonAnswer' type='button' onClick={() => { this.props.getAnswers(this.props.que_id, 10) }}> LOAD MORE ANSWERS</button >
         : < button id='buttonAnswer' type='button' onClick={() => { this.props.getAnswers(this.props.que_id, 2) }}> COLLAPSE ANSWERS</button >
       }
     </div >

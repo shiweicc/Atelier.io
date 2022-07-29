@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import S3 from 'react-aws-s3';
+
 
 class ModalAns extends React.Component {
   constructor(props) {
@@ -8,10 +8,11 @@ class ModalAns extends React.Component {
     this.state = {
       inputAnswer: '',
       name: '',
-      email: ''
-      //photos: []
+      email: '',
+      photos: []
     }
   }
+
 
   handleInputBody(e) {
     const value = e.target.value;
@@ -40,11 +41,11 @@ class ModalAns extends React.Component {
       body: this.state.inputAnswer,
       name: this.state.name,
       email: this.state.email,
-     // photos: this.state.photos
+      photos: this.state.photos
     }
     axios.post('http://localhost:3000/addAnswer', data)
       .then((res) => {
-        console.log("add que", this.props.key, this.props.questionId);
+        //console.log("add que", this.props.questionId, this.props.questionId);
         this.props.accessDisplayAnswer(this.props.questionId, 5);
       })
       .catch((err) => {
@@ -54,15 +55,27 @@ class ModalAns extends React.Component {
 
 
   onImageChange = (event) => {
-    console.log(event.target.files[0]);
-    // S3.uplaod(e.target.files[0])
-    //   .then((data) => {
+    const file = event.target.files[0];
+    //console.log(file);
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'garamond');
 
-    //   })
-    //   .catch((err) => {
-    //     console.log("upload pictures's err", err);
-    //   })
+    axios.post('https://api.cloudinary.com/v1_1/tidibubu/image/upload', formData)
+      .then((res) => {
+        //console.log(res);
+        const urlList = [];
+        const url = res.data.secure_url;
+        //console.log(url);
+        urlList.push(url);
+        this.setState({
+          photos: [...urlList]
+        })
+      })
+
   };
+
+
 
   render() {
     return (
@@ -86,9 +99,10 @@ class ModalAns extends React.Component {
             <p>For authentication reasons, you will not be emailed.</p>
           </label>
           <label for="exampleInputFile">Upload Your Pictures</label>
-          <input type="file" id="myImage" name="myImage" onChange={this.onImageChange} />
+          <input type="file" id="myImage" name="myImage" onChange={this.onImageChange.bind(this)} />
           <button type='botton' onClick={() => this.insertAnswerClick(this.props.questionId)}>Submit</button>
           <button type='button' onClick={() => this.props.closeAnsModal(false)}>Cancel</button>
+
         </div>
       </div>
     );

@@ -2,7 +2,7 @@
   font-family: "adobe-clean", sans-serif;
   font-weight: 100;
   color: dimgray;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 input {
@@ -29,7 +29,7 @@ input {
 #block2 {
   padding-top: 20px;
   margin-right: 0px;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 #answer1 {
@@ -39,7 +39,7 @@ input {
 }
 
 #answer2 {
-  font-size: 11px;
+  font-size: 13px;
   color: gray;
   margin-top: 12px;
 }
@@ -63,10 +63,14 @@ input {
 }
 
 .modalBackground {
-  position: absolute;
+  /* flex: 1; */
+  justify-content: "center";
+  align-items: "center";
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 
 .modalContainer {
@@ -80,50 +84,15 @@ input {
   padding: 25px;
 }
 
-.modalContainer .title {
-  display: inline-block;
-  text-align: center;
-  margin-top: 10px;
+.modalLabel {
+  font-size: 15px;
+  text-align: left;
+  padding:4px;
 }
 
-.titleCloseBtn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.titleCloseBtn button {
-  background-color: transparent;
-  border: none;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.modalContainer .body {
-  flex: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.7rem;
-  text-align: center;
-}
-
-.modalContainer .footer {
-  flex: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContainer .footer button {
-  width: 150px;
-  height: 45px;
-  margin: 10px;
-  border: none;
-  background-color: cornflowerblue;
-  color: white;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
+.modalButton{
+margin-top:6px;
+margin-right:10px;
 }
 
 #cancelBtn {
@@ -140,7 +109,7 @@ input {
 
 .search[type="submit"] {
   background-color: white;
-  color:dimgray;
+  color: dimgray;
   margin-left: -70px;
   height: 34px;
   width: 62px;
@@ -162,9 +131,9 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color:white;
-  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  width: 12px;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 #picture {

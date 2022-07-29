@@ -304,7 +304,7 @@ class App extends React.Component {
             newRelatedProductList={this.state.newRelatedProductList}
           />
 
-          <QnA curProductID={this.state.productId} />
+          <QnA curProductID={this.state.productId} desc={this.state.productDesc} />
           <a id='reviewSection'></a>
           <RnR reviews={this.state.reviews}
             reviewsMetadata={this.state.reviewsMetadata}

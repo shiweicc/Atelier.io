@@ -46,7 +46,7 @@ class QnA extends React.Component {
     list.product_id = questions[0].product_id;
     var resultList = questions[0].results.slice(0, count);
     list.results = resultList;
-    console.log(list);
+   // console.log(list);
     const currentQue = [];
     currentQue.push(list);
     this.setState({
@@ -104,7 +104,7 @@ class QnA extends React.Component {
         <input className='search' type="submit" value='Search' onClick={this.search.bind(this)}></input>
         <QuestionsList qna={this.state.qna} loadQuestions={this.loadQuestions.bind(this)} getQuestions={this.getQuestions.bind(this)}
           count={this.state.questionCount} total={this.state.totalQusCount} product_id={this.props.curProductID}
-        // product_name={this.props.}
+          product_name={this.props.desc.name}
         />
       </div>
     )

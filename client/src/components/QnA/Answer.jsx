@@ -13,14 +13,12 @@ const Answer = (props) => {
     <div className='answers'>
 
       <div id='answer1' > <b>A:</b> {props.ans.body}</div>
-
-
       {/* <img id='picture' src='https://cdn.britannica.com/39/7139-050-A88818BB/Himalayan-chocolate-point.jpg'></img> */}
       <Photos photo={props.ans.photos} />
       <div id='answer2'>by {props.ans.answerer_name === 'Seller' ? <b>{props.ans.answerer_name}</b> : props.ans.answerer_name}, {date} &nbsp; |  &nbsp; Helpful? &nbsp;
-        <a href="#" onClick={() => props.markAnswerHelpful(props.ans.answer_id)}> Yes</a>
+        <a href="#" onClick={(e) => props.markAnswerHelpful(e, props.ans.answer_id)}> Yes</a>
         ({props.ans.helpfulness}) &nbsp; | &nbsp;
-        <a href="#" onClick={() => props.report(props.ans.answer_id)}> Report</a></div>
+        <a href="#" onClick={(e) => props.report(e, props.ans.answer_id)}> Report</a></div>
 
     </div>
   )

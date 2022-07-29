@@ -12,7 +12,8 @@ class SignleAnswer extends React.Component {
     }
   }
 
-  markAnswerHelpful = (answer_id) => {
+  markAnswerHelpful = (e, answer_id) => {
+    e.preventDefault();
     //console.log('here');
     axios.put('http://localhost:3000/answers/helpful', {
       answer_id: answer_id
@@ -28,8 +29,9 @@ class SignleAnswer extends React.Component {
       })
   }
 
-  report = (answer_id) => {
+  report = (e, answer_id) => {
     //console.log("here", answer_id);
+    e.preventDefault();
     axios.put('http://localhost:3000/answers/report', {
       answer_id: answer_id
     })

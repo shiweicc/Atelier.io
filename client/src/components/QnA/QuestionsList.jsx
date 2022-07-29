@@ -14,12 +14,14 @@ class QuestionsList extends React.Component {
 
   setOpenQueModal(isOpen) {
     // console.log("loghere", isOpen);
+
     this.setState({
       openQueModal: isOpen
     });
   }
 
-  markQuestionHelpful = (question_id) => {
+  markQuestionHelpful = (e, question_id) => {
+    e.preventDefault();
     //console.log(question_id);
     //console.log('here', this.props.product_id);
     axios.put('http://localhost:3000/questions/helpful', {
@@ -37,7 +39,7 @@ class QuestionsList extends React.Component {
   }
 
   render() {
-    console.log('current count' + this.props.count);
+    //console.log('current count' + this.props.count);
     //console.log('totol' + props.total);
     var differ = this.props.count - this.props.total;
     return (
@@ -46,7 +48,9 @@ class QuestionsList extends React.Component {
           this.props.qna.map(
             (element, index) => {
               //console.log(pro_id);
-              return <DisplayQuestion key={index} questions={element.results} markQuestionHelpful={this.markQuestionHelpful.bind(this)} />
+              return <DisplayQuestion key={index} questions={element.results} markQuestionHelpful={this.markQuestionHelpful.bind(this)}
+                product_name={this.props.product_name}
+              />
             }
           )
         }
@@ -59,7 +63,7 @@ class QuestionsList extends React.Component {
           onClick={() => this.setOpenQueModal(true)}>
           ADD A QUESTION +</button>
         {this.state.openQueModal && <ModalQue closeQueModal={this.setOpenQueModal.bind(this)} postQuestion={this.props.getQuestions.bind(this)}
-          product_id={this.props.product_id} count={this.props.count} />}
+          product_id={this.props.product_id} count={this.props.count} product_name={this.props.product_name} />}
       </div>
     )
   }

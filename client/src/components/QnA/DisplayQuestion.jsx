@@ -32,7 +32,9 @@ class DisplayQuestion extends React.Component {
         {
           this.props.questions.map(
             (question, index) => {
+
              // console.log('quesiont id ' + question.question_id);
+
               return (
                 <div key={index}>
                   <div id="parent-block">

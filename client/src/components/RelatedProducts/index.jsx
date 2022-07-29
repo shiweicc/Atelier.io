@@ -21,7 +21,7 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('what props in RelatedProduct ???', this.props.curProductID);
+    // console.log('what props in RelatedProduct ???', this.props.ratings);
   }
 
   openModal(info) {
@@ -103,10 +103,10 @@ class RelatedProducts extends React.Component {
       <h3> RELATED PRODUCT </h3>
       <ProductList
         newRelatedProductList={this.props.newRelatedProductList}
-        // newRelatedProductList={this.state.newRelatedProductList}
         curProductID={this.props.curProductID}
         style={this.props.style} desc={this.props.desc}
         openModal={this.openModal}
+        ratings={this.props.ratings}
       />
       <OutfitList
         style={this.props.style} desc={this.props.desc}
@@ -114,6 +114,7 @@ class RelatedProducts extends React.Component {
         addOutfitItem={this.props.addOutfitItem}
         deleteOutfitItem={this.props.deleteOutfitItem}
         updateLocalStorage={this.props.updateLocalStorage}
+        ratings={this.props.ratings}
       />
         {Object.keys(this.state.productFeature).length === 0
         ? null

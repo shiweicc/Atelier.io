@@ -10,16 +10,61 @@ import ReviewModal from './RnRComponents/ReviewModal.jsx';
 class RnR extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       ratingsPercent: 0,
       starsFilter: [],
-      modalOpen: false
+      modalOpen: false,
+      modalRating: false,
+      modalRatingValue: '0',
+      recommended: 'unchecked',
+      characteristics: [
+        {characteristic: 'Comfort',
+        low: 'Very Uncomfortable',
+        medium: 'Average',
+        high: 'Very Comfortable'
+        },
+        {characteristic: 'Fit',
+        low: 'Poor Fit',
+        medium: 'Average',
+        high: 'Perfect Fit'
+        },
+        {characteristic: 'Length',
+        low: 'Too short',
+        medium: 'Perfect',
+        high: 'Too long'
+        },
+        {characteristic: 'Quality',
+        low: 'Poor Quality',
+        medium: 'Average',
+        high: 'High Quality'
+        },
+        {characteristic: 'Size',
+        low: 'Too Small',
+        medium: 'Perfect',
+        high: 'Too Large'
+        },
+        {characteristic: 'Width',
+        low: 'Too Narrow',
+        medium: 'Perfect',
+        high: 'Too Wide'
+        }
+      ],
+      comfort: '0',
+      fit: '0',
+      length: '0',
+      quality: '0',
+      size: '0',
+      width: '0'
     }
+
     this.percentRatings = this.percentRatings.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.setStarsFilter = this.setStarsFilter.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.removeAllFilters = this.removeAllFilters.bind(this);
+    this.setModalRating = this.setModalRating.bind(this);
+    this.setRecommended = this.setRecommended.bind(this);
   }
 
   percentRatings() {
@@ -37,6 +82,54 @@ class RnR extends React.Component {
     this.setState({starsFilter: []});
   }
 
+  setRecommended (e) {
+    this.setState({recommended: e.target.value})
+  }
+
+  setModalRating (e) {
+    if (e.target.className === 'five-stars' || e.target.className === 'five-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '5'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '5') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '5') {
+        this.setState({modalRatingValue: '5'});
+      }
+    } else if (e.target.className === 'four-stars' || e.target.className === 'four-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '4'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '4') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '4') {
+        this.setState({modalRatingValue: '4'});
+      }
+    } else if (e.target.className === 'three-stars' || e.target.className === 'three-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '3'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '3') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '3') {
+        this.setState({modalRatingValue: '3'});
+      }
+    } else if (e.target.className === 'two-stars' || e.target.className === 'two-stars-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '2'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '2') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '2') {
+        this.setState({modalRatingValue: '2'});
+      }
+    } else if (e.target.className === 'one-star' || e.target.className === 'one-star-full') {
+      if (this.state.modalRating === false) {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '1'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue === '1') {
+        this.setState({modalRating: !this.state.modalRating, modalRatingValue: '0'});
+      } else if (this.state.modalRating === true && this.state.modalRatingValue !== '1') {
+        this.setState({modalRatingValue: '1'});
+      }
+    }
+  }
+
   setStarsFilter() {
     if (!this.state.starsFilter.includes(event.target.innerText[0])) {
       this.setState({ starsFilter: [...this.state.starsFilter, event.target.innerText[0]] }, () => { console.log(this.state.starsFilter) });
@@ -49,7 +142,7 @@ class RnR extends React.Component {
   }
 
   toggleModal() {
-    this.setState({ modalOpen: !this.state.modalOpen });
+    this.setState({ modalOpen: !this.state.modalOpen, recommended: 'unchecked', modalRating: false, modalRatingValue: '0'});
   }
 
   componentDidMount() {
@@ -61,7 +154,7 @@ class RnR extends React.Component {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended} characteristics={this.state.characteristics} meta={this.props.reviewsMetadata}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -111,7 +204,7 @@ class RnR extends React.Component {
       } else {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended} characteristics={this.state.characteristics} meta={this.props.reviewsMetadata}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>

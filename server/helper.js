@@ -29,7 +29,6 @@ const authedPost = (url, data) => {
     //data: JSON.stringify({data: data})
     data: data
   };
-
   //console.log(axios(options));
   return axios(options);
 }

@@ -111,54 +111,64 @@
 
 .star-wrapper {
   display: flex;
-  position: absolute;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  position: relative;
   flex-direction: row-reverse;
   justify-content: flex-end;
   z-index: 90;
+  height: 20px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .one-star {
   display: inline-block;
-  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
-  text-decoration: none;
-  width: 12px;
-  height: 12px;
+  background-image: url('./assets/0.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
   margin-left: 10px;
 }
 
 .two-stars {
   display: inline-block;
-  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
-  text-decoration: none;
-  width: 12px;
-  height: 12px;
+  background-image: url('./assets/0.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
   margin-left: 10px;
 }
 
 .three-stars {
   display: inline-block;
-  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
-  text-decoration: none;
-  width: 12px;
-  height: 12px;
+  background-image: url('./assets/0.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
   margin-left: 10px;
 }
 
 .four-stars {
   display: inline-block;
-  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
-  text-decoration: none;
-  width: 12px;
-  height: 12px;
+  background-image: url('./assets/0.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
   margin-left: 10px;
 }
 
 .five-stars {
   display: inline-block;
-  background-image: url('../src/components/RnR/RnRComponents/resources/0.png');
-  text-decoration: none;
-  width: 12px;
-  height: 12px;
+  background-image: url('./assets/0.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
   margin-left: 10px;
 }
 
@@ -177,7 +187,62 @@
 .two-stars:hover,
 .two-stars:hover ~ .one-star,
 .one-star:hover {
-  background-image: url('../src/components/RnR/RnRComponents/resources/100.png');
+  background-image: url('./assets/100.png');
+  cursor: pointer;
+}
+
+.one-star-full {
+  display: inline-block;
+  background-image: url('./assets/100.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.two-stars-full {
+  display: inline-block;
+  background-image: url('./assets/100.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.three-stars-full {
+  display: inline-block;
+  background-image: url('./assets/100.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.four-stars-full {
+  display: inline-block;
+  background-image: url('./assets/100.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.five-stars-full {
+  display: inline-block;
+  background-image: url('./assets/100.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -431,30 +496,242 @@ div.quality {
   box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
 }
 
-.ModalInput {
+.ModalLabel {
+  display: inline;
+  position: relative;
+  margin-left: 10px;
+}
+
+.ModalLabelCharacteristic {
   display: flex;
-  position: absolute;
-  margin: 10px;
-  padding: 10px;
+  position: relative;
+  margin-left: 10px;
+  justify-content: space-between;
+  background-color: white;
+  padding-bottom: 2px;
+  padding-left: 4px;
   border-radius: 5px;
-  width: 90%;
-  height: 85%;
-  left: 0;
-  top: 65px;
-  z-index: 30;
+}
+
+.ModalCharacteristicDiv {
+  display: flex;
+  justify-content: space-evenly;
+  width: 350px;
+}
+
+.TinyText {
+  font-size: small;
+}
+
+.ModalInput {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    position: absolute;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    height: 85%;
+    left: 0;
+    top: 65px;
+    z-index: 30;
 }
 
 .ModalInputFieldSmall {
   font-size: 14px;
   font-weight: lighter;
-  margin: 10px;
+  margin: 5px 10px;
+  width: 300px;
+  height: 30px;
+  display: flex;
 }
 
 .ModalInputFieldLarge {
   font-size: 14px;
   font-weight: lighter;
-  margin: 10px;
-  height: 60px;
+  margin: 5px 10px;
+  width: 100%;
+  height: 160px;
+  display: flex;
+}
+
+.ModalRating {
+  display: flex;
+  position: relative;
+  margin-left: 20px;
+  font-weight: bold;
+  align-items: center;
+  font-size: 20px;
+}
+
+.ModalNamesForm {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.ModalRecommended {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+}
+
+.ModalRecommendedInput {
+  display: inline;
+  position: relative;
+  width: 5%;
+  margin-top: 30px;
+}
+
+.ModalNickname {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.ModalEmail {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.star-title {
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  position: absolute;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  height: 20px;
+}
+
+.SmallText {
+  margin-left: 10px;
+  font-size: smaller;
+}
+
+.ModalCharacteristics {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 6;
+  grid-row-end: 9;
+}
+
+.ModalCharacteristicsInput {
+  display: inline;
+  position: relative;
+  width: 15%;
+}
+
+.ModalCharacteristicDescription {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 300px;
+  margin: 2px;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: 24px;
+  margin-top: 5px;
+}
+
+.ModalImagePlaceholder {
+  border: solid;
+  background-size: 100px;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/placeholder-image.png');
+  position: relative;
+  border-width: 2px;
+  margin-bottom: 5px;
+  background-color: gainsboro;
+}
+
+.ModalFileUpload {
+  width: 100%;
+  border: transparent;
+}
+
+.ModalFileSubmit {
+  width: 20%;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+  border-color: black;
+  font-size: 12px;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalFileSubmit2 {
+  width: 20%;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+  border-color: black;
+  font-size: 14px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalUploadContainer {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin-left: 20px;
+}
+
+.ModalImageTitle {
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  position: relative;
+  margin-bottom: 5px;
+  height: 20px;
+}
+
+.ModalReviewSummary {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  margin-left: 20px;
+}
+
+.ModalInputFieldMedium {
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 5px 10px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+.ModalBody {
+  grid-column-start: 2;
+  grid-row-start: 5;
+  grid-row-end: 8;
+  margin-left: 20px;
+}
+
+.SubmitRnRModal {
+  grid-column-start: 2;
+  grid-row-start: 9;
+  grid-row-end: 9;
+  margin-left: 20px;
+}
+
+.RnRSubmit {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /***************** CSS for Related Products *****************/

@@ -1,4 +1,5 @@
 import React from "react";
+import Stars from '../../RnR/RnRComponents/Stars.jsx';
 
 class OutfitItem extends React.Component {
   constructor(props) {
@@ -56,7 +57,8 @@ class OutfitItem extends React.Component {
           <p className="card_category">{info.category}</p>
           <em className="card_name">{info.name}</em>
           {price}
-          <p className="card_rating">⭐⭐⭐⭐⭐</p>
+          {/* <p className="card_rating">⭐⭐⭐⭐⭐</p> */}
+          <Stars ratings={this.props.ratings}/>
         </div>
       </div>
     )

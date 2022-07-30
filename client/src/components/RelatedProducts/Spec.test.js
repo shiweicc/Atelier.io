@@ -19,18 +19,12 @@ import Comparing from './components/Comparing.jsx';
 
 
 describe("render RelatedProducts and subComponents correctly", () => {
-  it("render RelatedProducts component correctly", async () => {
+  it("render <ProductList> component correctly", async () => {
     render (<RelatedProducts curProductID={71702} />);
     const title = await waitFor(() => screen.findByText(/RELATED PRODUCT/));
     expect (title).toBeInTheDocument();
   });
-  // it("render OutfitList component correctly", async () => {
-  //   render (<OutfitList curProductID={71702} />);
-  //   const title = await waitFor(() => screen.findByText(/YOUR OUTFIT/));
-  //   expect (title).toBeInTheDocument();
-  // });
 });
-
 
 // describe("render RelatedProducts and its SubComponent correctly", () => {
 //   it('changes the class when hovered', () => {
@@ -40,4 +34,3 @@ describe("render RelatedProducts and subComponents correctly", () => {
 //     expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 //   });
 // });
-

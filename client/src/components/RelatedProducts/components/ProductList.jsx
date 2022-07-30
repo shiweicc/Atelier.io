@@ -2,6 +2,8 @@ import React from "react";
 import ProductItem from './ProductItem.jsx';
 
 const ProductList = (props) => {
+  // console.log('what props in ProductList: ', props.ratings);
+
   let productInfoImg = [{
     productInfo: props.desc,
     productStyles: props.style,
@@ -9,11 +11,12 @@ const ProductList = (props) => {
 
   const listProductItem = props.newRelatedProductList.map((item, index) =>
     <ProductItem
+      key={index}
       curProductID={props.curProductID}
       eachProductInfo={item}
       openModal={props.openModal}
-      key={index}
       updateProductId={props.updateProductId}
+      ratings={props.ratings}
     />
   );
 

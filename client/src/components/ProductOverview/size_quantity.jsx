@@ -16,6 +16,7 @@ class SizeNQuantity extends React.Component {
     this.clickedStock = this.clickedStock.bind(this);
     this.clickedSizeOption = this.clickedSizeOption.bind(this);
     this.clickedStockOption = this.clickedStockOption.bind(this);
+    this.clickedStar = this.clickedStar.bind(this);
   }
 
   clickedSize (e) {
@@ -79,6 +80,10 @@ class SizeNQuantity extends React.Component {
     this.clickedStock();
   }
 
+  clickedStar() {
+    this.props.addOutfit(this.props.product);
+  }
+
   componentDidMount () {
     let skus = this.props.skus;
     let sizes = [];
@@ -125,8 +130,8 @@ class SizeNQuantity extends React.Component {
             }
             <div class='dropdown-options' id='POsize-options' onClick={this.clickedSizeOption}>
               {
-                this.state.sizes.map((size) => {
-                  return <div key={size}>{size}</div>
+                this.state.sizes.map((size, index) => {
+                  return <div key={index}>{size}</div>
                 })
               }
             </div>
@@ -145,7 +150,7 @@ class SizeNQuantity extends React.Component {
         </div>
         <div id='POAddBottom'>
           <button id='POaddToBag'>ADD TO BAG</button>
-          <button id='POstar'>&#9733;</button>
+          <button id='POstar' onClick={this.clickedStar}>&#9733;</button>
         </div>
       </div>
     )

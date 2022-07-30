@@ -152,6 +152,57 @@ const ReviewModal = (props) => {
                 </form>
                 <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
               </div>
+              <div className='ModalEmail'>
+                <form className='ModalNamesForm'>
+                  <label className='ModalLabel' for="email">What is your email?
+                    <input type="text" className="ModalInputFieldSmall" name="email" size='30' maxlength='60' placeholder='Example: Jackson11@email.com'/>
+                  </label>
+                </form>
+                <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <form className='ModalCharacteristics'>
+                {Object.keys(props.meta.characteristics).map((characteristic) => {
+                  return <div key={characteristic}>
+                    <ModalCharacteristic characteristics={props.characteristics} characteristic={characteristic}/>
+                    <label className='ModalLabelCharacteristic' for={characteristic}>{characteristic}
+                      <div className='ModalCharacteristicDiv'>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                      </div>
+                    </label>
+                  </div>
+                })}
+              </form>
+              <div className='ModalUploadContainer'>
+                <div className='ModalImageTitle'>Upload Image:</div>
+                <div className='ModalImagePlaceholder'></div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" className='ModalFileUpload'/>
+                  <input type="submit" className='ModalFileSubmit'/>
+                </form>
+              </div>
+              <div className='ModalReviewSummary'>
+                <form>
+                  <label className='ModalLabel' for="summary">Review Summary:
+                    <input type="text" className="ModalInputFieldMedium" name="summary" size='30' maxlength='60'/>
+                  </label>
+                </form>
+              </div>
+              <div className='ModalBody'>
+                <form>
+                  <label className='ModalLabel' for="body">Review Body:
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
+                  </label>
+                </form>
+              </div>
+              <div className='SubmitRnRModal'>
+                <form className='RnRSubmit'>
+                  <input type="submit" className='ModalFileSubmit2' onClick={props.toggleModal}/>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -207,6 +258,57 @@ const ReviewModal = (props) => {
                   </label>
                 </form>
                 <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <div className='ModalEmail'>
+                <form className='ModalNamesForm'>
+                  <label className='ModalLabel' for="email">What is your email?
+                    <input type="text" className="ModalInputFieldSmall" name="email" size='30' maxlength='60' placeholder='Example: Jackson11@email.com'/>
+                  </label>
+                </form>
+                <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <form className='ModalCharacteristics'>
+                {Object.keys(props.meta.characteristics).map((characteristic) => {
+                  return <div key={characteristic}>
+                    <ModalCharacteristic characteristics={props.characteristics} characteristic={characteristic}/>
+                    <label className='ModalLabelCharacteristic' for={characteristic}>{characteristic}
+                      <div className='ModalCharacteristicDiv'>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                      </div>
+                    </label>
+                  </div>
+                })}
+              </form>
+              <div className='ModalUploadContainer'>
+                <div className='ModalImageTitle'>Upload Image:</div>
+                <div className='ModalImagePlaceholder'></div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" className='ModalFileUpload'/>
+                  <input type="submit" className='ModalFileSubmit'/>
+                </form>
+              </div>
+              <div className='ModalReviewSummary'>
+                <form>
+                  <label className='ModalLabel' for="summary">Review Summary:
+                    <input type="text" className="ModalInputFieldMedium" name="summary" size='30' maxlength='60'/>
+                  </label>
+                </form>
+              </div>
+              <div className='ModalBody'>
+                <form>
+                  <label className='ModalLabel' for="body">Review Body:
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
+                  </label>
+                </form>
+              </div>
+              <div className='SubmitRnRModal'>
+                <form className='RnRSubmit'>
+                  <input type="submit" className='ModalFileSubmit2' onClick={props.toggleModal}/>
+                </form>
               </div>
             </div>
           </div>
@@ -264,6 +366,57 @@ const ReviewModal = (props) => {
                 </form>
                 <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
               </div>
+              <div className='ModalEmail'>
+                <form className='ModalNamesForm'>
+                  <label className='ModalLabel' for="email">What is your email?
+                    <input type="text" className="ModalInputFieldSmall" name="email" size='30' maxlength='60' placeholder='Example: Jackson11@email.com'/>
+                  </label>
+                </form>
+                <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <form className='ModalCharacteristics'>
+                {Object.keys(props.meta.characteristics).map((characteristic) => {
+                  return <div key={characteristic}>
+                    <ModalCharacteristic characteristics={props.characteristics} characteristic={characteristic}/>
+                    <label className='ModalLabelCharacteristic' for={characteristic}>{characteristic}
+                      <div className='ModalCharacteristicDiv'>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                      </div>
+                    </label>
+                  </div>
+                })}
+              </form>
+              <div className='ModalUploadContainer'>
+                <div className='ModalImageTitle'>Upload Image:</div>
+                <div className='ModalImagePlaceholder'></div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" className='ModalFileUpload'/>
+                  <input type="submit" className='ModalFileSubmit'/>
+                </form>
+              </div>
+              <div className='ModalReviewSummary'>
+                <form>
+                  <label className='ModalLabel' for="summary">Review Summary:
+                    <input type="text" className="ModalInputFieldMedium" name="summary" size='30' maxlength='60'/>
+                  </label>
+                </form>
+              </div>
+              <div className='ModalBody'>
+                <form>
+                  <label className='ModalLabel' for="body">Review Body:
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
+                  </label>
+                </form>
+              </div>
+              <div className='SubmitRnRModal'>
+                <form className='RnRSubmit'>
+                  <input type="submit" className='ModalFileSubmit2' onClick={props.toggleModal}/>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -320,6 +473,57 @@ const ReviewModal = (props) => {
                 </form>
                 <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
               </div>
+              <div className='ModalEmail'>
+                <form className='ModalNamesForm'>
+                  <label className='ModalLabel' for="email">What is your email?
+                    <input type="text" className="ModalInputFieldSmall" name="email" size='30' maxlength='60' placeholder='Example: Jackson11@email.com'/>
+                  </label>
+                </form>
+                <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <form className='ModalCharacteristics'>
+                {Object.keys(props.meta.characteristics).map((characteristic) => {
+                  return <div key={characteristic}>
+                    <ModalCharacteristic characteristics={props.characteristics} characteristic={characteristic}/>
+                    <label className='ModalLabelCharacteristic' for={characteristic}>{characteristic}
+                      <div className='ModalCharacteristicDiv'>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                      </div>
+                    </label>
+                  </div>
+                })}
+              </form>
+              <div className='ModalUploadContainer'>
+                <div className='ModalImageTitle'>Upload Image:</div>
+                <div className='ModalImagePlaceholder'></div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" className='ModalFileUpload'/>
+                  <input type="submit" className='ModalFileSubmit'/>
+                </form>
+              </div>
+              <div className='ModalReviewSummary'>
+                <form>
+                  <label className='ModalLabel' for="summary">Review Summary:
+                    <input type="text" className="ModalInputFieldMedium" name="summary" size='30' maxlength='60'/>
+                  </label>
+                </form>
+              </div>
+              <div className='ModalBody'>
+                <form>
+                  <label className='ModalLabel' for="body">Review Body:
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
+                  </label>
+                </form>
+              </div>
+              <div className='SubmitRnRModal'>
+                <form className='RnRSubmit'>
+                  <input type="submit" className='ModalFileSubmit2' onClick={props.toggleModal}/>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -375,6 +579,57 @@ const ReviewModal = (props) => {
                   </label>
                 </form>
                 <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <div className='ModalEmail'>
+                <form className='ModalNamesForm'>
+                  <label className='ModalLabel' for="email">What is your email?
+                    <input type="text" className="ModalInputFieldSmall" name="email" size='30' maxlength='60' placeholder='Example: Jackson11@email.com'/>
+                  </label>
+                </form>
+                <span className='SmallText'>For authentication reasons, you will not be emailed.</span>
+              </div>
+              <form className='ModalCharacteristics'>
+                {Object.keys(props.meta.characteristics).map((characteristic) => {
+                  return <div key={characteristic}>
+                    <ModalCharacteristic characteristics={props.characteristics} characteristic={characteristic}/>
+                    <label className='ModalLabelCharacteristic' for={characteristic}>{characteristic}
+                      <div className='ModalCharacteristicDiv'>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                        <input className='ModalCharacteristicsInput' type='radio' name={characteristic}/>
+                      </div>
+                    </label>
+                  </div>
+                })}
+              </form>
+              <div className='ModalUploadContainer'>
+                <div className='ModalImageTitle'>Upload Image:</div>
+                <div className='ModalImagePlaceholder'></div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" className='ModalFileUpload'/>
+                  <input type="submit" className='ModalFileSubmit'/>
+                </form>
+              </div>
+              <div className='ModalReviewSummary'>
+                <form>
+                  <label className='ModalLabel' for="summary">Review Summary:
+                    <input type="text" className="ModalInputFieldMedium" name="summary" size='30' maxlength='60'/>
+                  </label>
+                </form>
+              </div>
+              <div className='ModalBody'>
+                <form>
+                  <label className='ModalLabel' for="body">Review Body:
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
+                  </label>
+                </form>
+              </div>
+              <div className='SubmitRnRModal'>
+                <form className='RnRSubmit'>
+                  <input type="submit" className='ModalFileSubmit2' onClick={props.toggleModal}/>
+                </form>
               </div>
             </div>
           </div>

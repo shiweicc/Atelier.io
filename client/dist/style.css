@@ -117,7 +117,8 @@
   justify-content: flex-end;
   z-index: 90;
   height: 20px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .one-star {
@@ -500,6 +501,27 @@ div.quality {
   margin-left: 10px;
 }
 
+.ModalLabelCharacteristic {
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  justify-content: space-between;
+  background-color: white;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  border-radius: 5px;
+}
+
+.ModalCharacteristicDiv {
+  display: flex;
+  justify-content: space-evenly;
+  width: 350px;
+}
+
+.TinyText {
+  font-size: small;
+}
+
 .ModalInput {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -525,10 +547,12 @@ div.quality {
 }
 
 .ModalInputFieldLarge {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: lighter;
-  margin: 10px;
-  height: 60px;
+  margin: 5px 10px;
+  width: 100%;
+  height: 160px;
+  display: flex;
 }
 
 .ModalRating {
@@ -542,12 +566,15 @@ div.quality {
 
 .ModalNamesForm {
   grid-column-start: 1;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 .ModalRecommended {
   grid-column-start: 1;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
 }
 
 .ModalRecommendedInput {
@@ -555,6 +582,155 @@ div.quality {
   position: relative;
   width: 5%;
   margin-top: 30px;
+}
+
+.ModalNickname {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.ModalEmail {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.star-title {
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  position: absolute;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  height: 20px;
+}
+
+.SmallText {
+  margin-left: 10px;
+  font-size: smaller;
+}
+
+.ModalCharacteristics {
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-row-start: 6;
+  grid-row-end: 9;
+}
+
+.ModalCharacteristicsInput {
+  display: inline;
+  position: relative;
+  width: 15%;
+}
+
+.ModalCharacteristicDescription {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 300px;
+  margin: 2px;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: 24px;
+  margin-top: 5px;
+}
+
+.ModalImagePlaceholder {
+  border: solid;
+  background-size: 100px;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/placeholder-image.png');
+  position: relative;
+  border-width: 2px;
+  margin-bottom: 5px;
+  background-color: gainsboro;
+}
+
+.ModalFileUpload {
+  width: 100%;
+  border: transparent;
+}
+
+.ModalFileSubmit {
+  width: 20%;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+  border-color: black;
+  font-size: 12px;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalFileSubmit2 {
+  width: 20%;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+  border-color: black;
+  font-size: 14px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: -2px 4px 9px -5px rgba(0,0,0,0.6);
+}
+
+.ModalUploadContainer {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin-left: 20px;
+}
+
+.ModalImageTitle {
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  position: relative;
+  margin-bottom: 5px;
+  height: 20px;
+}
+
+.ModalReviewSummary {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  margin-left: 20px;
+}
+
+.ModalInputFieldMedium {
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 5px 10px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+.ModalBody {
+  grid-column-start: 2;
+  grid-row-start: 5;
+  grid-row-end: 8;
+  margin-left: 20px;
+}
+
+.SubmitRnRModal {
+  grid-column-start: 2;
+  grid-row-start: 9;
+  grid-row-end: 9;
+  margin-left: 20px;
+}
+
+.RnRSubmit {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /***************** CSS for Related Products *****************/

@@ -17,7 +17,45 @@ class RnR extends React.Component {
       modalOpen: false,
       modalRating: false,
       modalRatingValue: '0',
-      recommended: 'unchecked'
+      recommended: 'unchecked',
+      characteristics: [
+        {characteristic: 'Comfort',
+        low: 'Very Uncomfortable',
+        medium: 'Average',
+        high: 'Very Comfortable'
+        },
+        {characteristic: 'Fit',
+        low: 'Poor Fit',
+        medium: 'Average',
+        high: 'Perfect Fit'
+        },
+        {characteristic: 'Length',
+        low: 'Too short',
+        medium: 'Perfect',
+        high: 'Too long'
+        },
+        {characteristic: 'Quality',
+        low: 'Poor Quality',
+        medium: 'Average',
+        high: 'High Quality'
+        },
+        {characteristic: 'Size',
+        low: 'Too Small',
+        medium: 'Perfect',
+        high: 'Too Large'
+        },
+        {characteristic: 'Width',
+        low: 'Too Narrow',
+        medium: 'Perfect',
+        high: 'Too Wide'
+        }
+      ],
+      comfort: '0',
+      fit: '0',
+      length: '0',
+      quality: '0',
+      size: '0',
+      width: '0'
     }
 
     this.percentRatings = this.percentRatings.bind(this);
@@ -116,7 +154,7 @@ class RnR extends React.Component {
       if (this.props.reviewsCount === 'Not expanded') {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended} characteristics={this.state.characteristics} meta={this.props.reviewsMetadata}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>
@@ -166,7 +204,7 @@ class RnR extends React.Component {
       } else {
         return (
           <div>
-            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended}/>
+            <ReviewModal toggleModal={this.toggleModal} setModalRating={this.setModalRating} modalRating={this.state.modalRating} modalRatingValue={this.state.modalRatingValue} setRecommended={this.setRecommended} characteristics={this.state.characteristics} meta={this.props.reviewsMetadata}/>
             <div className='RnR'>
               <div className='RnRHead'>
                 <div>

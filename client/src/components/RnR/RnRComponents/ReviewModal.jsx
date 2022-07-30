@@ -87,7 +87,7 @@ const ReviewModal = (props) => {
               <div className='ModalBody'>
                 <form>
                   <label className='ModalLabel' for="body">Review Body:
-                    <input type="text" className="ModalInputFieldLarge" name="body" size='30' maxlength='1000'/>
+                    <textarea className="ModalInputFieldLarge" name='body' maxlength='1000'/>
                   </label>
                 </form>
               </div>

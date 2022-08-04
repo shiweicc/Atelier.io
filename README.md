@@ -15,11 +15,11 @@ This project comprises a complete redesign of an out-dated retail portal and mod
   ```
   npm run build 
   ```   
-   For production mode: 
+   If you need to run webpack in production mode: 
+   
    ```
    npm run build:production 
    ```
-  
 4. Start server:
   ```
   npm start 
@@ -28,6 +28,7 @@ This project comprises a complete redesign of an out-dated retail portal and mod
 5. Create config.js file and add your github token
 
 6. Visit http://localhost:3000 to start the page
+
 
 ## Table of Contents
 1. Product Overview - by David Lim

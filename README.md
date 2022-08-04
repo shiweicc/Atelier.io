@@ -9,7 +9,7 @@ This project comprises a complete redesign of an out-dated retail portal and mod
 2. Install all the packages and dependencies by running:
   `npm install`
   
-3. Run webpack at local development mode: `npm run build `.  
+3. Run webpack at local development mode: `npm run build `   
    For production mode: `npm run build:production `
   
 4. Start server:
@@ -26,13 +26,13 @@ This project comprises a complete redesign of an out-dated retail portal and mod
 4. Ratings and Reviews - by Jackson Armstrong
 
 ## Teach Stack
-React Native
-Node.js
-Express.js
-jQuery
-Axios
-Webpack
-AWS-EC2
-JEST
+React Native, 
+Node.js, 
+Express.js, 
+jQuery, 
+Axios, 
+Webpack, 
+AWS-EC2, 
+JEST, 
 React Testing Library
 

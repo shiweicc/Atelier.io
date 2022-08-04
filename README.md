@@ -39,7 +39,7 @@ This project comprises a complete redesign of an outdated retail portal and mode
 ### Product Overview
 
 ### Related Products
-The related products section has features that allow the user to navigate a list of items that are recommended and related to the product is currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
+The related products section has features that allow the user to navigate a list of items that are recommended and related to the product currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
 
 ### Questions and Answers
 

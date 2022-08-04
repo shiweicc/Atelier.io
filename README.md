@@ -6,21 +6,13 @@ This project comprises a complete redesign of an outdated retail portal and mode
 ## Installation
 1. Fork the project and clone to your local repository
 2. Install all the packages and dependencies by running:
-  ```
-  npm install
-  ```
+  ``` npm install```
 3. Run webpack at local development mode: 
-  ```
-  npm run build 
-  ```   
-   If you need to run webpack in production mode: 
-   ```
-   npm run build:production 
-   ```
+  ```npm run build ```   
+   *If you need to run webpack in production mode: 
+   ``` npm run build:production ```
 4. Start server:
-  ```
-  npm start 
-  ```
+  ```npm start ```
 5. Create config.js file and add your github token
 6. Visit http://localhost:3000 to start the page
 

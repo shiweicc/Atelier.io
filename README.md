@@ -31,14 +31,14 @@ This project comprises a complete redesign of an outdated retail portal and mode
 * [Jackson Armstrong](https://github.com/reservoirjax) - Ratings and Reviews
 
 ## Table of Contents
-1. Product Overview 
-2. Related Products 
-3. Questions and Answers 
-4. Ratings and Reviews 
+1. [Product Overview](#product-overview)
+2. [Related Products](#related-products)
+3. [Questions and Answers](#questions-and-answers)
+4. [Ratings and Reviews](#ratings-and-reviews)
 
 ### Product Overview
 
-### Realted Products
+### Related Products
 The related products section has features that allow the user to navigate a list of items that are recommended and related to the product is currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
 
 ### Questions and Answers

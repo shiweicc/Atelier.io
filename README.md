@@ -37,13 +37,16 @@ This project comprises a complete redesign of an outdated retail portal and mode
 4. [Ratings and Reviews](#ratings-and-reviews)
 
 ### Product Overview
+The product overview section presents the current viewing product with details of its description, prices, images(zoom-in/out), styles, sizes and quantities. The product can also be added to user's “Outfits” collection, which are integrated with the Related Products section. 
 
 ### Related Products
 The related products section has features that allow the user to navigate a list of items that are recommended and related to the product currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
 
 ### Questions and Answers
+The questions and answers section has features that allow the user to browse, search and submit questions and asnwers for the product currently being viewed, with the ability to provide feedback on questions.
 
 ### Ratings and Reviews
+The ratings and reviews section has features that allow the user to browse and submit reviews for the product currently being viewed.
 
 ## Teach Stack
 * [React](https://reactjs.org/)

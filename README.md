@@ -37,13 +37,13 @@ This project comprises a complete redesign of an out-dated retail portal and mod
 4. Ratings and Reviews 
 
 ## Teach Stack
-React Native, 
-Node.js, 
-Express.js, 
-jQuery, 
-Axios, 
-Webpack, 
-AWS-EC2, 
-JEST, 
-React Testing Library
+* [React](https://reactjs.org/)
+* [Node](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
+* [Amazon AWS](https://aws.amazon.com/)
+* [Babel](https://babeljs.io/)
+* [Webpack](https://webpack.js.org/)
+* [JEST](https://jestjs.io/)
+* [React Testing Library](https://testing-library.com/docs/react-testing-library/setup)
+
 

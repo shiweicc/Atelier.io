@@ -1,7 +1,7 @@
 # Atelier eCommerance Application
 
 ## Overview
-This project comprises a complete redesign of an out-dated retail portal and modernize the site.
+This project comprises a complete redesign of an outdated retail portal and modernizing the site. Portal features include views of product images and details, related products list and user collection list, questions and answers, and also ratings and reviews for the product.
 
 ## Installation
 1. Fork the project and clone to your local repository

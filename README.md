@@ -33,6 +33,7 @@ The product overview section presents the current viewing product with details o
 
 ### Related Products
 The related products section has features that allow the user to navigate a list of items that are recommended and related to the product currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
+![gif](https://user-images.githubusercontent.com/61093624/182980162-08ab4f9f-20c0-4132-900a-2971ee927ad8.gif)
 
 ### Questions and Answers
 The questions and answers section has features that allow the user to browse, search and submit questions and asnwers for the product currently being viewed, with the ability to provide feedback on questions.

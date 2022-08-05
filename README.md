@@ -30,6 +30,7 @@ This project comprises a complete redesign of an outdated retail portal and mode
 
 ### Product Overview
 The product overview section presents the current viewing product with details of its description, prices, images(zoom-in/out), styles, sizes and quantities. The product can also be added to user's “Outfits” collection, which are integrated with the Related Products section. 
+![overview GIF DEMO](https://user-images.githubusercontent.com/61093624/182980996-f7a32f65-e08b-425e-b2a1-da644bc48143.gif)
 
 ### Related Products
 The related products section has features that allow the user to navigate a list of items that are recommended and related to the product currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.

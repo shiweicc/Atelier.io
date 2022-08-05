@@ -41,6 +41,7 @@ The questions and answers section has features that allow the user to browse, se
 
 ### Ratings and Reviews
 The ratings and reviews section has features that allow the user to browse and submit reviews for the product currently being viewed.
+![RR GIF DEMO](https://user-images.githubusercontent.com/61093624/182981385-e08050a4-c76b-42de-b204-a8489e427e43.gif)
 
 ## Teach Stack
 * [React](https://reactjs.org/)

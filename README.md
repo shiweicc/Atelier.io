@@ -29,17 +29,29 @@ This project comprises a complete redesign of an outdated retail portal and mode
 4. [Ratings and Reviews](#ratings-and-reviews)
 
 ### Product Overview
+
+Built by [Dvaid Lim](https://github.com/davidlim7223)
+
 The product overview section presents the current viewing product with details of its description, prices, images(zoom-in/out), styles, sizes and quantities. The product can also be added to user's “Outfits” collection, which are integrated with the Related Products section. 
 ![overview GIF DEMO](https://user-images.githubusercontent.com/61093624/182980996-f7a32f65-e08b-425e-b2a1-da644bc48143.gif)
 
 ### Related Products
+
+Built by [Shiwei Chen](https://github.com/shiweicc)
+
 The related products section has features that allow the user to navigate a list of items that are recommended and related to the product currently being viewed, with options to see features comparison and also have the ability to add to an outfit list.
 ![gif](https://user-images.githubusercontent.com/61093624/182980162-08ab4f9f-20c0-4132-900a-2971ee927ad8.gif)
 
 ### Questions and Answers
+
+Built by [Minwen Liu](https://github.com/tidibubu)
+
 The questions and answers section has features that allow the user to browse, search and submit questions and asnwers for the product currently being viewed, with the ability to provide feedback on questions.
 
 ### Ratings and Reviews
+
+Built by [Jackson Armstrong](https://github.com/reservoirjax)
+
 The ratings and reviews section has features that allow the user to browse and submit reviews for the product currently being viewed.
 ![RR GIF DEMO](https://user-images.githubusercontent.com/61093624/182981385-e08050a4-c76b-42de-b204-a8489e427e43.gif)
 
